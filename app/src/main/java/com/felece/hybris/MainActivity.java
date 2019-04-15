@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         ((HybrisApp) getApplication()).getActivityComponent().injectMainActivity(this);
 
 
-        dataManager.startApplication();
+        dataManager.configurationApplication("http://167.99.88.157:8080/api/",10,10);
 
     }
 }
