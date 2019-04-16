@@ -2,12 +2,17 @@ package com.felece.hybris;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+
+import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
+import com.felece.hybris_network_sdk.data.network.entities.CommonResponse;
+
 import javax.inject.Inject;
 
 
-public class MainActivity extends AppCompatActivity {
 
+public class MainActivity extends AppCompatActivity {
 
     @Inject
     DataManager dataManager;
@@ -18,8 +23,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ((HybrisApp) getApplication()).getActivityComponent().injectMainActivity(this);
 
-
         dataManager.configurationApplication("http://167.99.88.157:8080/api/",10,10);
-        dataManager.startApplication();
+        dataManager.startApplication(CommonAsCode.class, new ServiceCallback<CommonResponse>() {
+            @Override
+            public void onSuccess(CommonResponse response) {
+                Log.d("veri","veri");
+            }
+
+            @Override
+            public void onError(int code, String errorResponse) {
+
+            }
+        });
+
     }
 }

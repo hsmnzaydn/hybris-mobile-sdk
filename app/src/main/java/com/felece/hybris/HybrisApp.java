@@ -2,7 +2,7 @@ package com.felece.hybris;
 
 import android.app.Application;
 
-import com.felece.hybris_network_sdk.di.modules.PresenterModules;
+import com.felece.hybris_network_sdk.di.modules.HybrisPresenterModules;
 
 public class HybrisApp extends Application {
 
@@ -20,7 +20,8 @@ public class HybrisApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        viewComponents= DaggerViewComponents.builder().presenterModules(new PresenterModules(this)).build();
+        viewComponents= DaggerViewComponents.builder().hybrisPresenterModules(new HybrisPresenterModules(this)).build();
+
 
     }
 }

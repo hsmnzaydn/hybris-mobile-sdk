@@ -2,7 +2,9 @@ package com.felece.hybris_network_sdk.data;
 
 
 import com.felece.hybris_network_sdk.AppConfiguration.Configuration;
+import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.network.ApiServices;
+import com.felece.hybris_network_sdk.data.network.entities.CommonResponse;
 import com.felece.hybris_network_sdk.data.pref.PrefHelper;
 import javax.inject.Inject;
 
@@ -26,7 +28,14 @@ public class DataManagerImp implements DataManager {
     }
 
     @Override
-    public void startApplication() {
-        apiServices.startApplication();
+    public void startApplication(Class object, ServiceCallback<CommonResponse> serviceCallback) {
+        if(object== null){
+            startApplication(CommonResponse.class,serviceCallback);
+        }else {
+            apiServices.startApplication(object,serviceCallback);
+        }
+
     }
+
+
 }

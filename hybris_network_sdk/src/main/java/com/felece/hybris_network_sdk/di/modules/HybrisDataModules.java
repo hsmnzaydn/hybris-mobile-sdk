@@ -14,6 +14,7 @@ import com.felece.hybris_network_sdk.data.network.services.ApplicationServices.A
 import com.felece.hybris_network_sdk.data.network.services.ApplicationServices.ApplicationServicesImp;
 import com.felece.hybris_network_sdk.data.pref.PrefHelper;
 import com.felece.hybris_network_sdk.data.pref.PrefHelperImp;
+import com.google.gson.Gson;
 
 import javax.inject.Singleton;
 
@@ -21,7 +22,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class DataModules {
+public class HybrisDataModules {
 
     @Provides
     @Singleton
@@ -38,14 +39,20 @@ public class DataModules {
 
     @Provides
     @Singleton
-    ApplicationServices provideApplicationServices(ApiClient apiClient){
-        return new ApplicationServicesImp(apiClient);
+    ApplicationServices provideApplicationServices(ApiClient apiClient,Gson gson){
+        return new ApplicationServicesImp(apiClient,gson);
     }
 
     @Provides
     @Singleton
     PrefHelper providePrefHelper(Context context){
         return new PrefHelperImp(context);
+    }
+
+    @Provides
+    @Singleton
+    Gson provideGson(){
+        return new Gson();
     }
 
 }

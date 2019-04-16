@@ -3,15 +3,14 @@ package com.felece.hybris_network_sdk.di.modules;
 import android.app.Application;
 import android.content.Context;
 import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PresenterModules {
+public class HybrisPresenterModules {
     private Context context;
 
-    public PresenterModules(Application app){
+    public HybrisPresenterModules(Application app){
         this.context=app;
     }
 
