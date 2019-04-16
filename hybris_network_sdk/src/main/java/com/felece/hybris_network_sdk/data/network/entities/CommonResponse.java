@@ -3,7 +3,7 @@ package com.felece.hybris_network_sdk.data.network.entities;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public  class CommonResponse {
+public abstract class CommonResponse {
 
 
     @Expose

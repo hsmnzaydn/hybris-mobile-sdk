@@ -1,12 +1,10 @@
 package com.felece.hybris;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
 import com.felece.hybris_network_sdk.data.DataManager;
-
 import javax.inject.Inject;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         dataManager.configurationApplication("http://167.99.88.157:8080/api/",10,10);
-
+        dataManager.startApplication();
     }
 }

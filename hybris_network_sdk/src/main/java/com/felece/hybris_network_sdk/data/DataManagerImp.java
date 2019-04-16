@@ -24,4 +24,9 @@ public class DataManagerImp implements DataManager {
         Configuration.connectTimeOut=connectTimeOut;
         Configuration.readTimeOut=networkReadTimeOut;
     }
+
+    @Override
+    public void startApplication() {
+        apiServices.startApplication();
+    }
 }

@@ -5,14 +5,11 @@ import android.util.Log;
 import com.felece.hybris_network_sdk.data.network.ApiClient;
 import com.felece.hybris_network_sdk.data.network.ApiInterface;
 import com.felece.hybris_network_sdk.data.network.entities.CommonResponse;
-
-import java.io.IOException;
-
 import javax.inject.Inject;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.schedulers.Schedulers;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ApplicationServicesImp implements ApplicationServices {
 
@@ -25,19 +22,21 @@ public class ApplicationServicesImp implements ApplicationServices {
 
     @Override
     public void startApplication() {
-        Call<CommonResponse> call=apiInterface.startApplication("sadasdas");
+        apiInterface.startApplication("sadas")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver<CommonResponse>() {
+                    @Override
+                    public void onSuccess(CommonResponse notes) {
+                        Log.d("veri", "veri");
+                    }
 
-        call.enqueue(new Callback<CommonResponse>() {
-            @Override
-            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<CommonResponse> call, Throwable t) {
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("veri", "veri");
+                    }
+                });
 
 
-            }
-        });
     }
 }
