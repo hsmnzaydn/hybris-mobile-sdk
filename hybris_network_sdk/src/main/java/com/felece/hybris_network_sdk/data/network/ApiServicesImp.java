@@ -3,6 +3,8 @@ package com.felece.hybris_network_sdk.data.network;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.network.entities.CommonResponse;
 import com.felece.hybris_network_sdk.data.network.services.ApplicationServices.ApplicationServices;
+import com.felece.hybris_network_sdk.data.network.services.ApplicationServices.ApplicationServicesImp;
+import com.felece.hybris_network_sdk.data.network.services.BaseService;
 
 import javax.inject.Inject;
 

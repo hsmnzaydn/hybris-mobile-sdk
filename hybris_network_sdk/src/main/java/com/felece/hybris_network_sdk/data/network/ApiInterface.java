@@ -11,7 +11,7 @@ import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public interface ApiInterface<T> {
+public interface ApiInterface {
 
 
     @GET("secure/start-application")

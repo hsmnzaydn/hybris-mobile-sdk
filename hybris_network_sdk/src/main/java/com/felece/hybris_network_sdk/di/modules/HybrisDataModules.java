@@ -12,6 +12,7 @@ import com.felece.hybris_network_sdk.data.network.ApiServices;
 import com.felece.hybris_network_sdk.data.network.ApiServicesImp;
 import com.felece.hybris_network_sdk.data.network.services.ApplicationServices.ApplicationServices;
 import com.felece.hybris_network_sdk.data.network.services.ApplicationServices.ApplicationServicesImp;
+import com.felece.hybris_network_sdk.data.network.services.BaseService;
 import com.felece.hybris_network_sdk.data.pref.PrefHelper;
 import com.felece.hybris_network_sdk.data.pref.PrefHelperImp;
 import com.google.gson.Gson;
@@ -43,6 +44,11 @@ public class HybrisDataModules {
         return new ApplicationServicesImp(apiClient,gson);
     }
 
+    @Provides
+    @Singleton
+    BaseService provideBaseServices(ApiClient apiClient,Gson gson){
+        return new BaseService(apiClient,gson);
+    }
     @Provides
     @Singleton
     PrefHelper providePrefHelper(Context context){

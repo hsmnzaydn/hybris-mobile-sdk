@@ -30,7 +30,7 @@ public class DataManagerImp implements DataManager {
     @Override
     public void startApplication(Class object, ServiceCallback<CommonResponse> serviceCallback) {
         if(object== null){
-            startApplication(CommonResponse.class,serviceCallback);
+            apiServices.startApplication(CommonResponse.class,serviceCallback);
         }else {
             apiServices.startApplication(object,serviceCallback);
         }
