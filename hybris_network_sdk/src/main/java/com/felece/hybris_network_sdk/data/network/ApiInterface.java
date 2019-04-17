@@ -25,4 +25,7 @@ public interface ApiInterface {
 
     @GET("catalogs")
     Single<Object> getCatalogs(@Query("fields") String fields);
+
+    @GET("catalogs/{catalogId}")
+    Single<Object> getCatalog(@Path("catalogId") String catalogId,@Query("fields") String fields);
 }

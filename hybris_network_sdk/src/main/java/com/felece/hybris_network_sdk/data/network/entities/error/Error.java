@@ -34,7 +34,16 @@ public class Error  implements java.io.Serializable
 	private String message;
 	/** Type of the object related to the error e.g. 'entry'.<br/><br/><i>Generated property</i> for <code>Error.subjectType</code> property defined at extension <code>commercewebservicescommons</code>. */
 	private String subjectType;
-		
+	private int code;
+
+	public int getCode() {
+		return code;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
+	}
+
 	public Error()
 	{
 		// default constructor

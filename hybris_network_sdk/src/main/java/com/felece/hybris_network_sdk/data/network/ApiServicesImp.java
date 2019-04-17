@@ -1,6 +1,7 @@
 package com.felece.hybris_network_sdk.data.network;
 
 import com.felece.hybris_network_sdk.ServiceCallback;
+import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
 import com.felece.hybris_network_sdk.data.network.services.CatalogServices.CatalogServices;
@@ -26,5 +27,10 @@ public class ApiServicesImp implements ApiServices {
     @Override
     public void getCatalogs(Class object, String field, ServiceCallback<CatalogList> catalogListServiceCallback) {
         catalogServices.getCatalogs(object,field,catalogListServiceCallback);
+    }
+
+    @Override
+    public void getCatalog(Class object, String catalogId, String field, ServiceCallback<Catalog> catalogServiceCallback) {
+        catalogServices.getCatalog(object,catalogId,field,catalogServiceCallback);
     }
 }

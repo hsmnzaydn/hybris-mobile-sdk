@@ -21,7 +21,6 @@ package com.felece.hybris_network_sdk.data.network.entities.catalog;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
 import com.felece.hybris_network_sdk.data.network.entities.product.Product;
 
 import java.util.List;
@@ -47,7 +46,7 @@ public class CategoryHierarchy extends AbstractCatalogItem implements Parcelable
 	private List<Product> products;
 
 	private CategoryHierarchy parent;
-		
+
 	public CategoryHierarchy()
 	{
 		// default constructor
@@ -106,13 +105,13 @@ public class CategoryHierarchy extends AbstractCatalogItem implements Parcelable
 	{
 		this.subcategories = subcategories;
 	}
-	
+
 		
-	public List<CategoryHierarchy> getSubcategories() 
+	public List<CategoryHierarchy> getSubcategories()
 	{
 		return subcategories;
 	}
-		
+
 		
 	public void setProducts(final List<Product> products)
 	{

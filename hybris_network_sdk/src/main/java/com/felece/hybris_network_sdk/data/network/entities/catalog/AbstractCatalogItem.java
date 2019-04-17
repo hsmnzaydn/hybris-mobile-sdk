@@ -18,7 +18,10 @@
  */
 package com.felece.hybris_network_sdk.data.network.entities.catalog;
 
+import com.felece.hybris_network_sdk.data.network.entities.product.Category;
+
 import java.util.Date;
+import java.util.List;
 
 public class AbstractCatalogItem  implements java.io.Serializable 
 {
@@ -31,13 +34,17 @@ public class AbstractCatalogItem  implements java.io.Serializable
 	private Date lastModified;
 	/** <i>Generated property</i> for <code>AbstractCatalogItem.url</code> property defined at extension <code>commercewebservicescommons</code>. */
 	private String url;
+
+
+
 		
 	public AbstractCatalogItem()
 	{
 		// default constructor
 	}
-	
-		
+
+
+
 	public void setName(final String name)
 	{
 		this.name = name;
