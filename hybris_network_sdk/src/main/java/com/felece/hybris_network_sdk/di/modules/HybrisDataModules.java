@@ -1,10 +1,6 @@
 package com.felece.hybris_network_sdk.di.modules;
 
-
-
-
 import android.content.Context;
-
 import com.felece.hybris_network_sdk.data.DataManager;
 import com.felece.hybris_network_sdk.data.DataManagerImp;
 import com.felece.hybris_network_sdk.data.network.ApiClient;
@@ -16,9 +12,7 @@ import com.felece.hybris_network_sdk.data.network.services.BaseService;
 import com.felece.hybris_network_sdk.data.pref.PrefHelper;
 import com.felece.hybris_network_sdk.data.pref.PrefHelperImp;
 import com.google.gson.Gson;
-
 import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
@@ -31,12 +25,11 @@ public class HybrisDataModules {
         return new DataManagerImp(apiServices, prefHelper);
     }
 
-    @Provides
     @Singleton
+    @Provides
     ApiServices provideApiServices(ApplicationServices applicationServices){
         return new ApiServicesImp(applicationServices);
     }
-
 
     @Provides
     @Singleton
@@ -49,6 +42,7 @@ public class HybrisDataModules {
     BaseService provideBaseServices(ApiClient apiClient,Gson gson){
         return new BaseService(apiClient,gson);
     }
+
     @Provides
     @Singleton
     PrefHelper providePrefHelper(Context context){
@@ -59,6 +53,11 @@ public class HybrisDataModules {
     @Singleton
     Gson provideGson(){
         return new Gson();
+    }
+
+    @Provides
+    ApiClient provideApiClient(PrefHelper prefHelper,Context context){
+        return new ApiClient(prefHelper,context);
     }
 
 }

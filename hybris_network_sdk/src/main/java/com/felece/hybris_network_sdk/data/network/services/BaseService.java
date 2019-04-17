@@ -2,8 +2,11 @@ package com.felece.hybris_network_sdk.data.network.services;
 
 import com.felece.hybris_network_sdk.data.network.ApiClient;
 import com.felece.hybris_network_sdk.data.network.ApiInterface;
-import com.felece.hybris_network_sdk.data.network.entities.CommonResponse;
+import com.felece.hybris_network_sdk.data.network.entities.user.Country;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -29,4 +32,5 @@ public class BaseService {
     public Object getCastObject(Object o,Class reverObject){
        return gson.fromJson(gson.toJsonTree(o),reverObject);
     }
+
 }

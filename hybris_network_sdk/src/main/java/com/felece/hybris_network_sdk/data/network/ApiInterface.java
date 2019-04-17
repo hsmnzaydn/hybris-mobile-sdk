@@ -17,5 +17,7 @@ public interface ApiInterface {
     @GET("secure/start-application")
     Single<Object> startApplication(@Query("pnsToken") String pnsToken);
 
+    @GET("mobilewebservices/v2/electronics/countries?fields=DEFAULT")
+    Single<Object> getCountries();
 
 }

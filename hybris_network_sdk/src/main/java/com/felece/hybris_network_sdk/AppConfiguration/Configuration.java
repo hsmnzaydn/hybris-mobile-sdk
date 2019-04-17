@@ -1,7 +1,7 @@
 package com.felece.hybris_network_sdk.AppConfiguration;
 
 public class Configuration {
-    public static String SERVER_URL="http://167.99.88.157:8080/api/";
+    public static String SERVER_URL="https://192.168.4.27:9002/";
 
     // Network Configuration
     public static int readTimeOut=0;

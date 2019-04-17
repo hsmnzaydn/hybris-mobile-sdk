@@ -2,9 +2,11 @@ package com.felece.hybris_network_sdk.data.network;
 
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.network.entities.CommonResponse;
+import com.felece.hybris_network_sdk.data.network.entities.user.Country;
+import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
 import com.felece.hybris_network_sdk.data.network.services.ApplicationServices.ApplicationServices;
-import com.felece.hybris_network_sdk.data.network.services.ApplicationServices.ApplicationServicesImp;
-import com.felece.hybris_network_sdk.data.network.services.BaseService;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -17,9 +19,12 @@ public class ApiServicesImp implements ApiServices {
     }
 
 
+
     @Override
-    public void startApplication(Class object, ServiceCallback<CommonResponse> serviceCallback) {
-        applicationServices.startApplication(object,serviceCallback);
+    public void getCountries(Class object, ServiceCallback<CountryList> serviceCallback) {
+        applicationServices.getCountries(object,serviceCallback);
 
     }
+
+
 }
