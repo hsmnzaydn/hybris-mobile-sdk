@@ -6,8 +6,10 @@ import com.felece.hybris_network_sdk.data.DataManagerImp;
 import com.felece.hybris_network_sdk.data.network.ApiClient;
 import com.felece.hybris_network_sdk.data.network.ApiServices;
 import com.felece.hybris_network_sdk.data.network.ApiServicesImp;
-import com.felece.hybris_network_sdk.data.network.services.ApplicationServices.ApplicationServices;
-import com.felece.hybris_network_sdk.data.network.services.ApplicationServices.ApplicationServicesImp;
+import com.felece.hybris_network_sdk.data.network.services.CatalogServices.CatalogServices;
+import com.felece.hybris_network_sdk.data.network.services.CatalogServices.CatalogServicesImp;
+import com.felece.hybris_network_sdk.data.network.services.CountriesServices.CountriesServices;
+import com.felece.hybris_network_sdk.data.network.services.CountriesServices.CountriesServicesImp;
 import com.felece.hybris_network_sdk.data.network.services.BaseService;
 import com.felece.hybris_network_sdk.data.pref.PrefHelper;
 import com.felece.hybris_network_sdk.data.pref.PrefHelperImp;
@@ -27,14 +29,20 @@ public class HybrisDataModules {
 
     @Singleton
     @Provides
-    ApiServices provideApiServices(ApplicationServices applicationServices){
-        return new ApiServicesImp(applicationServices);
+    ApiServices provideApiServices(CountriesServices countriesServices,
+                                   CatalogServices catalogServices){
+        return new ApiServicesImp(countriesServices,catalogServices);
     }
 
+    @Singleton
+    @Provides
+    CatalogServices provideCatalogServices(ApiClient apiClient,Gson gson){
+        return new CatalogServicesImp(apiClient,gson);
+    }
     @Provides
     @Singleton
-    ApplicationServices provideApplicationServices(ApiClient apiClient,Gson gson){
-        return new ApplicationServicesImp(apiClient,gson);
+    CountriesServices provideApplicationServices(ApiClient apiClient, Gson gson){
+        return new CountriesServicesImp(apiClient,gson);
     }
 
     @Provides

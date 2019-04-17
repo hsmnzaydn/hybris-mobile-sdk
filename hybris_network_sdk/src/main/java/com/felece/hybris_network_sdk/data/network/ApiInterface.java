@@ -9,15 +9,20 @@ import com.felece.hybris_network_sdk.data.network.entities.CommonResponse;
 import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
 
 
-    @GET("secure/start-application")
-    Single<Object> startApplication(@Query("pnsToken") String pnsToken);
 
-    @GET("mobilewebservices/v2/electronics/countries?fields=DEFAULT")
-    Single<Object> getCountries();
+    @GET("countries")
+    Single<Object> getCountries(@Query("type") String type,
+                                @Query("fields") String fields);
 
+    @GET("countries/{countyIsoCode}/regions")
+    Single<Object> getCountryRegions(@Path("countyIsoCode") String isoCode,@Query("fields") String field);
+
+    @GET("catalogs")
+    Single<Object> getCatalogs(@Query("fields") String fields);
 }

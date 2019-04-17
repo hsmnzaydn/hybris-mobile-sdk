@@ -87,8 +87,8 @@ public class ApiClient {
                         @Override
                         public Response intercept(Chain chain) throws IOException {
                             Request request = chain.request().newBuilder()
-                                    .addHeader("udid","B6700C37-6872-46F6-AEFC-B5FA5EFC26A1")
-                                    .addHeader("AuthorizationKey", "5c8c2b89f154ed7ee4feaa38")
+                                    .addHeader("udid",prefHelper.getUdid())
+                                    .addHeader("AuthorizationKey", prefHelper.getAuthorizationKey())
                                     .build();
                             return chain.proceed(request);
                         }
