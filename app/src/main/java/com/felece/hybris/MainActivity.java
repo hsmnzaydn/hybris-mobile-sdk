@@ -3,10 +3,12 @@ package com.felece.hybris;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
-import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
+import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogVersion;
 import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
+
 import javax.inject.Inject;
 
 
@@ -22,18 +24,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ((HybrisApp) getApplication()).getActivityComponent().injectMainActivity(this);
 
-
-
-        dataManager.getCatalog(null, "Online", FIELDS.BASIC.getFieldType(), new ServiceCallback<Catalog>() {
+        dataManager.getInformationCategoryOfCatalogVersion(null, FIELDS.DEFAULT.getFieldType(), "electronicsProductCatalog", "Online", "brand_1", new ServiceCallback<CatalogVersion>() {
             @Override
-            public void onSuccess(Catalog response) {
+            public void onSuccess(CatalogVersion response) {
                 Log.d("veri","veri");
-
             }
 
             @Override
             public void onError(int code, String errorResponse) {
-                Log.d("veri","veri");
 
             }
         });

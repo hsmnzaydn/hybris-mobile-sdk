@@ -36,7 +36,7 @@ public class CountriesServicesImp extends BaseService implements CountriesServic
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d("veri","veri");
+                        serviceCallback.onError(getErrorCastObject(e).getCode(),getErrorCastObject(e).getMessage());
 
                     }
                 });

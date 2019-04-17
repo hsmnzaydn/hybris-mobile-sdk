@@ -28,4 +28,13 @@ public interface ApiInterface {
 
     @GET("catalogs/{catalogId}")
     Single<Object> getCatalog(@Path("catalogId") String catalogId,@Query("fields") String fields);
+
+    @GET("catalogs/{catalogId}/{catalogVersionId}")
+    Single<Object> getInformationOfCatalogId(@Path("catalogId") String catalogId,@Path("catalogVersionId") String catalogVersionId,
+                                             @Query("fields") String fields);
+
+    @GET("catalogs/{catalogId}/{catalogVersionId}/categories/{categoryId}")
+    Single<Object> getInformationCategoryOfCatalogVersion(@Path("catalogId") String catalogId,@Path("catalogVersionId") String catalogVersionId,
+                                                          @Path("categoryId") String categoryId,
+                                                          @Query("fields") String fields);
 }

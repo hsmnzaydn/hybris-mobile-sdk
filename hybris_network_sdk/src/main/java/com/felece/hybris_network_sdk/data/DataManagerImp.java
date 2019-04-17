@@ -7,6 +7,7 @@ import com.felece.hybris_network_sdk.data.network.ApiServices;
 
 import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
+import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogVersion;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
 import com.felece.hybris_network_sdk.data.pref.PrefHelper;
 
@@ -56,6 +57,24 @@ public class DataManagerImp implements DataManager {
             apiServices.getCatalog(Catalog.class, catalogId, field, catalogServiceCallback);
         } else {
             apiServices.getCatalog(object, catalogId, field, catalogServiceCallback);
+        }
+    }
+
+    @Override
+    public void getCatalogInformationOfCatalogVersion(Class object, String field, String catalogId, String catalogVersionId, ServiceCallback<CatalogVersion> catalogVersionServiceCallback) {
+        if (object == null) {
+            apiServices.getCatalogInformationOfCatalogVersion(CatalogVersion.class, field, catalogId, catalogVersionId, catalogVersionServiceCallback);
+        } else {
+            apiServices.getCatalogInformationOfCatalogVersion(object, field, catalogId, catalogVersionId, catalogVersionServiceCallback);
+        }
+    }
+
+    @Override
+    public void getInformationCategoryOfCatalogVersion(Class object, String field, String catalogId, String catalogVersionId, String categoryId, ServiceCallback<CatalogVersion> catalogVersionServiceCallback) {
+        if (object == null) {
+            apiServices.getInformationCategoryOfCatalogVersion(CatalogVersion.class, field, catalogId, catalogVersionId, categoryId, catalogVersionServiceCallback);
+        } else {
+            apiServices.getInformationCategoryOfCatalogVersion(object, field, catalogId, catalogVersionId, categoryId,catalogVersionServiceCallback);
         }
     }
 

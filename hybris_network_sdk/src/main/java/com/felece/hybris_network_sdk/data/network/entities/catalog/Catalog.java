@@ -19,12 +19,13 @@
 package com.felece.hybris_network_sdk.data.network.entities.catalog;
 
 import java.util.Collection;
+import java.util.List;
 
 public class Catalog extends AbstractCatalogItem 
 {
 
 	/** <i>Generated property</i> for <code>Catalog.catalogVersions</code> property defined at extension <code>commercewebservicescommons</code>. */
-	private Collection<CatalogVersion> catalogVersions;
+	private List<CatalogVersion> catalogVersions;
 		
 	public Catalog()
 	{
@@ -32,13 +33,13 @@ public class Catalog extends AbstractCatalogItem
 	}
 	
 		
-	public void setCatalogVersions(final Collection<CatalogVersion> catalogVersions)
+	public void setCatalogVersions(final List<CatalogVersion> catalogVersions)
 	{
 		this.catalogVersions = catalogVersions;
 	}
 	
 		
-	public Collection<CatalogVersion> getCatalogVersions() 
+	public List<CatalogVersion> getCatalogVersions()
 	{
 		return catalogVersions;
 	}

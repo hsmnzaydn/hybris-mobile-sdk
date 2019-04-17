@@ -46,7 +46,7 @@ public class CategoryHierarchy extends AbstractCatalogItem implements Parcelable
 	private List<Product> products;
 
 	private CategoryHierarchy parent;
-
+		
 	public CategoryHierarchy()
 	{
 		// default constructor
@@ -105,13 +105,13 @@ public class CategoryHierarchy extends AbstractCatalogItem implements Parcelable
 	{
 		this.subcategories = subcategories;
 	}
-
+	
 		
-	public List<CategoryHierarchy> getSubcategories()
+	public List<CategoryHierarchy> getSubcategories() 
 	{
 		return subcategories;
 	}
-
+		
 		
 	public void setProducts(final List<Product> products)
 	{
