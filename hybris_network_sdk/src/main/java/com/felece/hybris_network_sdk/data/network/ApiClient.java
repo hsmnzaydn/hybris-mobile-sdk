@@ -32,6 +32,7 @@ public class ApiClient {
     public Retrofit retrofit = null;
     private PrefHelper prefHelper;
     private Context context;
+    private OkHttpClient okHttpClient;
 
     @Inject
     public ApiClient(PrefHelper prefHelper,Context context) {
@@ -77,7 +78,7 @@ public class ApiClient {
             // Create an ssl socket factory with our all-trusting manager
             final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
 
-            final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+             okHttpClient= new OkHttpClient.Builder()
                     .readTimeout(Configuration.readTimeOut, TimeUnit.SECONDS)
                     .connectTimeout(Configuration.connectTimeOut, TimeUnit.SECONDS)
                     .addInterceptor(interceptor)
@@ -102,7 +103,7 @@ public class ApiClient {
 
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl(Configuration.SERVER_URL)
+                    .baseUrl(Configuration.SERVER_REQUEST_URL)
                     .client(okHttpClient)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
@@ -111,8 +112,10 @@ public class ApiClient {
                 throw new RuntimeException(e);
             }
         }
+
         return retrofit;
     }
+
 
 
 

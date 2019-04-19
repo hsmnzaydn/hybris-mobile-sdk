@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.felece.hybris_network_sdk.AppConfiguration.Configuration;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
+import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogVersion;
 import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
 
@@ -24,10 +26,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ((HybrisApp) getApplication()).getActivityComponent().injectMainActivity(this);
 
-        dataManager.getInformationCategoryOfCatalogVersion(null, FIELDS.DEFAULT.getFieldType(), "electronicsProductCatalog", "Online", "brand_1", new ServiceCallback<CatalogVersion>() {
+        dataManager.configurationApplication("","",10,10);
+
+        dataManager.getCatalogs(null, FIELDS.DEFAULT.getFieldType(), new ServiceCallback<CatalogList>() {
             @Override
-            public void onSuccess(CatalogVersion response) {
-                Log.d("veri","veri");
+            public void onSuccess(CatalogList response) {
+
             }
 
             @Override
