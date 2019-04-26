@@ -7,6 +7,7 @@ import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogVersion;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
+import com.felece.hybris_network_sdk.data.network.entities.user.User;
 import com.felece.hybris_network_sdk.data.pref.PrefHelper;
 
 import javax.inject.Inject;
@@ -73,7 +74,8 @@ public class DataManagerImp implements DataManager {
             apiServices.auth(UserInformation.class, username, password, new ServiceCallback<UserInformation>() {
                 @Override
                 public void onSuccess(UserInformation response) {
-                    prefHelper.saveAuthorizationKey(response.getSecureAccessToken());
+                    prefHelper.saveUserId(response.getUserId());
+                    prefHelper.saveAuthorizationKey(response.getAccess_token());
                     userInformationServiceCallback.onSuccess(response);
                 }
 
@@ -86,7 +88,8 @@ public class DataManagerImp implements DataManager {
             apiServices.auth(object, username, password, new ServiceCallback<UserInformation>() {
                 @Override
                 public void onSuccess(UserInformation response) {
-                    prefHelper.saveAuthorizationKey(response.getSecureAccessToken());
+                    prefHelper.saveUserId(response.getUserId());
+                    prefHelper.saveAuthorizationKey(response.getAccess_token());
                     userInformationServiceCallback.onSuccess(response);
                 }
 
@@ -96,6 +99,15 @@ public class DataManagerImp implements DataManager {
 
                 }
             });
+        }
+    }
+
+    @Override
+    public void getUserProfile(Class object, String username, ServiceCallback<User> userInformationServiceCallback) {
+        if(object == null){
+            apiServices.getUserProfile(User.class,username,userInformationServiceCallback);
+        }else {
+            apiServices.getUserProfile(object,username,userInformationServiceCallback);
         }
     }
 

@@ -46,7 +46,9 @@ public interface ApiInterface {
 
     // User services
     @POST
-    Single<Object> authorization(@Url String url,@Query("client_id") String clientId,
+    Call<Object> authorization(@Url String url,@Query("client_id") String clientId,
                                             @Query("client_secret") String clientSecret,@Query("grant_type") String grant_type,
                                             @Query(value = "username", encoded = true)  String username, @Query("password") String password);
+    @GET("users/{userId}")
+    Call<Object> getUserProfile(@Path("userId") String userId);
 }

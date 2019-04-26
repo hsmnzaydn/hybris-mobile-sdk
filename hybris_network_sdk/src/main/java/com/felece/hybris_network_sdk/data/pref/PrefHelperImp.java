@@ -37,5 +37,16 @@ public class PrefHelperImp implements PrefHelper {
         return mPrefs.getString("UDID","");
     }
 
+    @Override
+    public void saveUserId(String userId) {
+        mPrefs.edit().putString("USERID", userId).apply();
+
+    }
+
+    @Override
+    public String getUserId() {
+        return mPrefs.getString("USERID","");
+    }
+
 
 }

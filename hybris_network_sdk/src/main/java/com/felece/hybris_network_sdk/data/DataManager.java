@@ -7,6 +7,7 @@ import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogVersion;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
+import com.felece.hybris_network_sdk.data.network.entities.user.User;
 
 public interface DataManager  {
     void getContries(String type, String fields,Class object, ServiceCallback<CountryList> serviceCallback);
@@ -17,5 +18,5 @@ public interface DataManager  {
 
 
     void auth(Class object, String username, String password, ServiceCallback<UserInformation> userInformationServiceCallback);
-
+    void getUserProfile(Class object,String username,ServiceCallback<User> userInformationServiceCallback);
 }

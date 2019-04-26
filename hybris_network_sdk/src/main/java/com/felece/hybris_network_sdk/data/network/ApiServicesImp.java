@@ -6,6 +6,7 @@ import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogVersion;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
+import com.felece.hybris_network_sdk.data.network.entities.user.User;
 import com.felece.hybris_network_sdk.data.network.services.CatalogServices.CatalogServices;
 import com.felece.hybris_network_sdk.data.network.services.CountriesServices.CountriesServices;
 import com.felece.hybris_network_sdk.data.network.services.UserServices.UserServices;
@@ -52,5 +53,10 @@ public class ApiServicesImp implements ApiServices {
     @Override
     public void auth(Class object, String userName, String password, ServiceCallback<UserInformation> userInformationServiceCallback) {
         userServices.auth(object,userName,password,userInformationServiceCallback);
+    }
+
+    @Override
+    public void getUserProfile(Class object, String userName, ServiceCallback<User> userInformationServiceCallback) {
+        userServices.getUserProfile(object,userName,userInformationServiceCallback);
     }
 }

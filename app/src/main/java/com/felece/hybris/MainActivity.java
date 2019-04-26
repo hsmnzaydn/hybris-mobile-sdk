@@ -8,10 +8,8 @@ import android.util.Log;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
-import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
-import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
-import com.felece.hybris_network_sdk.data.network.entities.enums.TYPE;
-import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
+import com.felece.hybris_network_sdk.data.network.entities.user.User;
+
 
 import javax.inject.Inject;
 
@@ -29,15 +27,27 @@ public class MainActivity extends AppCompatActivity {
         ((HybrisApp) getApplication()).getActivityComponent().injectMainActivity(this);
 
 
-        dataManager.auth(null, "alistair@hybris.com", "123456", new ServiceCallback<UserInformation>() {
+     /*   dataManager.auth(null, "alistair@hybris.com", "123456", new ServiceCallback<UserInformation>() {
             @Override
             public void onSuccess(UserInformation response) {
+            }
+
+            @Override
+            public void onError(int code, String errorResponse) {
+            }
+        });*/
+
+        dataManager.getUserProfile(null, "alistair@hybris.com", new ServiceCallback<User>() {
+            @Override
+            public void onSuccess(User response) {
                 Log.d("veri","veri");
+
             }
 
             @Override
             public void onError(int code, String errorResponse) {
                 Log.d("veri","veri");
+
             }
         });
     }

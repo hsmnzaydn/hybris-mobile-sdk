@@ -14,14 +14,20 @@ package com.felece.hybris_network_sdk.data.network.entities;
 
 
 import com.felece.hybris_network_sdk.helper.SecurityHelper;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 
-public class UserInformation {
+public class UserInformation implements java.io.Serializable  {
 
     private String userId;
     private String cartId;
+    @SerializedName("access_token")
+    @Expose
     private String access_token;
     private String refresh_token;
     private String secureAccessToken;
@@ -31,10 +37,6 @@ public class UserInformation {
     private Calendar calendarTokenExpiration;
     private boolean tokenInvalid = false;
 
-    public UserInformation(String userId, String secureRefreshToken) {
-        this.userId = userId;
-        this.refresh_token = secureRefreshToken;
-    }
 
     /**
      * Return true if the token is expired
@@ -66,63 +68,67 @@ public class UserInformation {
         this.cartId = cartId;
     }
 
-    public void setRefreshToken(String refresh_token) {
-        // we reset the secure refresh token first
-        this.secureRefreshToken = null;
+    public String getAccess_token() {
+        return access_token;
+    }
 
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
+    }
+
+    public String getRefresh_token() {
+        return refresh_token;
+    }
+
+    public void setRefresh_token(String refresh_token) {
         this.refresh_token = refresh_token;
     }
 
     public String getSecureAccessToken() {
+        return secureAccessToken;
+    }
 
-            this.secureAccessToken = SecurityHelper.encrypt(this.access_token);
-            this.access_token = null;
-
-
-        return SecurityHelper.decrypt(this.secureAccessToken);
+    public void setSecureAccessToken(String secureAccessToken) {
+        this.secureAccessToken = secureAccessToken;
     }
 
     public String getSecureRefreshToken() {
-            this.secureRefreshToken = SecurityHelper.encrypt(this.refresh_token);
-            this.refresh_token = null;
-
-
-        return SecurityHelper.decrypt(this.secureRefreshToken);
+        return secureRefreshToken;
     }
 
+    public void setSecureRefreshToken(String secureRefreshToken) {
+        this.secureRefreshToken = secureRefreshToken;
+    }
 
-    public void setIssuedOn(long issuedOn) {
-        this.issuedOn = issuedOn;
+    public long getExpires_in() {
+        return expires_in;
     }
 
     public void setExpires_in(long expires_in) {
         this.expires_in = expires_in;
     }
 
+    public long getIssuedOn() {
+        return issuedOn;
+    }
+
+    public void setIssuedOn(long issuedOn) {
+        this.issuedOn = issuedOn;
+    }
+
+    public Calendar getCalendarTokenExpiration() {
+        return calendarTokenExpiration;
+    }
+
+    public void setCalendarTokenExpiration(Calendar calendarTokenExpiration) {
+        this.calendarTokenExpiration = calendarTokenExpiration;
+    }
+
     public boolean isTokenInvalid() {
-        return tokenInvalid ;
+        return tokenInvalid;
     }
 
     public void setTokenInvalid(boolean tokenInvalid) {
         this.tokenInvalid = tokenInvalid;
     }
-
-    public boolean isAnonymous() {
-        //return StringUtils.equals(userId, SpecificUser.UserId.ANONYMOUS.getValue());
-        return false;
-    }
-
-    public void reset() {
-      //  userId = SpecificUser.UserId.ANONYMOUS.getValue();
-        cartId = null;
-        access_token = null;
-        refresh_token = null;
-        secureAccessToken = null;
-        secureRefreshToken = null;
-        expires_in = 0;
-        issuedOn = 0;
-        calendarTokenExpiration = null;
-        tokenInvalid = false;
-    }
-
 }

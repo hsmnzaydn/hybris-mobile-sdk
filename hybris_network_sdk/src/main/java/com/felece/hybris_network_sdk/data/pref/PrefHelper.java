@@ -8,4 +8,7 @@ public interface PrefHelper {
     void saveUdid(String udid);
     String getUdid();
 
+    void saveUserId(String userId);
+    String getUserId();
+
 }
