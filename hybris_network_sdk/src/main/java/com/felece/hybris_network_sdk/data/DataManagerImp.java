@@ -2,11 +2,13 @@ package com.felece.hybris_network_sdk.data;
 
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.network.ApiServices;
+import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogVersion;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
 import com.felece.hybris_network_sdk.data.pref.PrefHelper;
+
 import javax.inject.Inject;
 
 public class DataManagerImp implements DataManager {
@@ -61,7 +63,39 @@ public class DataManagerImp implements DataManager {
         if (object == null) {
             apiServices.getInformationCategoryOfCatalogVersion(CatalogVersion.class, field, catalogId, catalogVersionId, categoryId, catalogVersionServiceCallback);
         } else {
-            apiServices.getInformationCategoryOfCatalogVersion(object, field, catalogId, catalogVersionId, categoryId,catalogVersionServiceCallback);
+            apiServices.getInformationCategoryOfCatalogVersion(object, field, catalogId, catalogVersionId, categoryId, catalogVersionServiceCallback);
+        }
+    }
+
+    @Override
+    public void auth(Class object, String username, String password, final ServiceCallback<UserInformation> userInformationServiceCallback) {
+        if (object == null) {
+            apiServices.auth(UserInformation.class, username, password, new ServiceCallback<UserInformation>() {
+                @Override
+                public void onSuccess(UserInformation response) {
+                    prefHelper.saveAuthorizationKey(response.getSecureAccessToken());
+                    userInformationServiceCallback.onSuccess(response);
+                }
+
+                @Override
+                public void onError(int code, String errorResponse) {
+                    userInformationServiceCallback.onError(code,errorResponse);
+                }
+            });
+        } else {
+            apiServices.auth(object, username, password, new ServiceCallback<UserInformation>() {
+                @Override
+                public void onSuccess(UserInformation response) {
+                    prefHelper.saveAuthorizationKey(response.getSecureAccessToken());
+                    userInformationServiceCallback.onSuccess(response);
+                }
+
+                @Override
+                public void onError(int code, String errorResponse) {
+                    userInformationServiceCallback.onError(code,errorResponse);
+
+                }
+            });
         }
     }
 

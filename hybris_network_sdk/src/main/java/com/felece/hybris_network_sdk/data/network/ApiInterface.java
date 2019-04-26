@@ -4,13 +4,18 @@ package com.felece.hybris_network_sdk.data.network;
 
 
 import com.felece.hybris_network_sdk.data.network.entities.CommonResponse;
+import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
+import com.felece.hybris_network_sdk.data.network.entities.user.User;
 
 
 import io.reactivex.Single;
+import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface ApiInterface {
 
@@ -37,4 +42,11 @@ public interface ApiInterface {
     Single<Object> getInformationCategoryOfCatalogVersion(@Path("catalogId") String catalogId,@Path("catalogVersionId") String catalogVersionId,
                                                           @Path("categoryId") String categoryId,
                                                           @Query("fields") String fields);
+
+
+    // User services
+    @POST
+    Single<Object> authorization(@Url String url,@Query("client_id") String clientId,
+                                            @Query("client_secret") String clientSecret,@Query("grant_type") String grant_type,
+                                            @Query(value = "username", encoded = true)  String username, @Query("password") String password);
 }

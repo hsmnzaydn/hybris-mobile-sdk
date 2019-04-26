@@ -11,6 +11,8 @@ import com.felece.hybris_network_sdk.data.network.services.CatalogServices.Catal
 import com.felece.hybris_network_sdk.data.network.services.CountriesServices.CountriesServices;
 import com.felece.hybris_network_sdk.data.network.services.CountriesServices.CountriesServicesImp;
 import com.felece.hybris_network_sdk.data.network.services.BaseService;
+import com.felece.hybris_network_sdk.data.network.services.UserServices.UserServices;
+import com.felece.hybris_network_sdk.data.network.services.UserServices.UserServicesImp;
 import com.felece.hybris_network_sdk.data.pref.PrefHelper;
 import com.felece.hybris_network_sdk.data.pref.PrefHelperImp;
 import com.google.gson.Gson;
@@ -30,8 +32,9 @@ public class HybrisDataModules {
     @Singleton
     @Provides
     ApiServices provideApiServices(CountriesServices countriesServices,
-                                   CatalogServices catalogServices){
-        return new ApiServicesImp(countriesServices,catalogServices);
+                                   CatalogServices catalogServices,
+                                   UserServices userServices){
+        return new ApiServicesImp(countriesServices,catalogServices,userServices);
     }
 
     @Singleton
@@ -55,6 +58,12 @@ public class HybrisDataModules {
     @Singleton
     PrefHelper providePrefHelper(Context context){
         return new PrefHelperImp(context);
+    }
+
+    @Provides
+    @Singleton
+    UserServices provideUserServices(ApiClient apiClient,Gson gson){
+        return new UserServicesImp(apiClient,gson);
     }
 
     @Provides

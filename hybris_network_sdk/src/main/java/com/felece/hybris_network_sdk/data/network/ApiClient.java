@@ -89,7 +89,7 @@ public class ApiClient {
                         public Response intercept(Chain chain) throws IOException {
                             Request request = chain.request().newBuilder()
                                     .addHeader("udid",prefHelper.getUdid())
-                                    .addHeader("AuthorizationKey", prefHelper.getAuthorizationKey())
+                                    .addHeader("Authorization", "Bearer "+prefHelper.getAuthorizationKey())
                                     .build();
                             return chain.proceed(request);
                         }
