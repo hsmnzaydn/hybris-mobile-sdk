@@ -111,5 +111,15 @@ public class DataManagerImp implements DataManager {
         }
     }
 
+    @Override
+    public void getUserId(ServiceCallback<String> getUserIdServiceCallback) {
+        getUserIdServiceCallback.onSuccess(prefHelper.getUserId());
+    }
+
+    @Override
+    public void deleteUser(Class object, String userId, ServiceCallback<Integer> serviceCallback) {
+        apiServices.deleteUser(object,userId,serviceCallback);
+    }
+
 
 }

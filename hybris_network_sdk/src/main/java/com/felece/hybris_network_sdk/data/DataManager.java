@@ -1,6 +1,8 @@
 package com.felece.hybris_network_sdk.data;
 
 
+import android.app.Service;
+
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
@@ -19,4 +21,7 @@ public interface DataManager  {
 
     void auth(Class object, String username, String password, ServiceCallback<UserInformation> userInformationServiceCallback);
     void getUserProfile(Class object,String username,ServiceCallback<User> userInformationServiceCallback);
+
+    void getUserId(ServiceCallback<String> getUserIdServiceCallback);
+    void deleteUser(Class object,String userId,ServiceCallback<Integer> serviceCallback);
 }

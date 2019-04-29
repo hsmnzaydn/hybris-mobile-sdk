@@ -27,28 +27,6 @@ public class MainActivity extends AppCompatActivity {
         ((HybrisApp) getApplication()).getActivityComponent().injectMainActivity(this);
 
 
-     /*   dataManager.auth(null, "alistair@hybris.com", "123456", new ServiceCallback<UserInformation>() {
-            @Override
-            public void onSuccess(UserInformation response) {
-            }
 
-            @Override
-            public void onError(int code, String errorResponse) {
-            }
-        });*/
-
-        dataManager.getUserProfile(null, "alistair@hybris.com", new ServiceCallback<User>() {
-            @Override
-            public void onSuccess(User response) {
-                Log.d("veri","veri");
-
-            }
-
-            @Override
-            public void onError(int code, String errorResponse) {
-                Log.d("veri","veri");
-
-            }
-        });
     }
 }

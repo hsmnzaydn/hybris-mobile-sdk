@@ -11,6 +11,7 @@ import com.felece.hybris_network_sdk.data.network.entities.user.User;
 import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.Response;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -46,9 +47,12 @@ public interface ApiInterface {
 
     // User services
     @POST
-    Call<Object> authorization(@Url String url,@Query("client_id") String clientId,
+    Single<Object> authorization(@Url String url,@Query("client_id") String clientId,
                                             @Query("client_secret") String clientSecret,@Query("grant_type") String grant_type,
                                             @Query(value = "username", encoded = true)  String username, @Query("password") String password);
     @GET("users/{userId}")
-    Call<Object> getUserProfile(@Path("userId") String userId);
+    Single<Object> getUserProfile(@Path("userId") String userId);
+
+    @DELETE("users/{userId}")
+    Single<Object> deleteUser(@Path("userId") String userId);
 }
