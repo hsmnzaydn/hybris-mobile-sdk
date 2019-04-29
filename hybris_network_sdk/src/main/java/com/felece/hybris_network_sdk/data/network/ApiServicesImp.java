@@ -5,6 +5,8 @@ import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogVersion;
+import com.felece.hybris_network_sdk.data.network.entities.user.Address;
+import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
 import com.felece.hybris_network_sdk.data.network.services.CatalogServices.CatalogServices;
@@ -68,5 +70,20 @@ public class ApiServicesImp implements ApiServices {
     @Override
     public void updateProfile(Class object, String userId, User user, ServiceCallback<User> userServiceCallback) {
         userServices.updateProfile(object,userId,user,userServiceCallback);
+    }
+
+    @Override
+    public void getUserAdress(Class object, String userId, ServiceCallback<AddressList> addressListServiceCallback) {
+        userServices.getUserAdress(object,userId,addressListServiceCallback);
+    }
+
+    @Override
+    public void createAdress(Class object, Address address, String userId, ServiceCallback<Address> addressServiceCallback) {
+        userServices.createAdress(object,address,userId,addressServiceCallback);
+    }
+
+    @Override
+    public void deleteUserAdress(String userId, String adressId, ServiceCallback<Address> addressServiceCallback) {
+        userServices.deleteUserAdress(userId,adressId,addressServiceCallback);
     }
 }

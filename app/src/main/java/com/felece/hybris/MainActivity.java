@@ -8,6 +8,9 @@ import android.util.Log;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
+import com.felece.hybris_network_sdk.data.network.entities.user.Address;
+import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
+import com.felece.hybris_network_sdk.data.network.entities.user.Country;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
 
 
@@ -40,15 +43,36 @@ public class MainActivity extends AppCompatActivity {
         });
 */
 
+/*
+dataManager.getUserAdress(null, "canonlover@hybris.com", new ServiceCallback<AddressList>() {
+    @Override
+    public void onSuccess(AddressList response) {
+        Log.d("veri","veri");
+    }
 
+    @Override
+    public void onError(int code, String errorResponse) {
+        Log.d("veri","veri");
+    }
+});
+*/
 
+     /*   Address address=new Address();
+        Country country=new Country();
+        country.setIsocode("AF");
+        address.setCountry(country);
+        address.setId("8796158590999");
+        address.setFirstName("Ahmet");
+        address.setLastName("Mehmet");
+        address.setTown("Agri");
+        address.setLine1("Mehmet mah.");
+        address.setLine2("Asd meee");
+        address.setPostalCode("34000");
+        address.setTitleCode("ms");
 
-           User user=new User();
-        user.setFirstName("Serkan");
-        user.setLastName("sadasdsa");
-        dataManager.updateProfile(null, "canonlover@hybris.com", user, new ServiceCallback<User>() {
+        dataManager.createNewUserAdress(null, "canonlover@hybris.com", address, new ServiceCallback<Address>() {
             @Override
-            public void onSuccess(User response) {
+            public void onSuccess(Address response) {
 
             }
 
@@ -57,6 +81,22 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+*/
+
+/*
+dataManager.deleteUserAdress("canonlover@hybris.com", "8796158754839", new ServiceCallback<Address>() {
+    @Override
+    public void onSuccess(Address response) {
+        Log.d("veri","veri");
+    }
+
+    @Override
+    public void onError(int code, String errorResponse) {
+        Log.d("veri","veri");
+    }
+});
+*/
+
 
 
     }

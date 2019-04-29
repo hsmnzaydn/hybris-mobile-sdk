@@ -6,6 +6,8 @@ import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogVersion;
+import com.felece.hybris_network_sdk.data.network.entities.user.Address;
+import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
 import com.felece.hybris_network_sdk.data.pref.PrefHelper;
@@ -128,6 +130,29 @@ public class DataManagerImp implements DataManager {
         }else {
             apiServices.updateProfile(object,userId,user,userServiceCallback);
         }
+    }
+
+    @Override
+    public void getUserAdress(Class object, String userId, ServiceCallback<AddressList> addressListServiceCallback) {
+        if(object == null){
+            apiServices.getUserAdress(AddressList.class,userId,addressListServiceCallback);
+        }else {
+            apiServices.getUserAdress(object,userId,addressListServiceCallback);
+        }
+    }
+
+    @Override
+    public void createNewUserAdress(Class object, String userId, Address address, ServiceCallback<Address> addressServiceCallback) {
+        if(object == null){
+            apiServices.createAdress(Address.class,address,userId,addressServiceCallback);
+        }else {
+            apiServices.createAdress(null,address,userId,addressServiceCallback);
+        }
+    }
+
+    @Override
+    public void deleteUserAdress(String userId, String adressId, ServiceCallback<Address> addressServiceCallback) {
+        apiServices.deleteUserAdress(userId,adressId,addressServiceCallback);
     }
 
 

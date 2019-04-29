@@ -5,6 +5,7 @@ package com.felece.hybris_network_sdk.data.network;
 
 import com.felece.hybris_network_sdk.data.network.entities.CommonResponse;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
+import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
 
 
@@ -60,4 +61,13 @@ public interface ApiInterface {
 
     @PATCH("users/{userId}")
     Call<Void> updateProfile(@Path("userId") String userId, @Body User user);
+
+    @GET("users/{userId}/addresses")
+    Single<Object> getUserAdress(@Path("userId") String userId);
+
+    @POST("users/{userId}/addresses")
+    Single<Object> addNewAdress(@Path("userId") String userId, @Body Address address);
+
+    @DELETE("users/{userId}/addresses/{addressId}")
+    Call<Void> deleteUserAdress(@Path("userId") String userId,@Path("addressId") String adressId);
 }
