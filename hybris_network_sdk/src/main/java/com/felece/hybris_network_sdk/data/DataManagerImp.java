@@ -121,5 +121,14 @@ public class DataManagerImp implements DataManager {
         apiServices.deleteUser(object,userId,serviceCallback);
     }
 
+    @Override
+    public void updateProfile(Class object, String userId, User user, ServiceCallback<User> userServiceCallback) {
+        if(object == null){
+            apiServices.updateProfile(User.class,userId,user,userServiceCallback);
+        }else {
+            apiServices.updateProfile(object,userId,user,userServiceCallback);
+        }
+    }
+
 
 }

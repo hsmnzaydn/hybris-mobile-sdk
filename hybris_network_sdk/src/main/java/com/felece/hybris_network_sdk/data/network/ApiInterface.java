@@ -11,8 +11,10 @@ import com.felece.hybris_network_sdk.data.network.entities.user.User;
 import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.Response;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -55,4 +57,7 @@ public interface ApiInterface {
 
     @DELETE("users/{userId}")
     Single<Object> deleteUser(@Path("userId") String userId);
+
+    @PATCH("users/{userId}")
+    Call<Void> updateProfile(@Path("userId") String userId, @Body User user);
 }

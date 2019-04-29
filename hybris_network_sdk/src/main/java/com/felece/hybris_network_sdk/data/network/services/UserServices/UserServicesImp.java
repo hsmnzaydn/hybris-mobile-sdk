@@ -1,5 +1,7 @@
 package com.felece.hybris_network_sdk.data.network.services.UserServices;
 
+import android.util.Log;
+
 import com.felece.hybris_network_sdk.AppConfiguration.Configuration;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.network.ApiClient;
@@ -90,5 +92,41 @@ public class UserServicesImp extends BaseService implements UserServices {
 
                     }
                 });
+    }
+
+    @Override
+    public void updateProfile(final Class object, String userId, User user, final ServiceCallback<User> userServiceCallback) {
+
+        getApiInterface().updateProfile(userId,user).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                userServiceCallback.onSuccess((User) getCastObject(response, object));
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                userServiceCallback.onError(getErrorCastObject(t).getCode(), getErrorCastObject(t).getMessage());
+
+            }
+        });
+        /*getApiInterface().updateProfile(userId,user)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        Log.d("veri","veri");
+                        //  userServiceCallback.onSuccess((User) getCastObject(o, object));
+
+                    }
+
+                    @Override
+
+                    public void onError(Throwable e) {
+                        userServiceCallback.onError(getErrorCastObject(e).getCode(), getErrorCastObject(e).getMessage());
+
+                    }
+                });*/
     }
 }

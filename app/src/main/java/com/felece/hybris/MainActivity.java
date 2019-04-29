@@ -25,7 +25,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ((HybrisApp) getApplication()).getActivityComponent().injectMainActivity(this);
+/*
 
+        dataManager.auth(null, "canonlover@hybris.com", "123456", new ServiceCallback<UserInformation>() {
+            @Override
+            public void onSuccess(UserInformation response) {
+
+            }
+
+            @Override
+            public void onError(int code, String errorResponse) {
+
+            }
+        });
+*/
+
+
+
+
+           User user=new User();
+        user.setFirstName("Serkan");
+        user.setLastName("sadasdsa");
+        dataManager.updateProfile(null, "canonlover@hybris.com", user, new ServiceCallback<User>() {
+            @Override
+            public void onSuccess(User response) {
+
+            }
+
+            @Override
+            public void onError(int code, String errorResponse) {
+
+            }
+        });
 
 
     }

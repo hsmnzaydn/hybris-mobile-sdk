@@ -24,4 +24,5 @@ public interface DataManager  {
 
     void getUserId(ServiceCallback<String> getUserIdServiceCallback);
     void deleteUser(Class object,String userId,ServiceCallback<Integer> serviceCallback);
+    void updateProfile(Class object,String userId, User user,ServiceCallback<User> userServiceCallback);
 }

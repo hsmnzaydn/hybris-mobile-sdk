@@ -64,4 +64,9 @@ public class ApiServicesImp implements ApiServices {
     public void deleteUser(Class object, String userId, ServiceCallback<Integer> serviceCallback) {
         userServices.deleteUser(object,userId,serviceCallback);
     }
+
+    @Override
+    public void updateProfile(Class object, String userId, User user, ServiceCallback<User> userServiceCallback) {
+        userServices.updateProfile(object,userId,user,userServiceCallback);
+    }
 }
