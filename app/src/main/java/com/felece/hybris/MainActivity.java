@@ -1,6 +1,7 @@
 package com.felece.hybris;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 
@@ -15,7 +16,6 @@ import com.felece.hybris_network_sdk.data.network.entities.user.User;
 
 
 import javax.inject.Inject;
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 */
 
 /*
-dataManager.getUserAdress(null, "canonlover@hybris.com", new ServiceCallback<AddressList>() {
+dataManager.getUserAdresses(null, "canonlover@hybris.com", new ServiceCallback<AddressList>() {
     @Override
     public void onSuccess(AddressList response) {
         Log.d("veri","veri");
@@ -97,7 +97,43 @@ dataManager.deleteUserAdress("canonlover@hybris.com", "8796158754839", new Servi
 });
 */
 
+/*
+dataManager.getUserAdress(null, "canonlover@hybris.com", "8796158787607", new ServiceCallback<Address>() {
+    @Override
+    public void onSuccess(Address response) {
+        Log.d("veri","veri");
+    }
 
+    @Override
+    public void onError(int code, String errorResponse) {
+        Log.d("veri","veri");
+    }
+});
+*/
 
+        /*Address address=new Address();
+        Country country=new Country();
+        country.setIsocode("AF");
+        address.setCountry(country);
+        address.setId("8796158590999");
+        address.setFirstName("Ahmet");
+        address.setLastName("Mehmet");
+        address.setTown("Agri");
+        address.setLine1("Mehmet mah.");
+        address.setLine2("Asd meee");
+        address.setPostalCode("34000");
+        address.setTitleCode("ms");
+
+dataManager.updateUserAddress(null, "canonlover@hybris.com", "8796158787607", address, new ServiceCallback<Address>() {
+    @Override
+    public void onSuccess(Address response) {
+
+    }
+
+    @Override
+    public void onError(int code, String errorResponse) {
+
+    }
+});*/
     }
 }

@@ -1,14 +1,11 @@
 package com.felece.hybris_network_sdk.data.network.services.UserServices;
 
-import android.util.Log;
-
 import com.felece.hybris_network_sdk.AppConfiguration.Configuration;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.network.ApiClient;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
-import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
 import com.felece.hybris_network_sdk.data.network.services.BaseService;
 import com.google.gson.Gson;
@@ -133,8 +130,8 @@ public class UserServicesImp extends BaseService implements UserServices {
     }
 
     @Override
-    public void getUserAdress(final Class object, String userId, final ServiceCallback<AddressList> addressListServiceCallback) {
-        getApiInterface().getUserAdress(userId).subscribeOn(Schedulers.io())
+    public void getUserAdresses(final Class object, String userId, final ServiceCallback<AddressList> addressListServiceCallback) {
+        getApiInterface().getUserAdresses(userId).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver() {
                     @Override
@@ -186,27 +183,43 @@ public class UserServicesImp extends BaseService implements UserServices {
             }
         });
 
+    }
 
-
-
-
-
-                /*
-
-                .subscribeOn(Schedulers.io())
+    @Override
+    public void getUserAdress(final Class object, String userId, String adressId, final ServiceCallback<Address> addressServiceCallback) {
+        getApiInterface().getUserAdress(userId,adressId).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver() {
                     @Override
                     public void onSuccess(Object o) {
-                        addressServiceCallback.onSuccess((Address) getCastObject(o,Address.class));
+                        addressServiceCallback.onSuccess((Address) getCastObject(o, object));
 
                     }
-
                     @Override
                     public void onError(Throwable e) {
                         addressServiceCallback.onError(getErrorCastObject(e).getCode(), getErrorCastObject(e).getMessage());
 
                     }
-                });*/
+
+                });
+    }
+
+    @Override
+    public void updateUserAddress(final Class object, String userId, String addressId, Address address, final ServiceCallback<Address> addressServiceCallback) {
+        getApiInterface().updateUserAdress(userId,addressId,address).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        addressServiceCallback.onSuccess((Address) getCastObject(o, object));
+
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        addressServiceCallback.onError(getErrorCastObject(e).getCode(), getErrorCastObject(e).getMessage());
+
+                    }
+
+                });
     }
 }

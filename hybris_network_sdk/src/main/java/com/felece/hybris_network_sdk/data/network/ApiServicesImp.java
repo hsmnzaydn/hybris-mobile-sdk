@@ -73,8 +73,8 @@ public class ApiServicesImp implements ApiServices {
     }
 
     @Override
-    public void getUserAdress(Class object, String userId, ServiceCallback<AddressList> addressListServiceCallback) {
-        userServices.getUserAdress(object,userId,addressListServiceCallback);
+    public void getUserAdresses(Class object, String userId, ServiceCallback<AddressList> addressListServiceCallback) {
+        userServices.getUserAdresses(object,userId,addressListServiceCallback);
     }
 
     @Override
@@ -85,5 +85,15 @@ public class ApiServicesImp implements ApiServices {
     @Override
     public void deleteUserAdress(String userId, String adressId, ServiceCallback<Address> addressServiceCallback) {
         userServices.deleteUserAdress(userId,adressId,addressServiceCallback);
+    }
+
+    @Override
+    public void getUserAdress(Class object, String userId, String adressId, ServiceCallback<Address> addressServiceCallback) {
+        userServices.getUserAdress(object,userId,adressId,addressServiceCallback);
+    }
+
+    @Override
+    public void updateUserAddress(Class object, String userId, String addressId, Address address, ServiceCallback<Address> addressServiceCallback) {
+        userServices.updateUserAddress(object,userId,addressId,address,addressServiceCallback);
     }
 }

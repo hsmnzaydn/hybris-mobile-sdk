@@ -27,7 +27,9 @@ public interface DataManager  {
     void getUserId(ServiceCallback<String> getUserIdServiceCallback);
     void deleteUser(Class object,String userId,ServiceCallback<Integer> serviceCallback);
     void updateProfile(Class object,String userId, User user,ServiceCallback<User> userServiceCallback);
-    void getUserAdress(Class object, String userId, ServiceCallback<AddressList> addressListServiceCallback);
+    void getUserAdresses(Class object, String userId, ServiceCallback<AddressList> addressListServiceCallback);
     void createNewUserAdress(Class object, String userId, Address address,ServiceCallback<Address> addressServiceCallback);
     void deleteUserAdress(String userId,String adressId,ServiceCallback<Address> addressServiceCallback);
+    void getUserAdress(Class object, String userId, String adressId, ServiceCallback<Address> addressServiceCallback);
+    void updateUserAddress(Class object,String userId,String addressId,Address address,ServiceCallback<Address> addressServiceCallback);
 }

@@ -63,11 +63,17 @@ public interface ApiInterface {
     Call<Void> updateProfile(@Path("userId") String userId, @Body User user);
 
     @GET("users/{userId}/addresses")
-    Single<Object> getUserAdress(@Path("userId") String userId);
+    Single<Object> getUserAdresses(@Path("userId") String userId);
 
     @POST("users/{userId}/addresses")
     Single<Object> addNewAdress(@Path("userId") String userId, @Body Address address);
 
     @DELETE("users/{userId}/addresses/{addressId}")
     Call<Void> deleteUserAdress(@Path("userId") String userId,@Path("addressId") String adressId);
+
+    @GET("users/{userId}/addresses/{addressId}")
+    Single<Object> getUserAdress(@Path("userId") String userId,@Path("addressId") String adressId);
+
+    @PATCH("users/{userId}/addresses/{addressId}")
+    Single<Object> updateUserAdress(@Path("userId") String userId,@Path("addressId") String adressId, @Body Address address);
 }

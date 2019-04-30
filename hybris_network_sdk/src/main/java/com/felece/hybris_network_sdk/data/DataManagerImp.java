@@ -133,11 +133,11 @@ public class DataManagerImp implements DataManager {
     }
 
     @Override
-    public void getUserAdress(Class object, String userId, ServiceCallback<AddressList> addressListServiceCallback) {
+    public void getUserAdresses(Class object, String userId, ServiceCallback<AddressList> addressListServiceCallback) {
         if(object == null){
-            apiServices.getUserAdress(AddressList.class,userId,addressListServiceCallback);
+            apiServices.getUserAdresses(AddressList.class,userId,addressListServiceCallback);
         }else {
-            apiServices.getUserAdress(object,userId,addressListServiceCallback);
+            apiServices.getUserAdresses(object,userId,addressListServiceCallback);
         }
     }
 
@@ -153,6 +153,24 @@ public class DataManagerImp implements DataManager {
     @Override
     public void deleteUserAdress(String userId, String adressId, ServiceCallback<Address> addressServiceCallback) {
         apiServices.deleteUserAdress(userId,adressId,addressServiceCallback);
+    }
+
+    @Override
+    public void getUserAdress(Class object, String userId, String adressId, ServiceCallback<Address> addressServiceCallback) {
+        if(object == null){
+            apiServices.getUserAdress(Address.class,userId,adressId,addressServiceCallback);
+        }else {
+            apiServices.getUserAdress(null,userId,adressId,addressServiceCallback);
+        }
+    }
+
+    @Override
+    public void updateUserAddress(Class object, String userId, String addressId, Address address, ServiceCallback<Address> addressServiceCallback) {
+        if(object == null){
+            apiServices.updateUserAddress(Address.class,userId,addressId,address,addressServiceCallback);
+        }else {
+            apiServices.updateUserAddress(null,userId,addressId,address,addressServiceCallback);
+        }
     }
 
 
