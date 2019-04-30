@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ((HybrisApp) getApplication()).getActivityComponent().injectMainActivity(this);
-      /*  dataManager.auth(null, "kasim.sagir@hotmail.com", "123456", new ServiceCallback<UserInformation>() {
+    /*    dataManager.auth(null, "kasim.sagir@hotmail.com", "123456", new ServiceCallback<UserInformation>() {
             @Override
             public void onSuccess(UserInformation response) {
 
@@ -36,10 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onError(int code, String errorResponse) {
-
+                Log.d("ver","veri");
             }
-        });
-*/
+        });*/
 /*
 dataManager.getUserAdresses(null, "canonlover@hybris.com", new ServiceCallback<AddressList>() {
     @Override
@@ -133,7 +132,7 @@ dataManager.updateUserAddress(null, "canonlover@hybris.com", "8796158787607", ad
     }
 });*/
 
-        dataManager.updateUserLoginId("serkan.zaydn@gmail.com", "kasim.sagir@hotmail.com", "123456", new ServiceCallback<UserInformation>() {
+     /*   dataManager.updateUserLoginId("serkan.zaydn@gmail.com", "kasim.sagir@hotmail.com", "123456", new ServiceCallback<UserInformation>() {
             @Override
             public void onSuccess(UserInformation response) {
         Log.d("veri","veri");
@@ -143,6 +142,6 @@ dataManager.updateUserAddress(null, "canonlover@hybris.com", "8796158787607", ad
             public void onError(int code, String errorResponse) {
                 Log.d("veri","veri");
             }
-        });
+        });*/
     }
 }

@@ -46,8 +46,7 @@ public class UserServicesImp extends BaseService implements UserServices {
 
                     @Override
                     public void onError(Throwable e) {
-                        userInformationServiceCallback.onError(getErrorCastObject(e).getCode(), getErrorCastObject(e).getMessage());
-
+                        getErrorCastObject(e,userInformationServiceCallback);
                     }
                 });
 
@@ -68,8 +67,7 @@ public class UserServicesImp extends BaseService implements UserServices {
 
                     @Override
                     public void onError(Throwable e) {
-                        userInformationServiceCallback.onError(getErrorCastObject(e).getCode(), getErrorCastObject(e).getMessage());
-
+                        getErrorCastObject(e,userInformationServiceCallback);
                     }
                 });
 
@@ -90,8 +88,7 @@ public class UserServicesImp extends BaseService implements UserServices {
 
                     @Override
                     public void onError(Throwable e) {
-                        serviceCallback.onError(getErrorCastObject(e).getCode(), getErrorCastObject(e).getMessage());
-
+                        getErrorCastObject(e,serviceCallback);
                     }
                 });
     }
@@ -108,8 +105,7 @@ public class UserServicesImp extends BaseService implements UserServices {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                userServiceCallback.onError(getErrorCastObject(t).getCode(), getErrorCastObject(t).getMessage());
-
+                getErrorCastObject(t,userServiceCallback);
             }
         });
         /*getApiInterface().updateProfile(userId,user)
@@ -145,8 +141,7 @@ public class UserServicesImp extends BaseService implements UserServices {
 
                     @Override
                     public void onError(Throwable e) {
-                        addressListServiceCallback.onError(getErrorCastObject(e).getCode(), getErrorCastObject(e).getMessage());
-
+                        getErrorCastObject(e,addressListServiceCallback);
                     }
                 });
     }
@@ -164,8 +159,7 @@ public class UserServicesImp extends BaseService implements UserServices {
 
                     @Override
                     public void onError(Throwable e) {
-                        addressServiceCallback.onError(getErrorCastObject(e).getCode(), getErrorCastObject(e).getMessage());
-
+                        getErrorCastObject(e,addressServiceCallback);
                     }
                 });
     }
@@ -181,8 +175,7 @@ public class UserServicesImp extends BaseService implements UserServices {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                addressServiceCallback.onError(getErrorCastObject(t).getCode(), getErrorCastObject(t).getMessage());
-
+                getErrorCastObject(t,addressServiceCallback);
             }
         });
 
@@ -200,8 +193,7 @@ public class UserServicesImp extends BaseService implements UserServices {
                     }
                     @Override
                     public void onError(Throwable e) {
-                        addressServiceCallback.onError(getErrorCastObject(e).getCode(), getErrorCastObject(e).getMessage());
-
+                        getErrorCastObject(e,addressServiceCallback);
                     }
 
                 });
@@ -219,7 +211,7 @@ public class UserServicesImp extends BaseService implements UserServices {
                     }
                     @Override
                     public void onError(Throwable e) {
-                        addressServiceCallback.onError(getErrorCastObject(e).getCode(), getErrorCastObject(e).getMessage());
+                        getErrorCastObject(e,addressServiceCallback);
 
                     }
 
@@ -233,7 +225,11 @@ public class UserServicesImp extends BaseService implements UserServices {
                 .subscribeWith(new DisposableSingleObserver() {
                     @Override
                     public void onSuccess(Object o) {
-                        userInformationServiceCallback.onSuccess((UserInformation) getCastObject(o, UserInformation.class));
+                        if(((Response)o).isSuccessful()){
+                            userInformationServiceCallback.onSuccess((UserInformation) getCastObject(o, UserInformation.class));
+                        }else {
+                            getErrorCastObject(((Response) o),userInformationServiceCallback);
+                        }
                     }
                     @Override
                     public void onError(Throwable e) {

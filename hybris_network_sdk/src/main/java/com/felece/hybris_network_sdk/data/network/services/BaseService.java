@@ -45,8 +45,8 @@ public class BaseService {
     }
 
     public Error getErrorCastObject(Throwable e) {
-        Error error=new Error();
-       error.setCode(0);
+        Error error = new Error();
+        error.setCode(0);
         if (e instanceof IOException) {
             error.setMessage(NETWORK_ERROR_MESSAGE);
             return error;
@@ -61,21 +61,25 @@ public class BaseService {
             try {
                 reader = new BufferedReader(new InputStreamReader(response.errorBody().byteStream()));
                 String line;
-                    while ((line = reader.readLine()) != null) {
-                        sb.append(line);
-                    }
-                } catch (IOException a) {
-                    a.printStackTrace();
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
                 }
+            } catch (IOException a) {
+                a.printStackTrace();
+            }
             String finallyError = sb.toString();
-            error.setMessage(gson.fromJson(finallyError,ErrorList.class).getErrors().get(0).getMessage());
-        }
+            ErrorList errorList=gson.fromJson(finallyError,ErrorList.class);
+            if(errorList.getErrors() == null){
+                error.setMessage(errorList.getErrorDescription());
+            }else {
+                error.setMessage(errorList.getErrors().get(0).getMessage());
+            }        }
         return error;
     }
 
 
-    public void getErrorCastObject(Throwable e, ServiceCallback serviceCallback){
-        Error error=new Error();
+    public void getErrorCastObject(Throwable e, ServiceCallback serviceCallback) {
+        Error error = new Error();
         error.setCode(0);
         if (e instanceof IOException) {
             error.setMessage(NETWORK_ERROR_MESSAGE);
@@ -96,8 +100,42 @@ public class BaseService {
                 a.printStackTrace();
             }
             String finallyError = sb.toString();
-            error.setMessage(gson.fromJson(finallyError,ErrorList.class).getErrors().get(0).getMessage());
+
+            ErrorList errorList = gson.fromJson(finallyError, ErrorList.class);
+            if (errorList.getErrors() == null) {
+                error.setMessage(errorList.getErrorDescription());
+            } else {
+                error.setMessage(errorList.getErrors().get(0).getMessage());
+            }
         }
-        serviceCallback.onError(error.getCode(),error.getMessage());
+
+        serviceCallback.onError(error.getCode(), error.getMessage());
     }
+
+    public void getErrorCastObject(retrofit2.Response<?> response, ServiceCallback serviceCallback) {
+        Error error = new Error();
+        error.setCode(0);
+
+        error.setCode(response.code());
+        BufferedReader reader = null;
+        StringBuilder sb = new StringBuilder();
+        try {
+            reader = new BufferedReader(new InputStreamReader(response.errorBody().byteStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+        } catch (IOException a) {
+            a.printStackTrace();
+        }
+        String finallyError = sb.toString();
+        ErrorList errorList = gson.fromJson(finallyError, ErrorList.class);
+        if (errorList.getErrors() == null) {
+            error.setMessage(errorList.getErrorDescription());
+        } else {
+            error.setMessage(errorList.getErrors().get(0).getMessage());
+        }
+        serviceCallback.onError(error.getCode(), error.getMessage());
+    }
+
 }
