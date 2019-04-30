@@ -1,9 +1,12 @@
 package com.felece.hybris_network_sdk.data.network.services.UserServices;
 
+import android.util.Log;
+
 import com.felece.hybris_network_sdk.AppConfiguration.Configuration;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.network.ApiClient;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
+import com.felece.hybris_network_sdk.data.network.entities.error.Error;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
@@ -221,5 +224,41 @@ public class UserServicesImp extends BaseService implements UserServices {
                     }
 
                 });
+    }
+
+    @Override
+    public void updateUserLoginName(String newUserId, String oldUserId, String password, final ServiceCallback<UserInformation> userInformationServiceCallback) {
+        getApiInterface().updateUserId(oldUserId,newUserId,password).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        userInformationServiceCallback.onSuccess((UserInformation) getCastObject(o, UserInformation.class));
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e,userInformationServiceCallback);
+                    }
+
+                });
+
+
+
+    /*enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    userInformationServiceCallback.onSuccess((UserInformation)getCastObject(response.body(),UserInformation.class));
+                }else {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                userInformationServiceCallback.onError(getErrorCastObject(t).getCode(), getErrorCastObject(t).getMessage());
+
+            }
+        });*/
     }
 }

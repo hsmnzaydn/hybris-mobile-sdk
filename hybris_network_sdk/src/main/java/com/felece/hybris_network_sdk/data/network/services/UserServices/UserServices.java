@@ -18,4 +18,5 @@ public interface UserServices {
     void deleteUserAdress(String userId,String adressId,ServiceCallback<Address> addressServiceCallback);
     void getUserAdress(Class object,String userId,String adressId,ServiceCallback<Address> addressServiceCallback);
     void updateUserAddress(Class object,String userId,String addressId,Address address,ServiceCallback<Address> addressServiceCallback);
+    void updateUserLoginName(String newUserId,String oldUserId,String password,ServiceCallback<UserInformation> userInformationServiceCallback);
 }

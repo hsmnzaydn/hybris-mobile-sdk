@@ -96,4 +96,9 @@ public class ApiServicesImp implements ApiServices {
     public void updateUserAddress(Class object, String userId, String addressId, Address address, ServiceCallback<Address> addressServiceCallback) {
         userServices.updateUserAddress(object,userId,addressId,address,addressServiceCallback);
     }
+
+    @Override
+    public void updateUserLoginName(String newUserId, String oldUserId, String password, ServiceCallback<UserInformation> userInformationServiceCallback) {
+        userServices.updateUserLoginName(newUserId,oldUserId,password,userInformationServiceCallback);
+    }
 }

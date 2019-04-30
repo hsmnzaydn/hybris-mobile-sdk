@@ -1,12 +1,18 @@
 package com.felece.hybris_network_sdk.data.network.services;
 
+import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.network.ApiClient;
 import com.felece.hybris_network_sdk.data.network.ApiInterface;
 import com.felece.hybris_network_sdk.data.network.entities.error.Error;
 import com.felece.hybris_network_sdk.data.network.entities.error.ErrorList;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.inject.Inject;
 
@@ -39,38 +45,59 @@ public class BaseService {
     }
 
     public Error getErrorCastObject(Throwable e) {
-        Error error = new Error();
+        Error error=new Error();
        error.setCode(0);
         if (e instanceof IOException) {
             error.setMessage(NETWORK_ERROR_MESSAGE);
             return error;
         } else if (!(e instanceof HttpException)) {
             error.setMessage(DEFAULT_ERROR_MESSAGE);
-
             return error;
         } else {
             retrofit2.Response<?> response = ((HttpException) e).response();
             error.setCode(response.code());
-            if (!response.isSuccessful()) {
-
-                if (response.code() == 500) {
-                    error.setMessage(DEFAULT_ERROR_MESSAGE);
-
-                    return error;
-                } else if (response.code() == 500) {
-                    error.setMessage(DEFAULT_ERROR_MESSAGE);
-                    return error;
-                } else {
-
+            BufferedReader reader = null;
+            StringBuilder sb = new StringBuilder();
+            try {
+                reader = new BufferedReader(new InputStreamReader(response.errorBody().byteStream()));
+                String line;
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line);
+                    }
+                } catch (IOException a) {
+                    a.printStackTrace();
                 }
-            } else {
-                return error;
-            }
-
-
+            String finallyError = sb.toString();
+            error.setMessage(gson.fromJson(finallyError,ErrorList.class).getErrors().get(0).getMessage());
         }
-        error.setMessage(DEFAULT_ERROR_MESSAGE);
         return error;
+    }
 
+
+    public void getErrorCastObject(Throwable e, ServiceCallback serviceCallback){
+        Error error=new Error();
+        error.setCode(0);
+        if (e instanceof IOException) {
+            error.setMessage(NETWORK_ERROR_MESSAGE);
+        } else if (!(e instanceof HttpException)) {
+            error.setMessage(DEFAULT_ERROR_MESSAGE);
+        } else {
+            retrofit2.Response<?> response = ((HttpException) e).response();
+            error.setCode(response.code());
+            BufferedReader reader = null;
+            StringBuilder sb = new StringBuilder();
+            try {
+                reader = new BufferedReader(new InputStreamReader(response.errorBody().byteStream()));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                }
+            } catch (IOException a) {
+                a.printStackTrace();
+            }
+            String finallyError = sb.toString();
+            error.setMessage(gson.fromJson(finallyError,ErrorList.class).getErrors().get(0).getMessage());
+        }
+        serviceCallback.onError(error.getCode(),error.getMessage());
     }
 }

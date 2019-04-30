@@ -9,6 +9,7 @@ import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
 
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -17,6 +18,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
@@ -76,4 +78,7 @@ public interface ApiInterface {
 
     @PATCH("users/{userId}/addresses/{addressId}")
     Single<Object> updateUserAdress(@Path("userId") String userId,@Path("addressId") String adressId, @Body Address address);
+
+    @PUT("users/{userId}/login")
+    Single<Void> updateUserId(@Path("userId") String userId, @Query(value = "newLogin", encoded = true) String newLoginId, @Query("password") String password);
 }

@@ -173,5 +173,10 @@ public class DataManagerImp implements DataManager {
         }
     }
 
+    @Override
+    public void updateUserLoginId(String newUserId, String oldUserId, String password, ServiceCallback<UserInformation> userInformationServiceCallback) {
+        apiServices.updateUserLoginName(newUserId,oldUserId,password,userInformationServiceCallback);
+    }
+
 
 }
