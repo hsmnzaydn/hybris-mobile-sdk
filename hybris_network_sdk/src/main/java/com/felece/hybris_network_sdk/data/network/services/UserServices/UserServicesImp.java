@@ -237,24 +237,26 @@ public class UserServicesImp extends BaseService implements UserServices {
                     }
 
                 });
+    }
 
+    @Override
+    public void updateUserPassword(String oldPassword, String newPassword, String userId, final ServiceCallback<UserInformation> userInformationServiceCallback) {
+        getApiInterface().updateUserPassword(userId,oldPassword,newPassword).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        if(((Response)o).isSuccessful()){
+                            userInformationServiceCallback.onSuccess((UserInformation) getCastObject(o, UserInformation.class));
+                        }else {
+                            getErrorCastObject(((Response) o),userInformationServiceCallback);
+                        }
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e,userInformationServiceCallback);
+                    }
 
-
-    /*enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if(response.isSuccessful()){
-                    userInformationServiceCallback.onSuccess((UserInformation)getCastObject(response.body(),UserInformation.class));
-                }else {
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                userInformationServiceCallback.onError(getErrorCastObject(t).getCode(), getErrorCastObject(t).getMessage());
-
-            }
-        });*/
+                });
     }
 }

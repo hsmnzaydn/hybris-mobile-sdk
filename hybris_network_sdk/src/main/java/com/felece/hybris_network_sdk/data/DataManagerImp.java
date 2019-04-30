@@ -178,5 +178,10 @@ public class DataManagerImp implements DataManager {
         apiServices.updateUserLoginName(newUserId,oldUserId,password,userInformationServiceCallback);
     }
 
+    @Override
+    public void updateUserPassword(String oldPassword, String newPassword, String userId, ServiceCallback<UserInformation> userInformationServiceCallback) {
+        apiServices.updateUserPassword(oldPassword,newPassword,userId,userInformationServiceCallback);
+    }
+
 
 }

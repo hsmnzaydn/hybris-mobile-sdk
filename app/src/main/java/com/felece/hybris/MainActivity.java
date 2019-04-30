@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ((HybrisApp) getApplication()).getActivityComponent().injectMainActivity(this);
-    /*    dataManager.auth(null, "kasim.sagir@hotmail.com", "123456", new ServiceCallback<UserInformation>() {
+     /*   dataManager.auth(null, "serkan.zaydn@gmail.com", "123456", new ServiceCallback<UserInformation>() {
             @Override
             public void onSuccess(UserInformation response) {
 
@@ -39,8 +39,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("ver","veri");
             }
         });*/
+
 /*
-dataManager.getUserAdresses(null, "canonlover@hybris.com", new ServiceCallback<AddressList>() {
+dataManager.getUserAdresses(null, "serkan.zaydn@gmail.com", new ServiceCallback<AddressList>() {
     @Override
     public void onSuccess(AddressList response) {
         Log.d("veri","veri");
@@ -51,9 +52,9 @@ dataManager.getUserAdresses(null, "canonlover@hybris.com", new ServiceCallback<A
         Log.d("veri","veri");
     }
 });
-*/
 
-     /*   Address address=new Address();
+
+        Address address=new Address();
         Country country=new Country();
         country.setIsocode("AF");
         address.setCountry(country);
@@ -66,18 +67,21 @@ dataManager.getUserAdresses(null, "canonlover@hybris.com", new ServiceCallback<A
         address.setPostalCode("34000");
         address.setTitleCode("ms");
 
-        dataManager.createNewUserAdress(null, "canonlover@hybris.com", address, new ServiceCallback<Address>() {
+        dataManager.createNewUserAdress(null, "serkan.zaydn@gmail.com", address, new ServiceCallback<Address>() {
             @Override
             public void onSuccess(Address response) {
+                Log.d("veri","veri");
 
             }
 
             @Override
             public void onError(int code, String errorResponse) {
+                Log.d("veri","veri");
 
             }
         });
 */
+
 
 /*
 dataManager.deleteUserAdress("canonlover@hybris.com", "8796158754839", new ServiceCallback<Address>() {
@@ -143,5 +147,18 @@ dataManager.updateUserAddress(null, "canonlover@hybris.com", "8796158787607", ad
                 Log.d("veri","veri");
             }
         });*/
+
+     dataManager.updateUserPassword("123456", "HAsan1994!*", "serkan.zaydn@gmail.com", new ServiceCallback<UserInformation>() {
+         @Override
+         public void onSuccess(UserInformation response) {
+
+         }
+
+         @Override
+         public void onError(int code, String errorResponse) {
+             Log.d("veri","veri");
+
+         }
+     });
     }
 }

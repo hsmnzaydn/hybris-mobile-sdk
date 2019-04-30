@@ -101,4 +101,9 @@ public class ApiServicesImp implements ApiServices {
     public void updateUserLoginName(String newUserId, String oldUserId, String password, ServiceCallback<UserInformation> userInformationServiceCallback) {
         userServices.updateUserLoginName(newUserId,oldUserId,password,userInformationServiceCallback);
     }
+
+    @Override
+    public void updateUserPassword(String oldPassword, String newPassword, String userId, ServiceCallback<UserInformation> userInformationServiceCallback) {
+        userServices.updateUserPassword(oldPassword,newPassword,userId,userInformationServiceCallback);
+    }
 }

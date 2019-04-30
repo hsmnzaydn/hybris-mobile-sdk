@@ -81,4 +81,7 @@ public interface ApiInterface {
 
     @PUT("users/{userId}/login")
     Single<Response<Void>> updateUserId(@Path("userId") String userId, @Query(value = "newLogin", encoded = true) String newLoginId, @Query("password") String password);
+
+    @PUT("users/{userId}/password")
+    Single<Response<Void>> updateUserPassword(@Path("userId") String userId,@Query("old") String oldPassword,@Query("new") String newPassword);
 }
