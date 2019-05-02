@@ -5,6 +5,8 @@ import com.felece.hybris_network_sdk.data.network.ApiClient;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
 import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
+import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryMode;
+import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.services.BaseService;
 import com.google.gson.Gson;
@@ -26,7 +28,7 @@ public class CartServicesImp extends BaseService implements CartServices {
 
     @Override
     public void getCarts(final Class object, String field, Boolean savedCartsOnly, Integer currentPage, Integer pageSize, String sort, String userId, final ServiceCallback<CartList> cartListServiceCallback) {
-        getApiInterface().getCartList(userId,field,savedCartsOnly,currentPage,pageSize,sort).subscribeOn(Schedulers.io())
+        getApiInterface().getCartList(userId, field, savedCartsOnly, currentPage, pageSize, sort).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver() {
                     @Override
@@ -34,9 +36,10 @@ public class CartServicesImp extends BaseService implements CartServices {
                         cartListServiceCallback.onSuccess((CartList) getCastObject(o, object));
 
                     }
+
                     @Override
                     public void onError(Throwable e) {
-                        getErrorCastObject(e,cartListServiceCallback);
+                        getErrorCastObject(e, cartListServiceCallback);
 
                     }
 
@@ -44,8 +47,8 @@ public class CartServicesImp extends BaseService implements CartServices {
     }
 
     @Override
-    public void createOrUpdateCart(final Class object,Cart cart, String field, String oldCartId, String toMergeCartGuid, String userId, final ServiceCallback<Cart> cartServiceCallback) {
-        getApiInterface().createOrUpdateCart(userId,cart,field,oldCartId,toMergeCartGuid).subscribeOn(Schedulers.io())
+    public void createOrUpdateCart(final Class object, Cart cart, String field, String oldCartId, String toMergeCartGuid, String userId, final ServiceCallback<Cart> cartServiceCallback) {
+        getApiInterface().createOrUpdateCart(userId, cart, field, oldCartId, toMergeCartGuid).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver() {
                     @Override
@@ -53,9 +56,10 @@ public class CartServicesImp extends BaseService implements CartServices {
                         cartServiceCallback.onSuccess((Cart) getCastObject(o, object));
 
                     }
+
                     @Override
                     public void onError(Throwable e) {
-                        getErrorCastObject(e,cartServiceCallback);
+                        getErrorCastObject(e, cartServiceCallback);
 
                     }
 
@@ -64,20 +68,21 @@ public class CartServicesImp extends BaseService implements CartServices {
 
     @Override
     public void deleteCart(String userId, String cartId, final ServiceCallback<Cart> cartServiceCallback) {
-        getApiInterface().deleteCart(userId,cartId).subscribeOn(Schedulers.io())
+        getApiInterface().deleteCart(userId, cartId).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver() {
                     @Override
                     public void onSuccess(Object o) {
-                        if(((Response)o).isSuccessful()){
+                        if (((Response) o).isSuccessful()) {
                             cartServiceCallback.onSuccess((Cart) getCastObject(o, Cart.class));
-                        }else {
-                            getErrorCastObject(((Response) o),cartServiceCallback);
+                        } else {
+                            getErrorCastObject(((Response) o), cartServiceCallback);
                         }
                     }
+
                     @Override
                     public void onError(Throwable e) {
-                        getErrorCastObject(e,cartServiceCallback);
+                        getErrorCastObject(e, cartServiceCallback);
                     }
 
                 });
@@ -85,7 +90,7 @@ public class CartServicesImp extends BaseService implements CartServices {
 
     @Override
     public void getCart(final Class object, String field, String userId, String cartId, final ServiceCallback<Cart> cartServiceCallback) {
-        getApiInterface().getCart(userId,cartId,field).subscribeOn(Schedulers.io())
+        getApiInterface().getCart(userId, cartId, field).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver() {
                     @Override
@@ -93,9 +98,10 @@ public class CartServicesImp extends BaseService implements CartServices {
                         cartServiceCallback.onSuccess((Cart) getCastObject(o, object));
 
                     }
+
                     @Override
                     public void onError(Throwable e) {
-                        getErrorCastObject(e,cartServiceCallback);
+                        getErrorCastObject(e, cartServiceCallback);
 
                     }
 
@@ -104,20 +110,21 @@ public class CartServicesImp extends BaseService implements CartServices {
 
     @Override
     public void deleteDeliveryAddresOfCart(String userId, String cartId, final ServiceCallback<Cart> cartServiceCallback) {
-        getApiInterface().deleteDeliveryAddressOfCart(userId,cartId).subscribeOn(Schedulers.io())
+        getApiInterface().deleteDeliveryAddressOfCart(userId, cartId).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver() {
                     @Override
                     public void onSuccess(Object o) {
-                        if(((Response)o).isSuccessful()){
+                        if (((Response) o).isSuccessful()) {
                             cartServiceCallback.onSuccess((Cart) getCastObject(o, Cart.class));
-                        }else {
-                            getErrorCastObject(((Response) o),cartServiceCallback);
+                        } else {
+                            getErrorCastObject(((Response) o), cartServiceCallback);
                         }
                     }
+
                     @Override
                     public void onError(Throwable e) {
-                        getErrorCastObject(e,cartServiceCallback);
+                        getErrorCastObject(e, cartServiceCallback);
 
                     }
 
@@ -126,7 +133,7 @@ public class CartServicesImp extends BaseService implements CartServices {
 
     @Override
     public void createDeliveryAddresForCart(Class object, Address address, String userId, String cartId, final ServiceCallback<Cart> cartServiceCallback) {
-        getApiInterface().addDeliveryAddressOfCart(userId,cartId,address).subscribeOn(Schedulers.io())
+        getApiInterface().addDeliveryAddressOfCart(userId, cartId, address).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver() {
                     @Override
@@ -134,9 +141,10 @@ public class CartServicesImp extends BaseService implements CartServices {
                         cartServiceCallback.onSuccess((Cart) getCastObject(o, Cart.class));
 
                     }
+
                     @Override
                     public void onError(Throwable e) {
-                        getErrorCastObject(e,cartServiceCallback);
+                        getErrorCastObject(e, cartServiceCallback);
 
                     }
 
@@ -145,20 +153,88 @@ public class CartServicesImp extends BaseService implements CartServices {
 
     @Override
     public void setDeliveryAddresToCart(String userId, String cartId, String addressId, final ServiceCallback<Cart> cartServiceCallback) {
-        getApiInterface().setDeliveryAddressToCart(userId,cartId,addressId).subscribeOn(Schedulers.io())
+        getApiInterface().setDeliveryAddressToCart(userId, cartId, addressId).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver() {
                     @Override
                     public void onSuccess(Object o) {
-                        if(((Response)o).isSuccessful()){
+                        if (((Response) o).isSuccessful()) {
                             cartServiceCallback.onSuccess((Cart) getCastObject(o, Cart.class));
-                        }else {
-                            getErrorCastObject(((Response) o),cartServiceCallback);
+                        } else {
+                            getErrorCastObject(((Response) o), cartServiceCallback);
                         }
                     }
+
                     @Override
                     public void onError(Throwable e) {
-                        getErrorCastObject(e,cartServiceCallback);
+                        getErrorCastObject(e, cartServiceCallback);
+
+                    }
+
+                });
+    }
+
+    @Override
+    public void deleteDeliveryModeFromCart(String userId, String cartId, final ServiceCallback<DeliveryMode> deliveryModeServiceCallback) {
+        getApiInterface().deleteDeliveryAddressOfCart(userId, cartId).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        if (((Response) o).isSuccessful()) {
+                            deliveryModeServiceCallback.onSuccess((DeliveryMode) getCastObject(o, DeliveryMode.class));
+                        } else {
+                            getErrorCastObject(((Response) o), deliveryModeServiceCallback);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e, deliveryModeServiceCallback);
+
+                    }
+
+                });
+    }
+
+    @Override
+    public void getDeliveryModeOfCart(final Class object, String field, String userId, String cartId, final ServiceCallback<DeliveryMode> deliveryModeServiceCallback) {
+        getApiInterface().getDeliveryModeOfCart(userId, cartId, field).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        if (((Response) o).isSuccessful()) {
+                            deliveryModeServiceCallback.onSuccess((DeliveryMode) getCastObject(o, object));
+                        } else {
+                            getErrorCastObject(((Response) o), deliveryModeServiceCallback);
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e, deliveryModeServiceCallback);
+
+                    }
+
+                });
+    }
+
+    @Override
+    public void getEntriesOfCart(Class object, String field, String userId, String cartId, final ServiceCallback<OrderEntryList> orderEntryListServiceCallback) {
+        getApiInterface().getEntriesOfCart(userId, cartId, field).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        orderEntryListServiceCallback.onSuccess((OrderEntryList) getCastObject(o, OrderEntryList.class));
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e, orderEntryListServiceCallback);
 
                     }
 

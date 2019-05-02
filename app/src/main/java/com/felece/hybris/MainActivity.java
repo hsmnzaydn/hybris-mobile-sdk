@@ -12,6 +12,8 @@ import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
 import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
 import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
+import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryMode;
+import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.Country;
@@ -26,12 +28,15 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     DataManager dataManager;
 
+
+    private String userName="serkan.zaydn@gmail.com";
+    private String password="123456";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ((HybrisApp) getApplication()).getActivityComponent().injectMainActivity(this);
-       /* dataManager.auth(null, "serkan.zaydn@gmail.com", "123456", new ServiceCallback<UserInformation>() {
+      /*  dataManager.auth(null, "serkan.zaydn@gmail.com", "123456", new ServiceCallback<UserInformation>() {
             @Override
             public void onSuccess(UserInformation response) {
 
@@ -41,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
             public void onError(int code, String errorResponse) {
                 Log.d("ver","veri");
             }
-        });
-*/
+        });*/
 /*
 dataManager.getUserAdresses(null, "serkan.zaydn@gmail.com", new ServiceCallback<AddressList>() {
     @Override
@@ -227,7 +231,7 @@ dataManager.updateUserAddress(null, "canonlover@hybris.com", "8796158787607", ad
     }
 });*/
 
-        Address address=new Address();
+       /* Address address=new Address();
         Country country=new Country();
         country.setIsocode("AF");
         address.setCountry(country);
@@ -250,6 +254,55 @@ dataManager.createDeliveryAddresForCart(null, address, "serkan.zaydn@gmail.com",
     public void onError(int code, String errorResponse) {
 
     }
-});
+});*/
+
+      /* dataManager.setDeliveryAddresToCart(userName, "00000002", "8796257026071", new ServiceCallback<Cart>() {
+           @Override
+           public void onSuccess(Cart response) {
+
+           }
+
+           @Override
+           public void onError(int code, String errorResponse) {
+
+           }
+       });*/
+
+   /*   dataManager.getEntriesOfCart(null, FIELDS.DEFAULT.getFieldType(), userName, "00000002", new ServiceCallback<OrderEntryList>() {
+          @Override
+          public void onSuccess(OrderEntryList response) {
+              Log.d("veri","veri");
+          }
+
+          @Override
+          public void onError(int code, String errorResponse) {
+              Log.d("veri","veri");
+          }
+      });*/
+
+    /*    dataManager.deleteDeliveryModeFromCart(userName, "00000002", new ServiceCallback<DeliveryMode>() {
+            @Override
+            public void onSuccess(DeliveryMode response) {
+
+            }
+
+            @Override
+            public void onError(int code, String errorResponse) {
+
+            }
+        });*/
+
+    dataManager.getDeliveryModeOfCart(null, FIELDS.DEFAULT.getFieldType(), userName, "00001001", new ServiceCallback<DeliveryMode>() {
+        @Override
+        public void onSuccess(DeliveryMode response) {
+
+        }
+
+        @Override
+        public void onError(int code, String errorResponse) {
+
+        }
+    });
+
     }
 }

@@ -108,6 +108,17 @@ public interface ApiInterface {
     Single<Object> addDeliveryAddressOfCart(@Path("userId") String userId,@Path("cartId") String cartId,@Body Address address);
 
     @PUT("users/{userId}/carts/{cartId}/addresses/delivery")
-    Single<Object> setDeliveryAddressToCart(@Path("userId") String userId,@Path("cartId") String cartId,@Query("addressId") String addressId);
+    Single<Response<Void>> setDeliveryAddressToCart(@Path("userId") String userId,@Path("cartId") String cartId,@Query("addressId") String addressId);
+
+    @DELETE("users/{userId}/carts/{cartId}/deliverymode")
+    Single<Response<Void>> deleteDeliveryModeFromCart(@Path("userId") String userId,@Path("cartId") String cartId);
+
+    @GET("users/{userId}/carts/{cartId}/deliverymode")
+    Single<Response<Void>> getDeliveryModeOfCart(@Path("userId") String userId,@Path("cartId") String cartId,@Query("fields") String field);
+
+    @GET("users/{userId}/carts/{cartId}/entries")
+    Single<Object> getEntriesOfCart(@Path("userId")String userId,@Path("cartId") String cartId,@Query("fields") String fields);
+
+
 
 }

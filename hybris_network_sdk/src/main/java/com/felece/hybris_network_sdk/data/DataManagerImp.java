@@ -8,6 +8,8 @@ import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogVersion;
 import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
 import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
+import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryMode;
+import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
@@ -234,6 +236,29 @@ public class DataManagerImp implements DataManager {
     @Override
     public void setDeliveryAddresToCart(String userId, String cartId, String addressId, ServiceCallback<Cart> cartServiceCallback) {
         apiServices.setDeliveryAddresToCart(userId,cartId,addressId,cartServiceCallback);
+    }
+
+    @Override
+    public void getEntriesOfCart(Class object, String field, String userId, String cartId, ServiceCallback<OrderEntryList> orderEntryListServiceCallback) {
+        if(object == null){
+            apiServices.getEntriesOfCart(OrderEntryList.class,field,userId,cartId,orderEntryListServiceCallback);
+        }else {
+            apiServices.getEntriesOfCart(object,field,userId,cartId,orderEntryListServiceCallback);
+        }
+    }
+
+    @Override
+    public void deleteDeliveryModeFromCart(String userId, String cartId, ServiceCallback<DeliveryMode> deliveryModeServiceCallback) {
+        apiServices.deleteDeliveryModeFromCart(userId,cartId,deliveryModeServiceCallback);
+    }
+
+    @Override
+    public void getDeliveryModeOfCart(Class object,String field, String userId, String cartId, ServiceCallback<DeliveryMode> deliveryModeServiceCallback) {
+        if(object==null){
+            apiServices.getDeliveryModeOfCart(DeliveryMode.class,field,userId,cartId,deliveryModeServiceCallback);
+        }else {
+            apiServices.getDeliveryModeOfCart(object,field,userId,cartId,deliveryModeServiceCallback);
+        }
     }
 
 
