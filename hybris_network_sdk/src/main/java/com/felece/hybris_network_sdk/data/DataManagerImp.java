@@ -6,6 +6,8 @@ import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogVersion;
+import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
+import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
@@ -181,6 +183,38 @@ public class DataManagerImp implements DataManager {
     @Override
     public void updateUserPassword(String oldPassword, String newPassword, String userId, ServiceCallback<UserInformation> userInformationServiceCallback) {
         apiServices.updateUserPassword(oldPassword,newPassword,userId,userInformationServiceCallback);
+    }
+
+    @Override
+    public void getCarts(Class object, String field, Boolean savedCartsOnly, Integer currentPage, Integer pageSize, String sort, String userId, ServiceCallback<CartList> cartListServiceCallback) {
+            if(object== null){
+                apiServices.getCarts(CartList.class,field,savedCartsOnly,currentPage,pageSize,sort,userId,cartListServiceCallback);
+            }else {
+                apiServices.getCarts(object,field,savedCartsOnly,currentPage,pageSize,sort,userId,cartListServiceCallback);
+            }
+    }
+
+    @Override
+    public void createOrUpdateCart(Class object, String field, Cart cart,String oldCartId, String toMergeCartGuid, String userId, ServiceCallback<Cart> cartServiceCallback) {
+        if(object == null){
+            apiServices.createOrUpdateCart(Cart.class,cart,field,oldCartId,toMergeCartGuid,userId,cartServiceCallback);
+        }else {
+            apiServices.createOrUpdateCart(object,cart,field,oldCartId,toMergeCartGuid,userId,cartServiceCallback);
+        }
+    }
+
+    @Override
+    public void deleteCart(String userId, String cartId, ServiceCallback<Cart> cartServiceCallback) {
+        apiServices.deleteCart(userId,cartId,cartServiceCallback);
+    }
+
+    @Override
+    public void getCart(Class object, String field, String userId, String cartId, ServiceCallback<Cart> cartServiceCallback) {
+        if(object==null){
+            apiServices.getCart(Cart.class,field,userId,cartId,cartServiceCallback);
+        }else {
+            apiServices.getCart(object,field,userId,cartId,cartServiceCallback);
+        }
     }
 
 

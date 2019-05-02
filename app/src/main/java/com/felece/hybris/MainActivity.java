@@ -9,6 +9,9 @@ import android.util.Log;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
+import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
+import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
+import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.Country;
@@ -28,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ((HybrisApp) getApplication()).getActivityComponent().injectMainActivity(this);
-     /*   dataManager.auth(null, "serkan.zaydn@gmail.com", "123456", new ServiceCallback<UserInformation>() {
+       /* dataManager.auth(null, "serkan.zaydn@gmail.com", "123456", new ServiceCallback<UserInformation>() {
             @Override
             public void onSuccess(UserInformation response) {
 
@@ -38,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
             public void onError(int code, String errorResponse) {
                 Log.d("ver","veri");
             }
-        });*/
-
+        });
+*/
 /*
 dataManager.getUserAdresses(null, "serkan.zaydn@gmail.com", new ServiceCallback<AddressList>() {
     @Override
@@ -148,7 +151,7 @@ dataManager.updateUserAddress(null, "canonlover@hybris.com", "8796158787607", ad
             }
         });*/
 
-     dataManager.updateUserPassword("123456", "HAsan1994!*", "serkan.zaydn@gmail.com", new ServiceCallback<UserInformation>() {
+    /* dataManager.updateUserPassword("123456", "HAsan1994!*", "serkan.zaydn@gmail.com", new ServiceCallback<UserInformation>() {
          @Override
          public void onSuccess(UserInformation response) {
 
@@ -159,6 +162,45 @@ dataManager.updateUserAddress(null, "canonlover@hybris.com", "8796158787607", ad
              Log.d("veri","veri");
 
          }
-     });
+     });*/
+
+   /* Cart cart=new Cart();
+    cart.setName("asdasd");
+
+    dataManager.createOrUpdateCart(null, FIELDS.DEFAULT.getFieldType(),cart, null, null, "serkan.zaydn@gmail.com", new ServiceCallback<Cart>() {
+        @Override
+        public void onSuccess(Cart response) {
+
+        }
+
+        @Override
+        public void onError(int code, String errorResponse) {
+
+        }
+    });*/
+
+ /* dataManager.getCarts(null, FIELDS.DEFAULT.getFieldType(), null, null, null, null, "serkan.zaydn@gmail.com", new ServiceCallback<CartList>() {
+      @Override
+      public void onSuccess(CartList response) {
+
+      }
+
+      @Override
+      public void onError(int code, String errorResponse) {
+
+      }
+  });*/
+
+ dataManager.deleteCart("serkan.zaydn@gmail.com", "00000000", new ServiceCallback<Cart>() {
+     @Override
+     public void onSuccess(Cart response) {
+
+     }
+
+     @Override
+     public void onError(int code, String errorResponse) {
+        Log.d("veri","veri");
+     }
+ });
     }
 }

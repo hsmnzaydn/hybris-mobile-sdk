@@ -8,6 +8,8 @@ import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogVersion;
+import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
+import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
@@ -34,4 +36,12 @@ public interface DataManager  {
     void updateUserAddress(Class object,String userId,String addressId,Address address,ServiceCallback<Address> addressServiceCallback);
     void updateUserLoginId(String newUserId, String oldUserId, String password, ServiceCallback<UserInformation> userInformationServiceCallback);
     void updateUserPassword(String oldPassword,String newPassword,String userId,ServiceCallback<UserInformation> userInformationServiceCallback);
+
+
+    void getCarts(Class object, String field, Boolean savedCartsOnly, Integer currentPage, Integer pageSize, String sort, String userId, ServiceCallback<CartList> cartListServiceCallback);
+    void createOrUpdateCart(Class object, String field, Cart cart,String oldCartId, String toMergeCartGuid, String userId, ServiceCallback<Cart> cartServiceCallback);
+    void deleteCart(String userId,String cartId,ServiceCallback<Cart> cartServiceCallback);
+    void getCart(Class object,String field,String userId,String cartId,ServiceCallback<Cart> cartServiceCallback);
+
+
 }

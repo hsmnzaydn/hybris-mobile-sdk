@@ -5,10 +5,13 @@ import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogVersion;
+import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
+import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
+import com.felece.hybris_network_sdk.data.network.services.CartServices.CartServices;
 import com.felece.hybris_network_sdk.data.network.services.CatalogServices.CatalogServices;
 import com.felece.hybris_network_sdk.data.network.services.CountriesServices.CountriesServices;
 import com.felece.hybris_network_sdk.data.network.services.UserServices.UserServices;
@@ -19,12 +22,15 @@ public class ApiServicesImp implements ApiServices {
     CountriesServices countriesServices;
     CatalogServices catalogServices;
     UserServices userServices;
+    CartServices cartServices;
 
     @Inject
-    public ApiServicesImp(CountriesServices countriesServices, CatalogServices catalogServices,UserServices userServices) {
+    public ApiServicesImp(CountriesServices countriesServices, CatalogServices catalogServices,UserServices userServices
+    ,CartServices cartServices) {
         this.countriesServices = countriesServices;
         this.catalogServices = catalogServices;
         this.userServices=userServices;
+        this.cartServices=cartServices;
     }
 
     @Override
@@ -105,5 +111,25 @@ public class ApiServicesImp implements ApiServices {
     @Override
     public void updateUserPassword(String oldPassword, String newPassword, String userId, ServiceCallback<UserInformation> userInformationServiceCallback) {
         userServices.updateUserPassword(oldPassword,newPassword,userId,userInformationServiceCallback);
+    }
+
+    @Override
+    public void getCarts(Class object, String field, Boolean savedCartsOnly, Integer currentPage, Integer pageSize, String sort, String userId, ServiceCallback<CartList> cartListServiceCallback) {
+        cartServices.getCarts(object,field,savedCartsOnly,currentPage,pageSize,sort,userId,cartListServiceCallback);
+    }
+
+    @Override
+    public void createOrUpdateCart(Class object, Cart cart,String field, String oldCartId, String toMergeCartGuid, String userId, ServiceCallback<Cart> cartServiceCallback) {
+        cartServices.createOrUpdateCart(object,cart,field,oldCartId,toMergeCartGuid,userId,cartServiceCallback);
+    }
+
+    @Override
+    public void deleteCart(String userId, String cartId, ServiceCallback<Cart> cartServiceCallback) {
+        cartServices.deleteCart(userId,cartId,cartServiceCallback);
+    }
+
+    @Override
+    public void getCart(Class object, String field, String userId, String cartId, ServiceCallback<Cart> cartServiceCallback) {
+        cartServices.getCart(object,field,userId,cartId,cartServiceCallback);
     }
 }

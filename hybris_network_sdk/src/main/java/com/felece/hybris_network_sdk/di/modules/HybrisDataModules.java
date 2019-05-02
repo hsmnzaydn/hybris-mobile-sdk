@@ -6,6 +6,8 @@ import com.felece.hybris_network_sdk.data.DataManagerImp;
 import com.felece.hybris_network_sdk.data.network.ApiClient;
 import com.felece.hybris_network_sdk.data.network.ApiServices;
 import com.felece.hybris_network_sdk.data.network.ApiServicesImp;
+import com.felece.hybris_network_sdk.data.network.services.CartServices.CartServices;
+import com.felece.hybris_network_sdk.data.network.services.CartServices.CartServicesImp;
 import com.felece.hybris_network_sdk.data.network.services.CatalogServices.CatalogServices;
 import com.felece.hybris_network_sdk.data.network.services.CatalogServices.CatalogServicesImp;
 import com.felece.hybris_network_sdk.data.network.services.CountriesServices.CountriesServices;
@@ -33,8 +35,15 @@ public class HybrisDataModules {
     @Provides
     ApiServices provideApiServices(CountriesServices countriesServices,
                                    CatalogServices catalogServices,
-                                   UserServices userServices){
-        return new ApiServicesImp(countriesServices,catalogServices,userServices);
+                                   UserServices userServices,
+                                   CartServices cartServices){
+        return new ApiServicesImp(countriesServices,catalogServices,userServices,cartServices);
+    }
+
+    @Singleton
+    @Provides
+    CartServices provideCartServices(ApiClient apiClient,Gson gson){
+        return new CartServicesImp(apiClient,gson);
     }
 
     @Singleton

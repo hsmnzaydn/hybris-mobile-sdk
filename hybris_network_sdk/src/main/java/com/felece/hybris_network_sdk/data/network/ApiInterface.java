@@ -3,6 +3,7 @@ package com.felece.hybris_network_sdk.data.network;
 
 import com.felece.hybris_network_sdk.data.network.entities.CommonResponse;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
+import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
 import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
@@ -87,6 +88,16 @@ public interface ApiInterface {
     // Cart Services
     @GET("users/{userId}/carts")
     Single<CartList> getCartList(@Path("userId") String userId, @Query("fields") String fields,
-                                 @Query("savedCartsOnly") boolean isSavedCartsOnly, @Query("currentPage") Integer currentPage, @Query("pageSize") Integer pageSize
+                                 @Query("savedCartsOnly") Boolean isSavedCartsOnly, @Query("currentPage") Integer currentPage, @Query("pageSize") Integer pageSize
             , @Query("sort") String sort);
+
+    @POST("users/{userId}/carts")
+    Single<Object> createOrUpdateCart(@Path("userId") String userId, @Body Cart cart, @Query("fields") String fields, @Query("oldCartId") String oldCartId,
+                                      @Query("toMergeCartGuid") String toMergeCartGuid);
+
+    @DELETE("users/{userId}/carts/{cartId}")
+    Single<Response<Void>> deleteCart(@Path("userId") String userId,@Path("cartId") String cartId);
+
+    @GET("users/{userId}/carts/{cartId}")
+    Single<Object> getCart(@Path("userId") String userId,@Path("cartId") String cartId,@Query("fields") String fields);
 }
