@@ -191,7 +191,7 @@ dataManager.updateUserAddress(null, "canonlover@hybris.com", "8796158787607", ad
       }
   });*/
 
- dataManager.deleteCart("serkan.zaydn@gmail.com", "00000000", new ServiceCallback<Cart>() {
+/* dataManager.deleteCart("serkan.zaydn@gmail.com", "00000000", new ServiceCallback<Cart>() {
      @Override
      public void onSuccess(Cart response) {
 
@@ -201,6 +201,55 @@ dataManager.updateUserAddress(null, "canonlover@hybris.com", "8796158787607", ad
      public void onError(int code, String errorResponse) {
         Log.d("veri","veri");
      }
- });
+ });*/
+
+/*dataManager.getCart(null, FIELDS.DEFAULT.getFieldType(), "serkan.zaydn@gmail.com", "00000002", new ServiceCallback<Cart>() {
+    @Override
+    public void onSuccess(Cart response) {
+
+    }
+
+    @Override
+    public void onError(int code, String errorResponse) {
+
+    }
+});*/
+
+/*dataManager.deleteDeliveryAddresOfCart("serkan.zaydn@gmail.com", "00000002", new ServiceCallback<Cart>() {
+    @Override
+    public void onSuccess(Cart response) {
+
+    }
+
+    @Override
+    public void onError(int code, String errorResponse) {
+
+    }
+});*/
+
+        Address address=new Address();
+        Country country=new Country();
+        country.setIsocode("AF");
+        address.setCountry(country);
+        address.setId("8796158590999");
+        address.setFirstName("Ahmet");
+        address.setLastName("Mehmet");
+        address.setTown("Agri");
+        address.setLine1("Mehmet mah.");
+        address.setLine2("Asd meee");
+        address.setPostalCode("34000");
+        address.setTitleCode("ms");
+
+dataManager.createDeliveryAddresForCart(null, address, "serkan.zaydn@gmail.com", "00000002", new ServiceCallback<Cart>() {
+    @Override
+    public void onSuccess(Cart response) {
+
+    }
+
+    @Override
+    public void onError(int code, String errorResponse) {
+
+    }
+});
     }
 }

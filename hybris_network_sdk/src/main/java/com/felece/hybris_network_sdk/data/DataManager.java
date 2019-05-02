@@ -42,6 +42,9 @@ public interface DataManager  {
     void createOrUpdateCart(Class object, String field, Cart cart,String oldCartId, String toMergeCartGuid, String userId, ServiceCallback<Cart> cartServiceCallback);
     void deleteCart(String userId,String cartId,ServiceCallback<Cart> cartServiceCallback);
     void getCart(Class object,String field,String userId,String cartId,ServiceCallback<Cart> cartServiceCallback);
+    void deleteDeliveryAddresOfCart(String userId,String cartId,ServiceCallback<Cart> cartServiceCallback);
+    void createDeliveryAddresForCart(Class object, Address address,String userId, String cartId, ServiceCallback<Cart> cartServiceCallback);
+    void setDeliveryAddresToCart(String userId,String cartId,String addressId,ServiceCallback<Cart> cartServiceCallback);
 
 
 }

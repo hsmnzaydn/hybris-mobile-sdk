@@ -100,4 +100,14 @@ public interface ApiInterface {
 
     @GET("users/{userId}/carts/{cartId}")
     Single<Object> getCart(@Path("userId") String userId,@Path("cartId") String cartId,@Query("fields") String fields);
+
+    @DELETE("users/{userId}/carts/{cartId}/addresses/delivery")
+    Single<Response<Void>> deleteDeliveryAddressOfCart(@Path("userId") String userId,@Path("cartId") String cartId);
+
+    @POST("users/{userId}/carts/{cartId}/addresses/delivery")
+    Single<Object> addDeliveryAddressOfCart(@Path("userId") String userId,@Path("cartId") String cartId,@Body Address address);
+
+    @PUT("users/{userId}/carts/{cartId}/addresses/delivery")
+    Single<Object> setDeliveryAddressToCart(@Path("userId") String userId,@Path("cartId") String cartId,@Query("addressId") String addressId);
+
 }

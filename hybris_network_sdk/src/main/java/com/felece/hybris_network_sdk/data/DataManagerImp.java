@@ -217,5 +217,24 @@ public class DataManagerImp implements DataManager {
         }
     }
 
+    @Override
+    public void deleteDeliveryAddresOfCart(String userId, String cartId, ServiceCallback<Cart> cartServiceCallback) {
+        apiServices.deleteDeliveryAddresOfCart(userId,cartId,cartServiceCallback);
+    }
+
+    @Override
+    public void createDeliveryAddresForCart(Class object, Address address, String userId, String cartId, ServiceCallback<Cart> cartServiceCallback) {
+        if(object== null){
+            apiServices.createDeliveryAddresForCart(Cart.class,address,userId,cartId,cartServiceCallback);
+        }else {
+            apiServices.createDeliveryAddresForCart(object,address,userId,cartId,cartServiceCallback);
+        }
+    }
+
+    @Override
+    public void setDeliveryAddresToCart(String userId, String cartId, String addressId, ServiceCallback<Cart> cartServiceCallback) {
+        apiServices.setDeliveryAddresToCart(userId,cartId,addressId,cartServiceCallback);
+    }
+
 
 }

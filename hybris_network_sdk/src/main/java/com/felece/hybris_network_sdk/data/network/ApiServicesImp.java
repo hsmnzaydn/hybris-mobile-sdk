@@ -132,4 +132,19 @@ public class ApiServicesImp implements ApiServices {
     public void getCart(Class object, String field, String userId, String cartId, ServiceCallback<Cart> cartServiceCallback) {
         cartServices.getCart(object,field,userId,cartId,cartServiceCallback);
     }
+
+    @Override
+    public void deleteDeliveryAddresOfCart(String userId, String cartId, ServiceCallback<Cart> cartServiceCallback) {
+        cartServices.deleteDeliveryAddresOfCart(userId,cartId,cartServiceCallback);
+    }
+
+    @Override
+    public void createDeliveryAddresForCart(Class object, Address address, String userId, String cartId, ServiceCallback<Cart> cartServiceCallback) {
+        cartServices.createDeliveryAddresForCart(object,address,userId,cartId,cartServiceCallback);
+    }
+
+    @Override
+    public void setDeliveryAddresToCart(String userId, String cartId, String addressId, ServiceCallback<Cart> cartServiceCallback) {
+        cartServices.setDeliveryAddresToCart(userId,cartId,addressId,cartServiceCallback);
+    }
 }

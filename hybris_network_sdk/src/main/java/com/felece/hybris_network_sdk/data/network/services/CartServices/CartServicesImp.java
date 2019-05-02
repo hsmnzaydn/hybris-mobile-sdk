@@ -101,4 +101,67 @@ public class CartServicesImp extends BaseService implements CartServices {
 
                 });
     }
+
+    @Override
+    public void deleteDeliveryAddresOfCart(String userId, String cartId, final ServiceCallback<Cart> cartServiceCallback) {
+        getApiInterface().deleteDeliveryAddressOfCart(userId,cartId).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        if(((Response)o).isSuccessful()){
+                            cartServiceCallback.onSuccess((Cart) getCastObject(o, Cart.class));
+                        }else {
+                            getErrorCastObject(((Response) o),cartServiceCallback);
+                        }
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e,cartServiceCallback);
+
+                    }
+
+                });
+    }
+
+    @Override
+    public void createDeliveryAddresForCart(Class object, Address address, String userId, String cartId, final ServiceCallback<Cart> cartServiceCallback) {
+        getApiInterface().addDeliveryAddressOfCart(userId,cartId,address).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        cartServiceCallback.onSuccess((Cart) getCastObject(o, Cart.class));
+
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e,cartServiceCallback);
+
+                    }
+
+                });
+    }
+
+    @Override
+    public void setDeliveryAddresToCart(String userId, String cartId, String addressId, final ServiceCallback<Cart> cartServiceCallback) {
+        getApiInterface().setDeliveryAddressToCart(userId,cartId,addressId).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        if(((Response)o).isSuccessful()){
+                            cartServiceCallback.onSuccess((Cart) getCastObject(o, Cart.class));
+                        }else {
+                            getErrorCastObject(((Response) o),cartServiceCallback);
+                        }
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e,cartServiceCallback);
+
+                    }
+
+                });
+    }
 }
