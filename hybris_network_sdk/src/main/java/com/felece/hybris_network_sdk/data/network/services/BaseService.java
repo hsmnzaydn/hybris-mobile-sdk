@@ -22,14 +22,20 @@ public class BaseService {
 
     ApiInterface apiInterface;
     Gson gson;
+    ApiClient apiClient;
 
     public static String DEFAULT_ERROR_MESSAGE = "Something went wrong! Please try again.";
     public static String NETWORK_ERROR_MESSAGE = "Can not connect to server";
 
     @Inject
     public BaseService(ApiClient apiClient, Gson gson) {
-        apiInterface = apiClient.getClient().create(ApiInterface.class);
+        this.apiClient=apiClient;
+        apiInterface = apiClient.getClient(true).create(ApiInterface.class);
         this.gson = gson;
+    }
+
+    public ApiInterface getApiInterfaceWithOutHeader(){
+        return apiClient.getClient(false).create(ApiInterface.class);
     }
 
     public ApiInterface getApiInterface() {

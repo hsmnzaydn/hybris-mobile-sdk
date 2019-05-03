@@ -7,6 +7,7 @@ import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
 import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
+import com.felece.hybris_network_sdk.data.network.entities.user.UserSignUp;
 
 
 import io.reactivex.Completable;
@@ -54,6 +55,10 @@ public interface ApiInterface {
     Single<Object> authorization(@Url String url, @Query("client_id") String clientId,
                                  @Query("client_secret") String clientSecret, @Query("grant_type") String grant_type,
                                  @Query(value = "username", encoded = true) String username, @Query("password") String password);
+
+
+    @POST("users")
+    Single<Object> register(@Body UserSignUp user, @Query("fields") String field);
 
     @GET("users/{userId}")
     Single<Object> getUserProfile(@Path("userId") String userId);

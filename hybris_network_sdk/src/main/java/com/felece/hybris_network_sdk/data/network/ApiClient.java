@@ -40,10 +40,9 @@ public class ApiClient {
         this.context=context;
     }
 
-    public Retrofit getClient() {
+    public Retrofit getClient(boolean hasHeader) {
 
 
-        if (retrofit == null) {
             try {
 
 
@@ -77,29 +76,45 @@ public class ApiClient {
 
             // Create an ssl socket factory with our all-trusting manager
             final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+            if(hasHeader){
+                okHttpClient= new OkHttpClient.Builder()
+                        .readTimeout(Configuration.readTimeOut, TimeUnit.SECONDS)
+                        .connectTimeout(Configuration.connectTimeOut, TimeUnit.SECONDS)
+                        .addInterceptor(interceptor)
+                        .cache(cache)
+                        .sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0])
+                        .addInterceptor(new Interceptor() {
+                            @Override
+                            public Response intercept(Chain chain) throws IOException {
+                                Request request = chain.request().newBuilder()
+                                        .addHeader("udid",prefHelper.getUdid())
+                                        .addHeader("Authorization", "Bearer "+prefHelper.getAuthorizationKey())
+                                        .build();
+                                return chain.proceed(request);
+                            }
+                        }).hostnameVerifier(new HostnameVerifier() {
+                            @Override
+                            public boolean verify(String hostname, SSLSession session) {
+                                return true;
+                            }
+                        })
+                        .build();
+            }else {
+                okHttpClient= new OkHttpClient.Builder()
+                        .readTimeout(Configuration.readTimeOut, TimeUnit.SECONDS)
+                        .connectTimeout(Configuration.connectTimeOut, TimeUnit.SECONDS)
+                        .addInterceptor(interceptor)
+                        .cache(cache)
+                        .sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0])
+                        .hostnameVerifier(new HostnameVerifier() {
+                            @Override
+                            public boolean verify(String hostname, SSLSession session) {
+                                return true;
+                            }
+                        })
+                        .build();
+            }
 
-             okHttpClient= new OkHttpClient.Builder()
-                    .readTimeout(Configuration.readTimeOut, TimeUnit.SECONDS)
-                    .connectTimeout(Configuration.connectTimeOut, TimeUnit.SECONDS)
-                    .addInterceptor(interceptor)
-                    .cache(cache)
-                    .sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0])
-                    .addInterceptor(new Interceptor() {
-                        @Override
-                        public Response intercept(Chain chain) throws IOException {
-                            Request request = chain.request().newBuilder()
-                                    .addHeader("udid",prefHelper.getUdid())
-                                    .addHeader("Authorization", "Bearer "+prefHelper.getAuthorizationKey())
-                                    .build();
-                            return chain.proceed(request);
-                        }
-                    }).hostnameVerifier(new HostnameVerifier() {
-                        @Override
-                        public boolean verify(String hostname, SSLSession session) {
-                            return true;
-                        }
-                    })
-                    .build();
 
 
             retrofit = new Retrofit.Builder()
@@ -110,7 +125,7 @@ public class ApiClient {
                     .build();
             }catch (Exception e){
                 throw new RuntimeException(e);
-            }
+
         }
 
         return retrofit;

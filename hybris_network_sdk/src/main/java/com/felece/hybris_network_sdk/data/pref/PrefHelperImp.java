@@ -23,7 +23,7 @@ public class PrefHelperImp implements PrefHelper {
 
     @Override
     public String getAuthorizationKey() {
-        return mPrefs.getString(PREF_AUTH_KEY,"");
+        return mPrefs.getString(PREF_AUTH_KEY,null);
     }
 
     @Override

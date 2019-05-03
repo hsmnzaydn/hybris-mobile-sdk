@@ -6,10 +6,12 @@ import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
+import com.felece.hybris_network_sdk.data.network.entities.user.UserSignUp;
 
 public interface UserServices {
 
     void auth(Class object, String userName, String password, ServiceCallback<UserInformation> userInformationServiceCallback);
+    void register(Class object, String field, UserSignUp user, ServiceCallback<User> userServiceCallback);
     void getUserProfile(Class object, String userName, ServiceCallback<User> userInformationServiceCallback);
     void deleteUser(Class object,String userId, ServiceCallback<Integer> serviceCallback);
     void updateProfile(Class object,String userId,User user,ServiceCallback<User> userServiceCallback);

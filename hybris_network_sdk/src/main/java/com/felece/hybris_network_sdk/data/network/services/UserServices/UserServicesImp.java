@@ -10,7 +10,9 @@ import com.felece.hybris_network_sdk.data.network.entities.error.Error;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
+import com.felece.hybris_network_sdk.data.network.entities.user.UserSignUp;
 import com.felece.hybris_network_sdk.data.network.services.BaseService;
+import com.felece.hybris_network_sdk.data.pref.PrefHelperImp;
 import com.google.gson.Gson;
 
 import javax.inject.Inject;
@@ -54,7 +56,28 @@ public class UserServicesImp extends BaseService implements UserServices {
     }
 
     @Override
+    public void register(final Class object, String field, UserSignUp user, final ServiceCallback<User> userServiceCallback) {
+        getApiInterfaceWithOutHeader().register(user,field)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        userServiceCallback.onSuccess((User) getCastObject(o, object));
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e,userServiceCallback);
+                    }
+                });
+
+    }
+
+    @Override
     public void getUserProfile(final Class object, String userName, final ServiceCallback<User> userInformationServiceCallback) {
+
         getApiInterface().getUserProfile(userName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

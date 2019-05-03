@@ -17,6 +17,7 @@ import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
+import com.felece.hybris_network_sdk.data.network.entities.user.UserSignUp;
 
 public interface DataManager  {
     void getContries(String type, String fields,Class object, ServiceCallback<CountryList> serviceCallback);
@@ -28,7 +29,7 @@ public interface DataManager  {
 
     void auth(Class object, String username, String password, ServiceCallback<UserInformation> userInformationServiceCallback);
     void getUserProfile(Class object,String username,ServiceCallback<User> userInformationServiceCallback);
-
+    void register(Class object, String field, UserSignUp user, ServiceCallback<User> userServiceCallback);
     void getUserId(ServiceCallback<String> getUserIdServiceCallback);
     void deleteUser(Class object,String userId,ServiceCallback<Integer> serviceCallback);
     void updateProfile(Class object,String userId, User user,ServiceCallback<User> userServiceCallback);

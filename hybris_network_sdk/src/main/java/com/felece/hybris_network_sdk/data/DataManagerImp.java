@@ -15,6 +15,7 @@ import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
+import com.felece.hybris_network_sdk.data.network.entities.user.UserSignUp;
 import com.felece.hybris_network_sdk.data.pref.PrefHelper;
 
 import javax.inject.Inject;
@@ -115,6 +116,15 @@ public class DataManagerImp implements DataManager {
             apiServices.getUserProfile(User.class,username,userInformationServiceCallback);
         }else {
             apiServices.getUserProfile(object,username,userInformationServiceCallback);
+        }
+    }
+
+    @Override
+    public void register(Class object, String field, UserSignUp user, ServiceCallback<User> userServiceCallback) {
+        if(object == null){
+            apiServices.register(User.class,field,user,userServiceCallback);
+        }else {
+            apiServices.register(object,field,user,userServiceCallback);
         }
     }
 
