@@ -1,60 +1,78 @@
 package com.felece.hybris;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
-import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
-import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
-import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryMode;
-import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryModeList;
-import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
-import com.felece.hybris_network_sdk.data.network.entities.user.Address;
-import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
-import com.felece.hybris_network_sdk.data.network.entities.user.Country;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
 import com.felece.hybris_network_sdk.data.network.entities.user.UserSignUp;
-
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class MainActivity extends AppCompatActivity {
 
     @Inject
     DataManager dataManager;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.activity_main_username_edit_text)
+    TextInputEditText activityMainUsernameEditText;
+    @BindView(R.id.activity_main_password_edit_text)
+    TextInputEditText activityMainPasswordEditText;
+    @BindView(R.id.activity_main_login_button)
+    MaterialButton activityMainLoginButton;
+    @BindView(R.id.activity_main_register_text_view)
+    TextView activityMainRegisterTextView;
 
 
-    private String userName="serkan.zaydn@gmail.com";
-    private String password="123456";
+    private String userName = "serkan.zaydn@gmail.com";
+    private String password = "123456";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         ((HybrisApp) getApplication()).getActivityComponent().injectMainActivity(this);
 
-        UserSignUp user=new UserSignUp();
-        user.setFirstName("Serkan");
-        user.setLastName("Ser");
-        user.setUid("sdddd@gmail.com");
-        user.setPassword("Hasan1994!*");
-        user.setTitleCode("ms");
-        dataManager.register(null, FIELDS.FULL.getFieldType(), user, new ServiceCallback<User>() {
-            @Override
-            public void onSuccess(User response) {
 
-            }
+    }
 
-            @Override
-            public void onError(int code, String errorResponse) {
+    @OnClick({R.id.activity_main_login_button, R.id.activity_main_register_text_view})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.activity_main_login_button:
+                dataManager.auth(null, activityMainUsernameEditText.getText().toString(), activityMainPasswordEditText.getText().toString(), new ServiceCallback<UserInformation>() {
+                    @Override
+                    public void onSuccess(UserInformation response) {
 
-            }
-        });
+                    }
+
+                    @Override
+                    public void onError(int code, String errorResponse) {
+
+                    }
+                });
+                break;
+            case R.id.activity_main_register_text_view:
+                Intent intent=new Intent(MainActivity.this,RegisterActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

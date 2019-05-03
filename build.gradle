@@ -26,3 +26,22 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+ext {
+    dagger2Version = '2.16'
+    butterKnifeVersion = '10.1.0'
+    retrofitVersion= '2.4.0'
+    retrofitGsonConverterVersion='2.1.0'
+    retrofitLoggerVersion='3.9.1'
+    retrofitRxJavaAdapterVersion='2.1.0'
+    gsonVersion='2.8.5'
+    rxAndroidVersion='1.2.1'
+    rxJavaVersion='1.1.6'
+    loggerVersion='2.2.0'
+    navVersion = "1.0.0-alpha07"
+    picassoVersion="2.71828"
+    pagingVersion="1.0.0"
+    eventBusVersion="3.1.1"
+    barcodeScannerVersion="1.9.8"
+
+}
+

@@ -10,6 +10,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -35,5 +39,11 @@ dependencies {
 
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
-}
+    // Material
+    implementation 'com.google.android.material:material:1.0.0-beta01'
 
+
+    // butterknife
+    implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+}
