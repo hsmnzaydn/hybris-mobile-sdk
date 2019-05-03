@@ -13,6 +13,7 @@ import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
 import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
 import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
 import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryMode;
+import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryModeList;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
@@ -292,7 +293,7 @@ dataManager.createDeliveryAddresForCart(null, address, "serkan.zaydn@gmail.com",
             }
         });*/
 
-    dataManager.getDeliveryModeOfCart(null, FIELDS.DEFAULT.getFieldType(), userName, "00001001", new ServiceCallback<DeliveryMode>() {
+/*    dataManager.getDeliveryModeOfCart(null, FIELDS.DEFAULT.getFieldType(), userName, "00001001", new ServiceCallback<DeliveryMode>() {
         @Override
         public void onSuccess(DeliveryMode response) {
 
@@ -302,7 +303,21 @@ dataManager.createDeliveryAddresForCart(null, address, "serkan.zaydn@gmail.com",
         public void onError(int code, String errorResponse) {
 
         }
-    });
+    });*/
+
+/*dataManager.getDeliveryModesOfCart(null, FIELDS.FULL.getFieldType(), userName, "00001001", new ServiceCallback<DeliveryModeList>() {
+    @Override
+    public void onSuccess(DeliveryModeList response) {
+        Log.d("veri","veri");
+    }
+
+    @Override
+    public void onError(int code, String errorResponse) {
+        Log.d("veri","veri");
+    }
+});*/
+
+
 
     }
 }

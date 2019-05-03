@@ -6,6 +6,7 @@ import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
 import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
 import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryMode;
+import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryModeList;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.services.BaseService;
@@ -235,6 +236,26 @@ public class CartServicesImp extends BaseService implements CartServices {
                     @Override
                     public void onError(Throwable e) {
                         getErrorCastObject(e, orderEntryListServiceCallback);
+
+                    }
+
+                });
+    }
+
+    @Override
+    public void getDeliveryModesOfCart(Class object, String field, String userId, String cartId, final ServiceCallback<DeliveryModeList> deliveryModeListServiceCallback) {
+        getApiInterface().getDeliveryModesOfCart(userId, cartId, field).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        deliveryModeListServiceCallback.onSuccess((DeliveryModeList) getCastObject(o, DeliveryModeList.class));
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e, deliveryModeListServiceCallback);
 
                     }
 
