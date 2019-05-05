@@ -11,4 +11,5 @@ public interface ViewComponents {
     void injectMainActivity(MainActivity mainActivity);
 
 
+    void injectRegisterActivity(RegisterActivity registerActivity);
 }

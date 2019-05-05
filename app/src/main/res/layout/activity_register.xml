@@ -1,9 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".RegisterActivity"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include layout="@layout/toolbar"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:hint="Ad"
+        style="@style/TextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_register_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextInputEditTextStyle"
+          />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:hint="Soyad"
+        style="@style/TextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_register_surname_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextInputEditTextStyle"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:hint="Mail Adresi"
+        style="@style/TextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_register_email_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextInputEditTextStyle"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:hint="Şifre"
+        style="@style/TextInputLayout"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_register_password_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextInputEditTextStyle"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+<com.google.android.material.button.MaterialButton
+    android:id="@+id/activity_register_register_button"
+    android:text="Kayıt Ol"
+    style="@style/ButtonStyle"/>
+
+</LinearLayout>
