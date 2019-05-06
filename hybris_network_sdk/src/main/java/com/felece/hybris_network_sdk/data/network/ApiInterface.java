@@ -131,12 +131,15 @@ public interface ApiInterface {
     @GET("users/{userId}/carts/{cartId}/deliverymodes")
     Single<Object> getDeliveryModesOfCart(@Path("userId") String userId,@Path("cartId") String cartId,@Query("fields") String field);
 
-
     @GET("users/{userId}/carts/{cartId}/entries")
     Single<Object> getEntriesOfCart(@Path("userId")String userId,@Path("cartId") String cartId,@Query("fields") String fields);
 
+    @DELETE("users/{userId}/carts/{cartId}/entries/{entryId}")
+    Single<Response<Void>> deleteEntryFromCart(@Path("userId") String userId,@Path("cartId") String cartId,@Path("entryId") Integer entryId);
+
 
     // Product Services
+
     @GET("products/search")
     Single<Object> searchProducts(@Query("query") String query,
                                   @Query("currentPage") Integer currentPage,

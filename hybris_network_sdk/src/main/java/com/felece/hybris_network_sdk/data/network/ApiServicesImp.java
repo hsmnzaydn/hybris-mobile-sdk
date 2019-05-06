@@ -1,6 +1,7 @@
 package com.felece.hybris_network_sdk.data.network;
 
 import com.felece.hybris_network_sdk.ServiceCallback;
+import com.felece.hybris_network_sdk.data.network.entities.Entry;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
@@ -182,6 +183,11 @@ public class ApiServicesImp implements ApiServices {
     @Override
     public void getEntriesOfCart(Class object, String field, String userId, String cartId, ServiceCallback<OrderEntryList> orderEntryListServiceCallback) {
         cartServices.getEntriesOfCart(object,field,userId,cartId,orderEntryListServiceCallback);
+    }
+
+    @Override
+    public void deleteEntryFromCart(String userName, String cartId, int entryId, ServiceCallback<Entry> entryServiceCallback) {
+        cartServices.deleteEntryFromCart(userName,cartId,entryId,entryServiceCallback);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.felece.hybris_network_sdk.data.network.services.CartServices;
 
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.network.ApiClient;
+import com.felece.hybris_network_sdk.data.network.entities.Entry;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
 import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
@@ -259,6 +260,30 @@ public class CartServicesImp extends BaseService implements CartServices {
                     @Override
                     public void onError(Throwable e) {
                         getErrorCastObject(e, orderEntryListServiceCallback);
+
+                    }
+
+                });
+    }
+
+    @Override
+    public void deleteEntryFromCart(String userName, String cartId, int entryId, final ServiceCallback<Entry> entryServiceCallback) {
+        getApiInterface().deleteEntryFromCart(userName, cartId, entryId).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        if (((Response) o).isSuccessful()) {
+                            entryServiceCallback.onSuccess((Entry) getCastObject(o, Entry.class));
+                        } else {
+                            getErrorCastObject(((Response) o), entryServiceCallback);
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e, entryServiceCallback);
 
                     }
 

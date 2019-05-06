@@ -4,6 +4,7 @@ package com.felece.hybris_network_sdk.data;
 import android.app.Service;
 
 import com.felece.hybris_network_sdk.ServiceCallback;
+import com.felece.hybris_network_sdk.data.network.entities.Entry;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
@@ -58,6 +59,10 @@ public interface DataManager  {
     void deleteDeliveryModeFromCart(String userId, String cartId, ServiceCallback<DeliveryMode> deliveryModeServiceCallback);
     void getDeliveryModeOfCart(Class object,String field,String userId,String cartId,ServiceCallback<DeliveryMode> deliveryModeServiceCallback);
     void getDeliveryModesOfCart(Class object, String field,String userId, String cartId, ServiceCallback<DeliveryModeList> deliveryModeListServiceCallback);
+    void deleteEntryFromCart(String userId, String cartId, int entryId, ServiceCallback<Entry> entryServiceCallback);
+
+
+
 
     void searchProduct(Class object, String query,
                        Integer currentPage,

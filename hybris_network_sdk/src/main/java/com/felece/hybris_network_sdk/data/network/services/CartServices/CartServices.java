@@ -1,6 +1,7 @@
 package com.felece.hybris_network_sdk.data.network.services.CartServices;
 
 import com.felece.hybris_network_sdk.ServiceCallback;
+import com.felece.hybris_network_sdk.data.network.entities.Entry;
 import com.felece.hybris_network_sdk.data.network.entities.order.CardTypeList;
 import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
 import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
@@ -26,5 +27,6 @@ public interface CartServices {
     void deleteDeliveryModeFromCart(String userId, String cartId, ServiceCallback<DeliveryMode> deliveryModeServiceCallback);
     void getDeliveryModeOfCart(Class object,String field,String userId,String cartId,ServiceCallback<DeliveryMode> deliveryModeServiceCallback);
     void getEntriesOfCart(Class object, String field, String userId, String cartId, ServiceCallback<OrderEntryList> orderEntryListServiceCallback);
+    void deleteEntryFromCart(String userName, String cartId, int entryId, ServiceCallback<Entry> entryServiceCallback);
     void getDeliveryModesOfCart(Class object, String field,String userId, String cartId, ServiceCallback<DeliveryModeList> deliveryModeListServiceCallback);
 }

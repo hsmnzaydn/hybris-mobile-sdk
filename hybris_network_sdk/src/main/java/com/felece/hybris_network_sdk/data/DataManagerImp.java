@@ -2,6 +2,7 @@ package com.felece.hybris_network_sdk.data;
 
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.network.ApiServices;
+import com.felece.hybris_network_sdk.data.network.entities.Entry;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.Catalog;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
@@ -292,6 +293,11 @@ public class DataManagerImp implements DataManager {
         }else {
             apiServices.getDeliveryModesOfCart(object,field,userId,cartId,deliveryModeListServiceCallback);
         }
+    }
+
+    @Override
+    public void deleteEntryFromCart(String userId, String cartId, int entryId, ServiceCallback<Entry> entryServiceCallback) {
+        apiServices.deleteEntryFromCart(userId,cartId,entryId,entryServiceCallback);
     }
 
     @Override

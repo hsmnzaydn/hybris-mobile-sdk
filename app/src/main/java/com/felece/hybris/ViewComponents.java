@@ -12,4 +12,6 @@ public interface ViewComponents {
 
 
     void injectRegisterActivity(RegisterActivity registerActivity);
+
+    void injectProductListActivity(ProductListActivity productListActivity);
 }

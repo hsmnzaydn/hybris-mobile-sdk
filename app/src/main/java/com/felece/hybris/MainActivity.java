@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
+import com.felece.hybris_network_sdk.data.network.entities.Entry;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
 import com.felece.hybris_network_sdk.data.network.entities.order.CartModification;
@@ -29,7 +30,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Inject
     DataManager dataManager;
@@ -56,7 +57,17 @@ public class MainActivity extends AppCompatActivity {
         ((HybrisApp) getApplication()).getActivityComponent().injectMainActivity(this);
 
 
+       /* dataManager.deleteEntryFromCart(userName, "00001001", 0, new ServiceCallback<Entry>() {
+            @Override
+            public void onSuccess(Entry response) {
 
+            }
+
+            @Override
+            public void onError(int code, String errorResponse) {
+
+            }
+        });*/
 
 
     }
@@ -65,15 +76,20 @@ public class MainActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.activity_main_login_button:
+                showLoading();
                 dataManager.auth(null, activityMainUsernameEditText.getText().toString(), activityMainPasswordEditText.getText().toString(), new ServiceCallback<UserInformation>() {
                     @Override
                     public void onSuccess(UserInformation response) {
-
+                        Intent intent=new Intent(MainActivity.this,ProductListActivity.class);
+                        startActivity(intent);
+                        hideLoading();
                     }
 
                     @Override
                     public void onError(int code, String errorResponse) {
-                        Toast.makeText(MainActivity.this,errorResponse,Toast.LENGTH_SHORT).show();
+                        showMessage(errorResponse);
+                        hideLoading();
+
                     }
                 });
                 break;
