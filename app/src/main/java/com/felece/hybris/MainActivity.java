@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,6 +13,10 @@ import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
+import com.felece.hybris_network_sdk.data.network.entities.order.CartModification;
+import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
+import com.felece.hybris_network_sdk.data.network.entities.product.Product;
+import com.felece.hybris_network_sdk.data.network.entities.search.facetdata.ProductSearchPage;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
 import com.felece.hybris_network_sdk.data.network.entities.user.UserSignUp;
 import com.google.android.material.button.MaterialButton;
@@ -51,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
         ((HybrisApp) getApplication()).getActivityComponent().injectMainActivity(this);
 
 
+
+
+
     }
 
     @OnClick({R.id.activity_main_login_button, R.id.activity_main_register_text_view})
@@ -65,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(int code, String errorResponse) {
-
+                        Toast.makeText(MainActivity.this,errorResponse,Toast.LENGTH_SHORT).show();
                     }
                 });
                 break;

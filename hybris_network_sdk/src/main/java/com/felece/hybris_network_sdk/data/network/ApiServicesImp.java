@@ -7,9 +7,13 @@ import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogList;
 import com.felece.hybris_network_sdk.data.network.entities.catalog.CatalogVersion;
 import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
 import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
+import com.felece.hybris_network_sdk.data.network.entities.order.CartModification;
 import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryMode;
 import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryModeList;
+import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
+import com.felece.hybris_network_sdk.data.network.entities.product.Product;
+import com.felece.hybris_network_sdk.data.network.entities.search.facetdata.ProductSearchPage;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
@@ -18,6 +22,7 @@ import com.felece.hybris_network_sdk.data.network.entities.user.UserSignUp;
 import com.felece.hybris_network_sdk.data.network.services.CartServices.CartServices;
 import com.felece.hybris_network_sdk.data.network.services.CatalogServices.CatalogServices;
 import com.felece.hybris_network_sdk.data.network.services.CountriesServices.CountriesServices;
+import com.felece.hybris_network_sdk.data.network.services.ProductServices.ProductServices;
 import com.felece.hybris_network_sdk.data.network.services.UserServices.UserServices;
 
 import javax.inject.Inject;
@@ -27,14 +32,16 @@ public class ApiServicesImp implements ApiServices {
     CatalogServices catalogServices;
     UserServices userServices;
     CartServices cartServices;
+    ProductServices productServices;
 
     @Inject
     public ApiServicesImp(CountriesServices countriesServices, CatalogServices catalogServices,UserServices userServices
-    ,CartServices cartServices) {
+    ,CartServices cartServices, ProductServices productServices) {
         this.countriesServices = countriesServices;
         this.catalogServices = catalogServices;
         this.userServices=userServices;
         this.cartServices=cartServices;
+        this.productServices=productServices;
     }
 
     @Override
@@ -133,6 +140,11 @@ public class ApiServicesImp implements ApiServices {
     }
 
     @Override
+    public void addEntryToCart(Class object, OrderEntry product, String cartId, String userName, ServiceCallback<CartModification> productServiceCallback) {
+        cartServices.addEntryToCart(object,product,cartId,userName,productServiceCallback);
+    }
+
+    @Override
     public void deleteCart(String userId, String cartId, ServiceCallback<Cart> cartServiceCallback) {
         cartServices.deleteCart(userId,cartId,cartServiceCallback);
     }
@@ -175,5 +187,10 @@ public class ApiServicesImp implements ApiServices {
     @Override
     public void getDeliveryModesOfCart(Class object, String field, String userId, String cartId, ServiceCallback<DeliveryModeList> deliveryModeListServiceCallback) {
         cartServices.getDeliveryModesOfCart(object,field,userId,cartId,deliveryModeListServiceCallback);
+    }
+
+    @Override
+    public void searchProduct(Class object, String query, Integer currentPage, Integer pageSize, String sort, String fields, String searchQueryContext, ServiceCallback<ProductSearchPage> productSearchPageServiceCallback) {
+        productServices.searchProduct(object,query,currentPage,pageSize,sort,fields,searchQueryContext,productSearchPageServiceCallback);
     }
 }

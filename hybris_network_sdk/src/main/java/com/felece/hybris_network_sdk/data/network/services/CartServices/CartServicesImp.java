@@ -5,9 +5,12 @@ import com.felece.hybris_network_sdk.data.network.ApiClient;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
 import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
+import com.felece.hybris_network_sdk.data.network.entities.order.CartModification;
 import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryMode;
 import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryModeList;
+import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
+import com.felece.hybris_network_sdk.data.network.entities.product.Product;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.services.BaseService;
 import com.google.gson.Gson;
@@ -61,6 +64,26 @@ public class CartServicesImp extends BaseService implements CartServices {
                     @Override
                     public void onError(Throwable e) {
                         getErrorCastObject(e, cartServiceCallback);
+
+                    }
+
+                });
+    }
+
+    @Override
+    public void addEntryToCart(final Class object, OrderEntry product, String cartId, String userName, final ServiceCallback<CartModification> productServiceCallback) {
+        getApiInterface().addEntryToCart(userName,cartId,product).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        productServiceCallback.onSuccess((CartModification) getCastObject(o, object));
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e, productServiceCallback);
 
                     }
 

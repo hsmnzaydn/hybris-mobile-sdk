@@ -5,10 +5,14 @@ import com.felece.hybris_network_sdk.data.network.entities.CommonResponse;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
 import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
+import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
+import com.felece.hybris_network_sdk.data.network.entities.product.Product;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
 import com.felece.hybris_network_sdk.data.network.entities.user.UserSignUp;
 
+
+import javax.inject.Inject;
 
 import io.reactivex.Completable;
 import io.reactivex.Single;
@@ -106,6 +110,9 @@ public interface ApiInterface {
     @GET("users/{userId}/carts/{cartId}")
     Single<Object> getCart(@Path("userId") String userId,@Path("cartId") String cartId,@Query("fields") String fields);
 
+    @POST("users/{userId}/carts/{cartId}/entries")
+    Single<Object> addEntryToCart(@Path("userId") String userId, @Path("cartId") String cartId, @Body OrderEntry product);
+
     @DELETE("users/{userId}/carts/{cartId}/addresses/delivery")
     Single<Response<Void>> deleteDeliveryAddressOfCart(@Path("userId") String userId,@Path("cartId") String cartId);
 
@@ -129,5 +136,13 @@ public interface ApiInterface {
     Single<Object> getEntriesOfCart(@Path("userId")String userId,@Path("cartId") String cartId,@Query("fields") String fields);
 
 
+    // Product Services
+    @GET("products/search")
+    Single<Object> searchProducts(@Query("query") String query,
+                                  @Query("currentPage") Integer currentPage,
+                                  @Query("pageSize") Integer pageSize,
+                                  @Query("sort") String sort,
+                                  @Query("fields") String fields,
+                                  @Query("searchQueryContext") String searchQueryContext);
 
 }

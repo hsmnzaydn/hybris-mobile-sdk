@@ -66,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onError(int code, String errorResponse) {
-                Toast.makeText(RegisterActivity.this,"Şifrenizi lütfen minimum 6 harfli giriniz",Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this,errorResponse,Toast.LENGTH_SHORT).show();
             }
         });
     }
