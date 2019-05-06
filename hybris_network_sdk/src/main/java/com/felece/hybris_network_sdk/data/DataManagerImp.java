@@ -83,12 +83,12 @@ public class DataManagerImp implements DataManager {
     }
 
     @Override
-    public void auth(Class object, String username, String password, final ServiceCallback<UserInformation> userInformationServiceCallback) {
+    public void auth(Class object, final String username, String password, final ServiceCallback<UserInformation> userInformationServiceCallback) {
         if (object == null) {
             apiServices.auth(UserInformation.class, username, password, new ServiceCallback<UserInformation>() {
                 @Override
                 public void onSuccess(UserInformation response) {
-                    prefHelper.saveUserId(response.getUserId());
+                    prefHelper.saveUserId(username);
                     prefHelper.saveAuthorizationKey(response.getAccess_token());
                     userInformationServiceCallback.onSuccess(response);
                 }
@@ -154,11 +154,11 @@ public class DataManagerImp implements DataManager {
     }
 
     @Override
-    public void getUserAdresses(Class object, String userId, ServiceCallback<AddressList> addressListServiceCallback) {
+    public void getUserAdresses(Class object, ServiceCallback<AddressList> addressListServiceCallback) {
         if(object == null){
-            apiServices.getUserAdresses(AddressList.class,userId,addressListServiceCallback);
+            apiServices.getUserAdresses(AddressList.class,prefHelper.getUserId(),addressListServiceCallback);
         }else {
-            apiServices.getUserAdresses(object,userId,addressListServiceCallback);
+            apiServices.getUserAdresses(object,prefHelper.getUserId(),addressListServiceCallback);
         }
     }
 

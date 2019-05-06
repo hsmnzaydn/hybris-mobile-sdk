@@ -46,4 +46,7 @@ dependencies {
     // butterknife
     implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+
+    //Picasso
+    implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
 }

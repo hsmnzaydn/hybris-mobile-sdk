@@ -2,14 +2,16 @@ package com.felece.hybris.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.felece.hybris.HybrisApp;
-import com.felece.hybris.UI.Adapters.ProductListRecylerViewAdapter;
 import com.felece.hybris.R;
+import com.felece.hybris.UI.Adapters.ProductListRecylerViewAdapter;
 import com.felece.hybris.Utility.Constant;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
@@ -20,6 +22,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ProductListActivity extends BaseActivity {
 
@@ -35,6 +38,10 @@ public class ProductListActivity extends BaseActivity {
     final int currentPage = 1;
     int pageSize = 50;
     String query = "a";
+    @BindView(R.id.activity_product_list_user_image_view)
+    ImageView activityProductListUserImageView;
+    @BindView(R.id.activitY_product_list_basket_image_view)
+    ImageView activitYProductListBasketImageView;
 
 
     @Override
@@ -60,8 +67,8 @@ public class ProductListActivity extends BaseActivity {
                 productListRecylerViewAdapter = new ProductListRecylerViewAdapter(response.getProducts(), new ProductListRecylerViewAdapter.ItemListener() {
                     @Override
                     public void onItemClick(Product item) {
-                        Intent intent=new Intent(ProductListActivity.this,ProductDetailActivity.class);
-                        intent.putExtra(Constant.BUNDLE_PRODUCT_ID,item.getCode());
+                        Intent intent = new Intent(ProductListActivity.this, ProductDetailActivity.class);
+                        intent.putExtra(Constant.BUNDLE_PRODUCT_ID, item.getCode());
                         startActivity(intent);
 
                     }
@@ -86,5 +93,18 @@ public class ProductListActivity extends BaseActivity {
                 showMessage(errorResponse);
             }
         });
+    }
+
+    @OnClick({R.id.activity_product_list_user_image_view, R.id.activitY_product_list_basket_image_view})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.activity_product_list_user_image_view:
+
+                break;
+            case R.id.activitY_product_list_basket_image_view:
+                Intent intent=new Intent(ProductListActivity.this,BasketActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

@@ -1,4 +1,5 @@
 package com.felece.hybris;
+import com.felece.hybris.UI.BasketActivity;
 import com.felece.hybris.UI.MainActivity;
 import com.felece.hybris.UI.ProductDetailActivity;
 import com.felece.hybris.UI.ProductListActivity;
@@ -20,4 +21,6 @@ public interface ViewComponents {
     void injectProductListActivity(ProductListActivity productListActivity);
 
     void injectProductDetailActivity(ProductDetailActivity productDetailActivity);
+
+    void injectBasketActivity(BasketActivity basketActivity);
 }

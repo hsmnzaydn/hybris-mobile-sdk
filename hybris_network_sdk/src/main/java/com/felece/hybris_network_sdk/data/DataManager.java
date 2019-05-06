@@ -39,7 +39,7 @@ public interface DataManager  {
     void getUserId(ServiceCallback<String> getUserIdServiceCallback);
     void deleteUser(Class object,String userId,ServiceCallback<Integer> serviceCallback);
     void updateProfile(Class object,String userId, User user,ServiceCallback<User> userServiceCallback);
-    void getUserAdresses(Class object, String userId, ServiceCallback<AddressList> addressListServiceCallback);
+    void getUserAdresses(Class object, ServiceCallback<AddressList> addressListServiceCallback);
     void createNewUserAdress(Class object, String userId, Address address,ServiceCallback<Address> addressServiceCallback);
     void deleteUserAdress(String userId,String adressId,ServiceCallback<Address> addressServiceCallback);
     void getUserAdress(Class object, String userId, String adressId, ServiceCallback<Address> addressServiceCallback);
@@ -71,7 +71,7 @@ public interface DataManager  {
                        String sort,
                        String fields,
                        String searchQueryContext, ServiceCallback<ProductSearchPage> productSearchPageServiceCallback);
-    void getProductDetail(Class object, String productId, String fields,ServiceCallback<ProductBase> productBaseServiceCallback);
+        void getProductDetail(Class object, String productId, String fields,ServiceCallback<ProductBase> productBaseServiceCallback);
 
 
 

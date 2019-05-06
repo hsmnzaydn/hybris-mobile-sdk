@@ -93,7 +93,7 @@ public class ProductBase implements java.io.Serializable {
 	/**
 	 * <i>Generated property</i> for <code>Product.images</code> property defined at extension <code>commercewebservicescommons</code>.
 	 */
-	private Collection<Image> images;
+	private List<Image> images;
 	/**
 	 * <i>Generated property</i> for <code>Product.baseProduct</code> property defined at extension <code>commercewebservicescommons</code>.
 	 */
@@ -299,12 +299,12 @@ public class ProductBase implements java.io.Serializable {
 	}
 
 
-	public void setImages(final Collection<Image> images) {
+	public void setImages(final List<Image> images) {
 		this.images = images;
 	}
 
 
-	public Collection<Image> getImages() {
+	public List<Image> getImages() {
 		return images;
 	}
 

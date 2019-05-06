@@ -14,11 +14,13 @@ import com.felece.hybris.R;
 import com.felece.hybris.UI.Adapters.ProductCommectRecylerviewAdapter;
 import com.felece.hybris.Utility.CommonUtils;
 import com.felece.hybris.Utility.Constant;
+import com.felece.hybris_network_sdk.AppConfiguration.Configuration;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
 import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
 import com.felece.hybris_network_sdk.data.network.entities.product.ProductBase;
 import com.felece.hybris_network_sdk.data.network.entities.product.Review;
+import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
@@ -69,12 +71,13 @@ public class ProductDetailActivity extends BaseActivity {
             @Override
             public void onSuccess(ProductBase response) {
                 toolbar.setTitle(response.getName());
+                Picasso.get().load(Configuration.SERVER_BASE_URL +response.getImages().get(0).getUrl()).into(activityProductDetailProductImageView);
+
                 CommonUtils.setHtmlTextToTextView(response.getDescription(), activityProductDetailProductDetailTextView);
                 activityProductDetailPriceTextView.setText(response.getPrice().getFormattedValue());
                 adapter = new ProductCommectRecylerviewAdapter(response.getReviews(), new ProductCommectRecylerviewAdapter.ItemListener() {
                     @Override
                     public void onItemClick(Review item) {
-
                     }
                 });
                 LinearLayoutManager manager = new LinearLayoutManager(ProductDetailActivity.this, LinearLayoutManager.VERTICAL, false);
