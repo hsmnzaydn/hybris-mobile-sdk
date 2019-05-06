@@ -14,6 +14,7 @@ import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryModeLis
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
 import com.felece.hybris_network_sdk.data.network.entities.product.Product;
+import com.felece.hybris_network_sdk.data.network.entities.product.ProductBase;
 import com.felece.hybris_network_sdk.data.network.entities.search.facetdata.ProductSearchPage;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
@@ -198,5 +199,10 @@ public class ApiServicesImp implements ApiServices {
     @Override
     public void searchProduct(Class object, String query, Integer currentPage, Integer pageSize, String sort, String fields, String searchQueryContext, ServiceCallback<ProductSearchPage> productSearchPageServiceCallback) {
         productServices.searchProduct(object,query,currentPage,pageSize,sort,fields,searchQueryContext,productSearchPageServiceCallback);
+    }
+
+    @Override
+    public void getProductDetail(Class object, String productId, String fields, ServiceCallback<ProductBase> productBaseServiceCallback) {
+        productServices.getProductDetail(object,productId,fields,productBaseServiceCallback);
     }
 }

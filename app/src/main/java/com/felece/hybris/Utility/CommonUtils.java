@@ -1,4 +1,4 @@
-package com.felece.hybris;
+package com.felece.hybris.Utility;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -13,19 +13,20 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.Settings;
+import android.text.Html;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
+
+import com.felece.hybris.R;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
@@ -224,6 +225,15 @@ public class CommonUtils {
             view = new View(activity);
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public static void setHtmlTextToTextView(String text, TextView textView){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            textView.setText(Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            textView.setText(Html.fromHtml(text));
+
+        }
     }
 
 

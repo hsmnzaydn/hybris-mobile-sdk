@@ -15,6 +15,7 @@ import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryModeLis
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
 import com.felece.hybris_network_sdk.data.network.entities.product.Product;
+import com.felece.hybris_network_sdk.data.network.entities.product.ProductBase;
 import com.felece.hybris_network_sdk.data.network.entities.search.facetdata.ProductSearchPage;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
@@ -306,6 +307,15 @@ public class DataManagerImp implements DataManager {
             apiServices.searchProduct(ProductSearchPage.class,query,currentPage,pageSize,sort,fields,searchQueryContext,productSearchPageServiceCallback);
         }else {
             apiServices.searchProduct(object,query,currentPage,pageSize,sort,fields,searchQueryContext,productSearchPageServiceCallback);
+        }
+    }
+
+    @Override
+    public void getProductDetail(Class object, String productId, String fields, ServiceCallback<ProductBase> productBaseServiceCallback) {
+        if(object == null){
+            apiServices.getProductDetail(ProductBase.class,productId,fields,productBaseServiceCallback);
+        }else {
+            apiServices.getProductDetail(object,productId,fields,productBaseServiceCallback);
         }
     }
 

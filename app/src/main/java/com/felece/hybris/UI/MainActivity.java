@@ -1,25 +1,17 @@
-package com.felece.hybris;
+package com.felece.hybris.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.felece.hybris.HybrisApp;
+import com.felece.hybris.R;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
-import com.felece.hybris_network_sdk.data.network.entities.Entry;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
-import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
-import com.felece.hybris_network_sdk.data.network.entities.order.CartModification;
-import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
-import com.felece.hybris_network_sdk.data.network.entities.product.Product;
-import com.felece.hybris_network_sdk.data.network.entities.search.facetdata.ProductSearchPage;
-import com.felece.hybris_network_sdk.data.network.entities.user.User;
-import com.felece.hybris_network_sdk.data.network.entities.user.UserSignUp;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -80,7 +72,7 @@ public class MainActivity extends BaseActivity {
                 dataManager.auth(null, activityMainUsernameEditText.getText().toString(), activityMainPasswordEditText.getText().toString(), new ServiceCallback<UserInformation>() {
                     @Override
                     public void onSuccess(UserInformation response) {
-                        Intent intent=new Intent(MainActivity.this,ProductListActivity.class);
+                        Intent intent=new Intent(MainActivity.this, ProductListActivity.class);
                         startActivity(intent);
                         hideLoading();
                     }
@@ -94,7 +86,7 @@ public class MainActivity extends BaseActivity {
                 });
                 break;
             case R.id.activity_main_register_text_view:
-                Intent intent=new Intent(MainActivity.this,RegisterActivity.class);
+                Intent intent=new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(intent);
                 break;
         }

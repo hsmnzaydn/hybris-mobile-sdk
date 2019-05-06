@@ -17,6 +17,7 @@ import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryModeLis
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
 import com.felece.hybris_network_sdk.data.network.entities.product.Product;
+import com.felece.hybris_network_sdk.data.network.entities.product.ProductBase;
 import com.felece.hybris_network_sdk.data.network.entities.search.facetdata.ProductSearchPage;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
@@ -70,6 +71,8 @@ public interface DataManager  {
                        String sort,
                        String fields,
                        String searchQueryContext, ServiceCallback<ProductSearchPage> productSearchPageServiceCallback);
+    void getProductDetail(Class object, String productId, String fields,ServiceCallback<ProductBase> productBaseServiceCallback);
+
 
 
 

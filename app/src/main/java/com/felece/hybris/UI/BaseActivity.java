@@ -1,4 +1,4 @@
-package com.felece.hybris;
+package com.felece.hybris.UI;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.felece.hybris.R;
+import com.felece.hybris.Utility.CommonUtils;
 
 public class BaseActivity extends AppCompatActivity {
 

@@ -1,11 +1,16 @@
-package com.felece.hybris;
+package com.felece.hybris.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.felece.hybris.HybrisApp;
+import com.felece.hybris.UI.Adapters.ProductListRecylerViewAdapter;
+import com.felece.hybris.R;
+import com.felece.hybris.Utility.Constant;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
 import com.felece.hybris_network_sdk.data.network.entities.product.Product;
@@ -41,7 +46,8 @@ public class ProductListActivity extends BaseActivity {
         ((HybrisApp) getApplication()).getActivityComponent().injectProductListActivity(this);
 
         getSearchProduct(query, currentPage, pageSize, null, null, null);
-
+        setSupportActionBar(toolbar);
+        setTitle("Ürünler");
 
     }
 
@@ -54,6 +60,9 @@ public class ProductListActivity extends BaseActivity {
                 productListRecylerViewAdapter = new ProductListRecylerViewAdapter(response.getProducts(), new ProductListRecylerViewAdapter.ItemListener() {
                     @Override
                     public void onItemClick(Product item) {
+                        Intent intent=new Intent(ProductListActivity.this,ProductDetailActivity.class);
+                        intent.putExtra(Constant.BUNDLE_PRODUCT_ID,item.getCode());
+                        startActivity(intent);
 
                     }
                 });

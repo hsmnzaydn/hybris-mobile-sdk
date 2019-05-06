@@ -148,4 +148,7 @@ public interface ApiInterface {
                                   @Query("fields") String fields,
                                   @Query("searchQueryContext") String searchQueryContext);
 
+    @GET("products/{productId}")
+    Single<Object> getProduct(@Path("productId") String productId,@Query("fields") String fields);
+
 }

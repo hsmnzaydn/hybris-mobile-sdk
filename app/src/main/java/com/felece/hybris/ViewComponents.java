@@ -1,4 +1,8 @@
 package com.felece.hybris;
+import com.felece.hybris.UI.MainActivity;
+import com.felece.hybris.UI.ProductDetailActivity;
+import com.felece.hybris.UI.ProductListActivity;
+import com.felece.hybris.UI.RegisterActivity;
 import com.felece.hybris_network_sdk.di.modules.HybrisDataModules;
 import com.felece.hybris_network_sdk.di.modules.HybrisPresenterModules;
 
@@ -14,4 +18,6 @@ public interface ViewComponents {
     void injectRegisterActivity(RegisterActivity registerActivity);
 
     void injectProductListActivity(ProductListActivity productListActivity);
+
+    void injectProductDetailActivity(ProductDetailActivity productDetailActivity);
 }

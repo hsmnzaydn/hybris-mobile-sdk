@@ -2,6 +2,7 @@ package com.felece.hybris_network_sdk.data.network.services.ProductServices;
 
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.network.ApiClient;
+import com.felece.hybris_network_sdk.data.network.entities.product.ProductBase;
 import com.felece.hybris_network_sdk.data.network.entities.search.facetdata.ProductSearchPage;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
 import com.felece.hybris_network_sdk.data.network.services.BaseService;
@@ -34,6 +35,25 @@ public class ProductServicesImp extends BaseService implements ProductServices {
                     @Override
                     public void onError(Throwable e) {
                         getErrorCastObject(e,productSearchPageServiceCallback);
+
+                    }
+                });
+    }
+
+    @Override
+    public void getProductDetail(final Class object, String productId, String fields, final ServiceCallback<ProductBase> productBaseServiceCallback) {
+        getApiInterface().getProduct(productId,fields).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        productBaseServiceCallback.onSuccess((ProductBase) getCastObject(o,object));
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e,productBaseServiceCallback);
 
                     }
                 });

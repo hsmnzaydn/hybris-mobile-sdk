@@ -1,4 +1,4 @@
-package com.felece.hybris;
+package com.felece.hybris.UI;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -6,6 +6,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.felece.hybris.HybrisApp;
+import com.felece.hybris.R;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
 import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;

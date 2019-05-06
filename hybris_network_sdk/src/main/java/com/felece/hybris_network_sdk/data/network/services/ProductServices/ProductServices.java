@@ -1,6 +1,7 @@
 package com.felece.hybris_network_sdk.data.network.services.ProductServices;
 
 import com.felece.hybris_network_sdk.ServiceCallback;
+import com.felece.hybris_network_sdk.data.network.entities.product.ProductBase;
 import com.felece.hybris_network_sdk.data.network.entities.search.facetdata.ProductSearchPage;
 
 public interface ProductServices {
@@ -11,5 +12,5 @@ public interface ProductServices {
                        String sort,
                        String fields,
                        String searchQueryContext, ServiceCallback<ProductSearchPage> productSearchPageServiceCallback);
-
+    void getProductDetail(Class object, String productId, String fields,ServiceCallback<ProductBase> productBaseServiceCallback);
 }

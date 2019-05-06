@@ -61,7 +61,7 @@ public class ProductBase implements java.io.Serializable {
 	/**
 	 * <i>Generated property</i> for <code>Product.reviews</code> property defined at extension <code>commercewebservicescommons</code>.
 	 */
-	private Collection<Review> reviews;
+	private List<Review> reviews;
 	/**
 	 * <i>Generated property</i> for <code>Product.variantOptions</code> property defined at extension <code>commercewebservicescommons</code>.
 	 */
@@ -219,12 +219,12 @@ public class ProductBase implements java.io.Serializable {
 	}
 
 
-	public void setReviews(final Collection<Review> reviews) {
+	public void setReviews(final List<Review> reviews) {
 		this.reviews = reviews;
 	}
 
 
-	public Collection<Review> getReviews() {
+	public List<Review> getReviews() {
 		return reviews;
 	}
 

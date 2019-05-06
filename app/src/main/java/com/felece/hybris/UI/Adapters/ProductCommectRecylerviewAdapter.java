@@ -1,16 +1,14 @@
-package com.felece.hybris;
+package com.felece.hybris.UI.Adapters;
 
-import android.os.Build;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.felece.hybris_network_sdk.data.network.entities.product.Product;
+import com.felece.hybris.R;
+import com.felece.hybris_network_sdk.data.network.entities.product.Review;
 
 import java.util.List;
 
@@ -18,13 +16,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class ProductListRecylerViewAdapter extends RecyclerView.Adapter<ProductListRecylerViewAdapter.ViewHolder> {
+public class ProductCommectRecylerviewAdapter extends RecyclerView.Adapter<ProductCommectRecylerviewAdapter.ViewHolder> {
 
 
-    private List<Product> myItems;
+    private List<Review> myItems;
     private ItemListener myListener;
 
-    public ProductListRecylerViewAdapter(List<Product> items, ItemListener listener) {
+    public ProductCommectRecylerviewAdapter(List<Review> items, ItemListener listener) {
         myItems = items;
         myListener = listener;
     }
@@ -36,7 +34,7 @@ public class ProductListRecylerViewAdapter extends RecyclerView.Adapter<ProductL
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_product, parent, false)); // TODO
+                .inflate(R.layout.row_comment, parent, false)); // TODO
     }
 
     @Override
@@ -50,21 +48,17 @@ public class ProductListRecylerViewAdapter extends RecyclerView.Adapter<ProductL
     }
 
     public interface ItemListener {
-        void onItemClick(Product item);
+        void onItemClick(Review item);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         // TODO - Your view members
-        public Product item;
-        @BindView(R.id.row_entry_thumbnail_image_view)
-        ImageView rowEntryThumbnailImageView;
+        public Review item;
         @BindView(R.id.row_entry_header_text_view)
         TextView rowEntryHeaderTextView;
         @BindView(R.id.row_entry_description_text_view)
         TextView rowEntryDescriptionTextView;
-        @BindView(R.id.row_entry_price_text_view)
-        TextView rowEntryPriceTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -73,19 +67,10 @@ public class ProductListRecylerViewAdapter extends RecyclerView.Adapter<ProductL
             // TODO instantiate/assign view members
         }
 
-        public void setData(Product item) {
+        public void setData(Review item) {
             this.item = item;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                rowEntryHeaderTextView.setText(Html.fromHtml(item.getName(), Html.FROM_HTML_MODE_COMPACT));
-                rowEntryDescriptionTextView.setText(Html.fromHtml(item.getSummary(), Html.FROM_HTML_MODE_COMPACT));
-            } else {
-                rowEntryHeaderTextView.setText(Html.fromHtml(item.getName()));
-                if(item.getSummary() != null){
-                    rowEntryDescriptionTextView.setText(Html.fromHtml(item.getSummary()));
-                }
-            }
-
-            rowEntryPriceTextView.setText(item.getPrice().getFormattedValue());
+            rowEntryHeaderTextView.setText(item.getPrincipal().getName());
+            rowEntryDescriptionTextView.setText(item.getComment());
             // TODO set data to view
         }
 
