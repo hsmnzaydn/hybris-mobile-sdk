@@ -8,6 +8,8 @@ import com.felece.hybris.HybrisApp;
 import com.felece.hybris.R;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
+import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
+import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 
 import javax.inject.Inject;
@@ -23,17 +25,17 @@ public class BasketActivity extends BaseActivity {
 
         ((HybrisApp) getApplication()).getActivityComponent().injectBasketActivity(this);
 
-        dataManager.getUserAdresses(null, new ServiceCallback<AddressList>() {
-            @Override
-            public void onSuccess(AddressList response) {
+       dataManager.getCarts(null, FIELDS.DEFAULT.getFieldType(), false, null, null, null, new ServiceCallback<CartList>() {
+           @Override
+           public void onSuccess(CartList response) {
 
-            }
+           }
 
-            @Override
-            public void onError(int code, String errorResponse) {
+           @Override
+           public void onError(int code, String errorResponse) {
 
-            }
-        });
+           }
+       });
 
     }
 }

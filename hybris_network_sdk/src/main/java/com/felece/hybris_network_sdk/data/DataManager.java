@@ -34,33 +34,33 @@ public interface DataManager  {
 
 
     void auth(Class object, String username, String password, ServiceCallback<UserInformation> userInformationServiceCallback);
-    void getUserProfile(Class object,String username,ServiceCallback<User> userInformationServiceCallback);
+    void getUserProfile(Class object,ServiceCallback<User> userInformationServiceCallback);
     void register(Class object, String field, UserSignUp user, ServiceCallback<User> userServiceCallback);
     void getUserId(ServiceCallback<String> getUserIdServiceCallback);
-    void deleteUser(Class object,String userId,ServiceCallback<Integer> serviceCallback);
-    void updateProfile(Class object,String userId, User user,ServiceCallback<User> userServiceCallback);
+    void deleteUser(Class object,ServiceCallback<Integer> serviceCallback);
+    void updateProfile(Class object, User user,ServiceCallback<User> userServiceCallback);
     void getUserAdresses(Class object, ServiceCallback<AddressList> addressListServiceCallback);
-    void createNewUserAdress(Class object, String userId, Address address,ServiceCallback<Address> addressServiceCallback);
-    void deleteUserAdress(String userId,String adressId,ServiceCallback<Address> addressServiceCallback);
-    void getUserAdress(Class object, String userId, String adressId, ServiceCallback<Address> addressServiceCallback);
-    void updateUserAddress(Class object,String userId,String addressId,Address address,ServiceCallback<Address> addressServiceCallback);
-    void updateUserLoginId(String newUserId, String oldUserId, String password, ServiceCallback<UserInformation> userInformationServiceCallback);
-    void updateUserPassword(String oldPassword,String newPassword,String userId,ServiceCallback<UserInformation> userInformationServiceCallback);
+    void createNewUserAdress(Class object, Address address,ServiceCallback<Address> addressServiceCallback);
+    void deleteUserAdress(String adressId,ServiceCallback<Address> addressServiceCallback);
+    void getUserAdress(Class object, String adressId, ServiceCallback<Address> addressServiceCallback);
+    void updateUserAddress(Class object,String addressId,Address address,ServiceCallback<Address> addressServiceCallback);
+    void updateUserLoginId(String newUserId,  String password, ServiceCallback<UserInformation> userInformationServiceCallback);
+    void updateUserPassword(String oldPassword,String newPassword,ServiceCallback<UserInformation> userInformationServiceCallback);
 
 
-    void getCarts(Class object, String field, Boolean savedCartsOnly, Integer currentPage, Integer pageSize, String sort, String userId, ServiceCallback<CartList> cartListServiceCallback);
-    void createOrUpdateCart(Class object, String field, Cart cart,String oldCartId, String toMergeCartGuid, String userId, ServiceCallback<Cart> cartServiceCallback);
-    void deleteCart(String userId,String cartId,ServiceCallback<Cart> cartServiceCallback);
-    void addEntryToCart(Class object, OrderEntry product, String cartId, String userName, ServiceCallback<CartModification> productServiceCallback);
-    void getCart(Class object,String field,String userId,String cartId,ServiceCallback<Cart> cartServiceCallback);
-    void deleteDeliveryAddresOfCart(String userId,String cartId,ServiceCallback<Cart> cartServiceCallback);
-    void createDeliveryAddresForCart(Class object, Address address,String userId, String cartId, ServiceCallback<Cart> cartServiceCallback);
-    void setDeliveryAddresToCart(String userId,String cartId,String addressId,ServiceCallback<Cart> cartServiceCallback);
-    void getEntriesOfCart(Class object, String field, String userId, String cartId, ServiceCallback<OrderEntryList> orderEntryListServiceCallback);
-    void deleteDeliveryModeFromCart(String userId, String cartId, ServiceCallback<DeliveryMode> deliveryModeServiceCallback);
-    void getDeliveryModeOfCart(Class object,String field,String userId,String cartId,ServiceCallback<DeliveryMode> deliveryModeServiceCallback);
-    void getDeliveryModesOfCart(Class object, String field,String userId, String cartId, ServiceCallback<DeliveryModeList> deliveryModeListServiceCallback);
-    void deleteEntryFromCart(String userId, String cartId, int entryId, ServiceCallback<Entry> entryServiceCallback);
+    void getCarts(Class object, String field, Boolean savedCartsOnly, Integer currentPage, Integer pageSize, String sort,  ServiceCallback<CartList> cartListServiceCallback);
+    void createOrUpdateCart(Class object, String field, Cart cart,String oldCartId, String toMergeCartGuid,  ServiceCallback<Cart> cartServiceCallback);
+    void deleteCart(String cartId,ServiceCallback<Cart> cartServiceCallback);
+    void addEntryToCart(Class object, OrderEntry product, String cartId,  ServiceCallback<CartModification> productServiceCallback);
+    void getCart(Class object,String field,String cartId,ServiceCallback<Cart> cartServiceCallback);
+    void deleteDeliveryAddresOfCart(String cartId,ServiceCallback<Cart> cartServiceCallback);
+    void createDeliveryAddresForCart(Class object, Address address, String cartId, ServiceCallback<Cart> cartServiceCallback);
+    void setDeliveryAddresToCart(String cartId,String addressId,ServiceCallback<Cart> cartServiceCallback);
+    void getEntriesOfCart(Class object, String field,  String cartId, ServiceCallback<OrderEntryList> orderEntryListServiceCallback);
+    void deleteDeliveryModeFromCart( String cartId, ServiceCallback<DeliveryMode> deliveryModeServiceCallback);
+    void getDeliveryModeOfCart(Class object,String field,String cartId,ServiceCallback<DeliveryMode> deliveryModeServiceCallback);
+    void getDeliveryModesOfCart(Class object, String field, String cartId, ServiceCallback<DeliveryModeList> deliveryModeListServiceCallback);
+    void deleteEntryFromCart( String cartId, int entryId, ServiceCallback<Entry> entryServiceCallback);
 
 
 

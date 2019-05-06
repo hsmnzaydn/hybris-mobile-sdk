@@ -117,11 +117,11 @@ public class DataManagerImp implements DataManager {
     }
 
     @Override
-    public void getUserProfile(Class object, String username, ServiceCallback<User> userInformationServiceCallback) {
+    public void getUserProfile(Class object,  ServiceCallback<User> userInformationServiceCallback) {
         if(object == null){
-            apiServices.getUserProfile(User.class,username,userInformationServiceCallback);
+            apiServices.getUserProfile(User.class,prefHelper.getUserId(),userInformationServiceCallback);
         }else {
-            apiServices.getUserProfile(object,username,userInformationServiceCallback);
+            apiServices.getUserProfile(object,prefHelper.getUserId(),userInformationServiceCallback);
         }
     }
 
@@ -140,16 +140,16 @@ public class DataManagerImp implements DataManager {
     }
 
     @Override
-    public void deleteUser(Class object, String userId, ServiceCallback<Integer> serviceCallback) {
-        apiServices.deleteUser(object,userId,serviceCallback);
+    public void deleteUser(Class object,  ServiceCallback<Integer> serviceCallback) {
+        apiServices.deleteUser(object,prefHelper.getUserId(),serviceCallback);
     }
 
     @Override
-    public void updateProfile(Class object, String userId, User user, ServiceCallback<User> userServiceCallback) {
+    public void updateProfile(Class object,  User user, ServiceCallback<User> userServiceCallback) {
         if(object == null){
-            apiServices.updateProfile(User.class,userId,user,userServiceCallback);
+            apiServices.updateProfile(User.class,prefHelper.getUserId(),user,userServiceCallback);
         }else {
-            apiServices.updateProfile(object,userId,user,userServiceCallback);
+            apiServices.updateProfile(object,prefHelper.getUserId(),user,userServiceCallback);
         }
     }
 
@@ -163,142 +163,142 @@ public class DataManagerImp implements DataManager {
     }
 
     @Override
-    public void createNewUserAdress(Class object, String userId, Address address, ServiceCallback<Address> addressServiceCallback) {
+    public void createNewUserAdress(Class object, Address address, ServiceCallback<Address> addressServiceCallback) {
         if(object == null){
-            apiServices.createAdress(Address.class,address,userId,addressServiceCallback);
+            apiServices.createAdress(Address.class,address,prefHelper.getUserId(),addressServiceCallback);
         }else {
-            apiServices.createAdress(null,address,userId,addressServiceCallback);
+            apiServices.createAdress(null,address,prefHelper.getUserId(),addressServiceCallback);
         }
     }
 
     @Override
-    public void deleteUserAdress(String userId, String adressId, ServiceCallback<Address> addressServiceCallback) {
-        apiServices.deleteUserAdress(userId,adressId,addressServiceCallback);
+    public void deleteUserAdress( String adressId, ServiceCallback<Address> addressServiceCallback) {
+        apiServices.deleteUserAdress(prefHelper.getUserId(),adressId,addressServiceCallback);
     }
 
     @Override
-    public void getUserAdress(Class object, String userId, String adressId, ServiceCallback<Address> addressServiceCallback) {
+    public void getUserAdress(Class object,  String adressId, ServiceCallback<Address> addressServiceCallback) {
         if(object == null){
-            apiServices.getUserAdress(Address.class,userId,adressId,addressServiceCallback);
+            apiServices.getUserAdress(Address.class,prefHelper.getUserId(),adressId,addressServiceCallback);
         }else {
-            apiServices.getUserAdress(null,userId,adressId,addressServiceCallback);
+            apiServices.getUserAdress(null,prefHelper.getUserId(),adressId,addressServiceCallback);
         }
     }
 
     @Override
-    public void updateUserAddress(Class object, String userId, String addressId, Address address, ServiceCallback<Address> addressServiceCallback) {
+    public void updateUserAddress(Class object, String addressId, Address address, ServiceCallback<Address> addressServiceCallback) {
         if(object == null){
-            apiServices.updateUserAddress(Address.class,userId,addressId,address,addressServiceCallback);
+            apiServices.updateUserAddress(Address.class,prefHelper.getUserId(),addressId,address,addressServiceCallback);
         }else {
-            apiServices.updateUserAddress(null,userId,addressId,address,addressServiceCallback);
+            apiServices.updateUserAddress(null,prefHelper.getUserId(),addressId,address,addressServiceCallback);
         }
     }
 
     @Override
-    public void updateUserLoginId(String newUserId, String oldUserId, String password, ServiceCallback<UserInformation> userInformationServiceCallback) {
-        apiServices.updateUserLoginName(newUserId,oldUserId,password,userInformationServiceCallback);
+    public void updateUserLoginId(String newUserId,  String password, ServiceCallback<UserInformation> userInformationServiceCallback) {
+        apiServices.updateUserLoginName(newUserId,prefHelper.getUserId(),password,userInformationServiceCallback);
     }
 
     @Override
-    public void updateUserPassword(String oldPassword, String newPassword, String userId, ServiceCallback<UserInformation> userInformationServiceCallback) {
-        apiServices.updateUserPassword(oldPassword,newPassword,userId,userInformationServiceCallback);
+    public void updateUserPassword(String oldPassword, String newPassword,  ServiceCallback<UserInformation> userInformationServiceCallback) {
+        apiServices.updateUserPassword(oldPassword,newPassword,prefHelper.getUserId(),userInformationServiceCallback);
     }
 
     @Override
-    public void getCarts(Class object, String field, Boolean savedCartsOnly, Integer currentPage, Integer pageSize, String sort, String userId, ServiceCallback<CartList> cartListServiceCallback) {
+    public void getCarts(Class object, String field, Boolean savedCartsOnly, Integer currentPage, Integer pageSize, String sort,  ServiceCallback<CartList> cartListServiceCallback) {
             if(object== null){
-                apiServices.getCarts(CartList.class,field,savedCartsOnly,currentPage,pageSize,sort,userId,cartListServiceCallback);
+                apiServices.getCarts(CartList.class,field,savedCartsOnly,currentPage,pageSize,sort,prefHelper.getUserId(),cartListServiceCallback);
             }else {
-                apiServices.getCarts(object,field,savedCartsOnly,currentPage,pageSize,sort,userId,cartListServiceCallback);
+                apiServices.getCarts(object,field,savedCartsOnly,currentPage,pageSize,sort,prefHelper.getUserId(),cartListServiceCallback);
             }
     }
 
     @Override
-    public void createOrUpdateCart(Class object, String field, Cart cart,String oldCartId, String toMergeCartGuid, String userId, ServiceCallback<Cart> cartServiceCallback) {
+    public void createOrUpdateCart(Class object, String field, Cart cart,String oldCartId, String toMergeCartGuid,  ServiceCallback<Cart> cartServiceCallback) {
         if(object == null){
-            apiServices.createOrUpdateCart(Cart.class,cart,field,oldCartId,toMergeCartGuid,userId,cartServiceCallback);
+            apiServices.createOrUpdateCart(Cart.class,cart,field,oldCartId,toMergeCartGuid,prefHelper.getUserId(),cartServiceCallback);
         }else {
-            apiServices.createOrUpdateCart(object,cart,field,oldCartId,toMergeCartGuid,userId,cartServiceCallback);
+            apiServices.createOrUpdateCart(object,cart,field,oldCartId,toMergeCartGuid,prefHelper.getUserId(),cartServiceCallback);
         }
     }
 
     @Override
-    public void deleteCart(String userId, String cartId, ServiceCallback<Cart> cartServiceCallback) {
-        apiServices.deleteCart(userId,cartId,cartServiceCallback);
+    public void deleteCart( String cartId, ServiceCallback<Cart> cartServiceCallback) {
+        apiServices.deleteCart(prefHelper.getUserId(),cartId,cartServiceCallback);
     }
 
     @Override
-    public void addEntryToCart(Class object, OrderEntry product, String cartId, String userName, ServiceCallback<CartModification> productServiceCallback) {
+    public void addEntryToCart(Class object, OrderEntry product, String cartId,  ServiceCallback<CartModification> productServiceCallback) {
         if(object == null){
-            apiServices.addEntryToCart(CartModification.class,product,cartId,userName,productServiceCallback);
+            apiServices.addEntryToCart(CartModification.class,product,cartId,prefHelper.getUserId(),productServiceCallback);
         }else {
-            apiServices.addEntryToCart(object,product,cartId,userName,productServiceCallback);
+            apiServices.addEntryToCart(object,product,cartId,prefHelper.getUserId(),productServiceCallback);
         }
     }
 
     @Override
-    public void getCart(Class object, String field, String userId, String cartId, ServiceCallback<Cart> cartServiceCallback) {
+    public void getCart(Class object, String field,  String cartId, ServiceCallback<Cart> cartServiceCallback) {
         if(object==null){
-            apiServices.getCart(Cart.class,field,userId,cartId,cartServiceCallback);
+            apiServices.getCart(Cart.class,field,prefHelper.getUserId(),cartId,cartServiceCallback);
         }else {
-            apiServices.getCart(object,field,userId,cartId,cartServiceCallback);
+            apiServices.getCart(object,field,prefHelper.getUserId(),cartId,cartServiceCallback);
         }
     }
 
     @Override
-    public void deleteDeliveryAddresOfCart(String userId, String cartId, ServiceCallback<Cart> cartServiceCallback) {
-        apiServices.deleteDeliveryAddresOfCart(userId,cartId,cartServiceCallback);
+    public void deleteDeliveryAddresOfCart( String cartId, ServiceCallback<Cart> cartServiceCallback) {
+        apiServices.deleteDeliveryAddresOfCart(prefHelper.getUserId(),cartId,cartServiceCallback);
     }
 
     @Override
-    public void createDeliveryAddresForCart(Class object, Address address, String userId, String cartId, ServiceCallback<Cart> cartServiceCallback) {
+    public void createDeliveryAddresForCart(Class object, Address address, String cartId, ServiceCallback<Cart> cartServiceCallback) {
         if(object== null){
-            apiServices.createDeliveryAddresForCart(Cart.class,address,userId,cartId,cartServiceCallback);
+            apiServices.createDeliveryAddresForCart(Cart.class,address,prefHelper.getUserId(),cartId,cartServiceCallback);
         }else {
-            apiServices.createDeliveryAddresForCart(object,address,userId,cartId,cartServiceCallback);
+            apiServices.createDeliveryAddresForCart(object,address,prefHelper.getUserId(),cartId,cartServiceCallback);
         }
     }
 
     @Override
-    public void setDeliveryAddresToCart(String userId, String cartId, String addressId, ServiceCallback<Cart> cartServiceCallback) {
-        apiServices.setDeliveryAddresToCart(userId,cartId,addressId,cartServiceCallback);
+    public void setDeliveryAddresToCart( String cartId, String addressId, ServiceCallback<Cart> cartServiceCallback) {
+        apiServices.setDeliveryAddresToCart(prefHelper.getUserId(),cartId,addressId,cartServiceCallback);
     }
 
     @Override
-    public void getEntriesOfCart(Class object, String field, String userId, String cartId, ServiceCallback<OrderEntryList> orderEntryListServiceCallback) {
+    public void getEntriesOfCart(Class object, String field,  String cartId, ServiceCallback<OrderEntryList> orderEntryListServiceCallback) {
         if(object == null){
-            apiServices.getEntriesOfCart(OrderEntryList.class,field,userId,cartId,orderEntryListServiceCallback);
+            apiServices.getEntriesOfCart(OrderEntryList.class,field,prefHelper.getUserId(),cartId,orderEntryListServiceCallback);
         }else {
-            apiServices.getEntriesOfCart(object,field,userId,cartId,orderEntryListServiceCallback);
+            apiServices.getEntriesOfCart(object,field,prefHelper.getUserId(),cartId,orderEntryListServiceCallback);
         }
     }
 
     @Override
-    public void deleteDeliveryModeFromCart(String userId, String cartId, ServiceCallback<DeliveryMode> deliveryModeServiceCallback) {
-        apiServices.deleteDeliveryModeFromCart(userId,cartId,deliveryModeServiceCallback);
+    public void deleteDeliveryModeFromCart( String cartId, ServiceCallback<DeliveryMode> deliveryModeServiceCallback) {
+        apiServices.deleteDeliveryModeFromCart(prefHelper.getUserId(),cartId,deliveryModeServiceCallback);
     }
 
     @Override
-    public void getDeliveryModeOfCart(Class object,String field, String userId, String cartId, ServiceCallback<DeliveryMode> deliveryModeServiceCallback) {
+    public void getDeliveryModeOfCart(Class object,String field,  String cartId, ServiceCallback<DeliveryMode> deliveryModeServiceCallback) {
         if(object==null){
-            apiServices.getDeliveryModeOfCart(DeliveryMode.class,field,userId,cartId,deliveryModeServiceCallback);
+            apiServices.getDeliveryModeOfCart(DeliveryMode.class,field,prefHelper.getUserId(),cartId,deliveryModeServiceCallback);
         }else {
-            apiServices.getDeliveryModeOfCart(object,field,userId,cartId,deliveryModeServiceCallback);
+            apiServices.getDeliveryModeOfCart(object,field,prefHelper.getUserId(),cartId,deliveryModeServiceCallback);
         }
     }
 
     @Override
-    public void getDeliveryModesOfCart(Class object, String field, String userId, String cartId, ServiceCallback<DeliveryModeList> deliveryModeListServiceCallback) {
+    public void getDeliveryModesOfCart(Class object, String field,  String cartId, ServiceCallback<DeliveryModeList> deliveryModeListServiceCallback) {
         if(object==null){
-            apiServices.getDeliveryModesOfCart(DeliveryModeList.class,field,userId,cartId,deliveryModeListServiceCallback);
+            apiServices.getDeliveryModesOfCart(DeliveryModeList.class,field,prefHelper.getUserId(),cartId,deliveryModeListServiceCallback);
         }else {
-            apiServices.getDeliveryModesOfCart(object,field,userId,cartId,deliveryModeListServiceCallback);
+            apiServices.getDeliveryModesOfCart(object,field,prefHelper.getUserId(),cartId,deliveryModeListServiceCallback);
         }
     }
 
     @Override
-    public void deleteEntryFromCart(String userId, String cartId, int entryId, ServiceCallback<Entry> entryServiceCallback) {
-        apiServices.deleteEntryFromCart(userId,cartId,entryId,entryServiceCallback);
+    public void deleteEntryFromCart( String cartId, int entryId, ServiceCallback<Entry> entryServiceCallback) {
+        apiServices.deleteEntryFromCart(prefHelper.getUserId(),cartId,entryId,entryServiceCallback);
     }
 
     @Override
