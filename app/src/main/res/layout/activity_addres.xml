@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.AddresActivity">
+
+
+    <include layout="@layout/toolbar"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:text="Yeni Adres Ekle"
+        style="@style/ButtonStyle"
+        android:id="@+id/activity_addres_add_addres_button"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/activity_addres_recylerview"/>
+
+</LinearLayout>

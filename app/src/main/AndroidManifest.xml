@@ -12,11 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UI.BasketActivity"></activity>
+        <activity android:name=".UI.CreateNewAddress"></activity>
+        <activity android:name=".UI.AddresActivity" />
+        <activity android:name=".UI.ProfileActivity" />
+        <activity android:name=".UI.BasketActivity" />
         <activity android:name=".UI.ProductDetailActivity" />
-        <activity android:name=".UI.ProductListActivity">
-
-        </activity>
+        <activity android:name=".UI.ProductListActivity" />
         <activity android:name=".UI.RegisterActivity" />
         <activity android:name=".UI.MainActivity">
             <intent-filter>

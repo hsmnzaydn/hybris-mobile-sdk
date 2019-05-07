@@ -1,31 +1,28 @@
 package com.felece.hybris.UI.Adapters;
 
-import android.os.Build;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.felece.hybris.R;
-import com.felece.hybris_network_sdk.data.network.entities.product.Product;
+import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+public class AddressListRecylerViewAdapter extends RecyclerView.Adapter<AddressListRecylerViewAdapter.ViewHolder> {
 
-public class ProductListRecylerViewAdapter extends RecyclerView.Adapter<ProductListRecylerViewAdapter.ViewHolder> {
 
 
-    private List<Product> myItems;
+    private List<Address> myItems;
     private ItemListener myListener;
 
-    public ProductListRecylerViewAdapter(List<Product> items, ItemListener listener) {
+    public AddressListRecylerViewAdapter(List<Address> items, ItemListener listener) {
         myItems = items;
         myListener = listener;
     }
@@ -37,7 +34,7 @@ public class ProductListRecylerViewAdapter extends RecyclerView.Adapter<ProductL
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.cell_product, parent, false)); // TODO
+                .inflate(R.layout.row_address, parent, false)); // TODO
     }
 
     @Override
@@ -51,47 +48,47 @@ public class ProductListRecylerViewAdapter extends RecyclerView.Adapter<ProductL
     }
 
     public interface ItemListener {
-        void onItemClick(Product item);
+        void onItemClick(Address item);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         // TODO - Your view members
-        public Product item;
-        @BindView(R.id.row_entry_thumbnail_image_view)
-        ImageView rowEntryThumbnailImageView;
-        @BindView(R.id.cell_product_product_title_text_view)
+        public Address item;
+        @BindView(R.id.row_entry_header_text_view)
         TextView rowEntryHeaderTextView;
-        @BindView(R.id.cell_product_product_price_text_view)
-        TextView rowEntryPriceTextView;
+        @BindView(R.id.row_entry_description_text_view)
+        TextView rowEntryDescriptionTextView;
+        @BindView(R.id.row_address_delete_text_view)
+        TextView rowDeleteTextView;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
             // TODO instantiate/assign view members
         }
 
-        public void setData(Product item) {
+        public void setData(Address item) {
             this.item = item;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                rowEntryHeaderTextView.setText(Html.fromHtml(item.getName(), Html.FROM_HTML_MODE_COMPACT));
-            } else {
-                rowEntryHeaderTextView.setText(Html.fromHtml(item.getName()));
-            }
+            rowEntryHeaderTextView.setText(item.getFirstName()+" "+item.getLastName());
+            rowEntryDescriptionTextView.setText(item.getFormattedAddress()+"\n"+item.getTown()+"/"+item.getCountry().getName());
 
-            rowEntryPriceTextView.setText(item.getPrice().getFormattedValue());
+            rowDeleteTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myListener.onItemClick(item);
+                }
+            });
             // TODO set data to view
         }
 
         @Override
         public void onClick(View v) {
-            if (myListener != null) {
-                myListener.onItemClick(item);
-            }
+
         }
     }
 
 
 }
-                                

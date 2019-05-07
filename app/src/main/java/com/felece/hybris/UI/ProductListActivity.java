@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -73,8 +74,7 @@ public class ProductListActivity extends BaseActivity {
 
                     }
                 });
-                LinearLayoutManager manager = new LinearLayoutManager(ProductListActivity.this, LinearLayoutManager.VERTICAL, false);
-                activityProductListRecylerView.setLayoutManager(manager);
+                activityProductListRecylerView.setLayoutManager(new GridLayoutManager(ProductListActivity.this, 2));
                 activityProductListRecylerView.setAdapter(productListRecylerViewAdapter);
                /* activityProductListRecylerView.addOnScrollListener(new EndlessOnScrollListener(manager) {
                     @Override
@@ -99,7 +99,8 @@ public class ProductListActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.activity_product_list_user_image_view:
-
+                Intent intentA=new Intent(ProductListActivity.this,ProfileActivity.class);
+                startActivity(intentA);
                 break;
             case R.id.activitY_product_list_basket_image_view:
                 Intent intent=new Intent(ProductListActivity.this,BasketActivity.class);

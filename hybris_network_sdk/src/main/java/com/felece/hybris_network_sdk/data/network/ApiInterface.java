@@ -74,7 +74,7 @@ public interface ApiInterface {
     Call<Void> updateProfile(@Path("userId") String userId, @Body User user);
 
     @GET("users/{userId}/addresses")
-    Single<Object> getUserAdresses(@Path("userId") String userId);
+    Single<Object> getUserAdresses(@Path("userId") String userId,@Query("fields") String fields);
 
     @POST("users/{userId}/addresses")
     Single<Object> addNewAdress(@Path("userId") String userId, @Body Address address);

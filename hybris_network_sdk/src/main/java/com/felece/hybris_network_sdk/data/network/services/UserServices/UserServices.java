@@ -15,7 +15,7 @@ public interface UserServices {
     void getUserProfile(Class object, String userName, ServiceCallback<User> userInformationServiceCallback);
     void deleteUser(Class object,String userId, ServiceCallback<Integer> serviceCallback);
     void updateProfile(Class object,String userId,User user,ServiceCallback<User> userServiceCallback);
-    void getUserAdresses(Class object, String userId, ServiceCallback<AddressList> addressListServiceCallback);
+    void getUserAdresses(Class object, String userId,String fields, ServiceCallback<AddressList> addressListServiceCallback);
     void createAdress(Class object, Address address,String userId, ServiceCallback<Address> addressServiceCallback);
     void deleteUserAdress(String userId,String adressId,ServiceCallback<Address> addressServiceCallback);
     void getUserAdress(Class object,String userId,String adressId,ServiceCallback<Address> addressServiceCallback);

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".UI.ProductListActivity">
+    tools:context=".UI.ProductListActivity"
+    android:background="@color/grey">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -50,6 +51,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginLeft="8dp"
+        android:layout_gravity="center"
         android:id="@+id/activity_product_list_recyler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

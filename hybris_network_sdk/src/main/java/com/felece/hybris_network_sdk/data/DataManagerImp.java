@@ -154,11 +154,11 @@ public class DataManagerImp implements DataManager {
     }
 
     @Override
-    public void getUserAdresses(Class object, ServiceCallback<AddressList> addressListServiceCallback) {
+    public void getUserAdresses(Class object, String fields,ServiceCallback<AddressList> addressListServiceCallback) {
         if(object == null){
-            apiServices.getUserAdresses(AddressList.class,prefHelper.getUserId(),addressListServiceCallback);
+            apiServices.getUserAdresses(AddressList.class,prefHelper.getUserId(),fields,addressListServiceCallback);
         }else {
-            apiServices.getUserAdresses(object,prefHelper.getUserId(),addressListServiceCallback);
+            apiServices.getUserAdresses(object,prefHelper.getUserId(),fields,addressListServiceCallback);
         }
     }
 

@@ -39,7 +39,7 @@ public interface DataManager  {
     void getUserId(ServiceCallback<String> getUserIdServiceCallback);
     void deleteUser(Class object,ServiceCallback<Integer> serviceCallback);
     void updateProfile(Class object, User user,ServiceCallback<User> userServiceCallback);
-    void getUserAdresses(Class object, ServiceCallback<AddressList> addressListServiceCallback);
+    void getUserAdresses(Class object,String fields, ServiceCallback<AddressList> addressListServiceCallback);
     void createNewUserAdress(Class object, Address address,ServiceCallback<Address> addressServiceCallback);
     void deleteUserAdress(String adressId,ServiceCallback<Address> addressServiceCallback);
     void getUserAdress(Class object, String adressId, ServiceCallback<Address> addressServiceCallback);

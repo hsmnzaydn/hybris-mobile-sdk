@@ -152,8 +152,8 @@ public class UserServicesImp extends BaseService implements UserServices {
     }
 
     @Override
-    public void getUserAdresses(final Class object, String userId, final ServiceCallback<AddressList> addressListServiceCallback) {
-        getApiInterface().getUserAdresses(userId).subscribeOn(Schedulers.io())
+    public void getUserAdresses(final Class object, String userId,String fields, final ServiceCallback<AddressList> addressListServiceCallback) {
+        getApiInterface().getUserAdresses(userId,fields).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver() {
                     @Override

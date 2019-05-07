@@ -1,6 +1,7 @@
 package com.felece.hybris.UI;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.felece.hybris.R;
 import com.felece.hybris.Utility.CommonUtils;
+
+import java.util.List;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -55,6 +58,31 @@ public class BaseActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition( R.anim.slide_from_left, R.anim.slide_to_right);
+
+    }
+
+    public void showListDialog(List<String> itemList, String title, ListSelectItem<Integer> listSelectItem) {
+        if(itemList != null){
+            androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(BaseActivity.this);
+            builder.setTitle(title);
+
+
+            String[] stockArr = new String[itemList.size()];
+            stockArr = itemList.toArray(stockArr);
+
+
+
+            builder.setItems(stockArr, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    listSelectItem.selectedItem(which);
+                }
+            });
+
+            androidx.appcompat.app.AlertDialog dialog = builder.create();
+            dialog.show();
+        }
 
     }
 }

@@ -97,8 +97,8 @@ public class ApiServicesImp implements ApiServices {
     }
 
     @Override
-    public void getUserAdresses(Class object, String userId, ServiceCallback<AddressList> addressListServiceCallback) {
-        userServices.getUserAdresses(object,userId,addressListServiceCallback);
+    public void getUserAdresses(Class object, String userId,String fields, ServiceCallback<AddressList> addressListServiceCallback) {
+        userServices.getUserAdresses(object,userId,fields,addressListServiceCallback);
     }
 
     @Override

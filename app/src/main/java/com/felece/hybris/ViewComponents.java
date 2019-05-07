@@ -1,8 +1,11 @@
 package com.felece.hybris;
+import com.felece.hybris.UI.AddresActivity;
 import com.felece.hybris.UI.BasketActivity;
+import com.felece.hybris.UI.CreateNewAddress;
 import com.felece.hybris.UI.MainActivity;
 import com.felece.hybris.UI.ProductDetailActivity;
 import com.felece.hybris.UI.ProductListActivity;
+import com.felece.hybris.UI.ProfileActivity;
 import com.felece.hybris.UI.RegisterActivity;
 import com.felece.hybris_network_sdk.di.modules.HybrisDataModules;
 import com.felece.hybris_network_sdk.di.modules.HybrisPresenterModules;
@@ -23,4 +26,10 @@ public interface ViewComponents {
     void injectProductDetailActivity(ProductDetailActivity productDetailActivity);
 
     void injectBasketActivity(BasketActivity basketActivity);
+
+    void injectProfileActivity(ProfileActivity profileActivity);
+
+    void injectAddressActivity(AddresActivity addresActivity);
+
+    void injectCreateNewAddress(CreateNewAddress createNewAddress);
 }
