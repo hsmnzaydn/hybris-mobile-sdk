@@ -11,7 +11,10 @@
     android:background="@color/grey">
 
     <include layout="@layout/toolbar"/>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/activity_basket_products_text_view"/>
     <androidx.cardview.widget.CardView
 
         android:id="@+id/activity_basket_empty_card_view"
