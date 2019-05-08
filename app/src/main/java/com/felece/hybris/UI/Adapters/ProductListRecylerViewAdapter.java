@@ -11,7 +11,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.felece.hybris.R;
+import com.felece.hybris.Utility.CommonUtils;
 import com.felece.hybris_network_sdk.data.network.entities.product.Product;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -79,6 +81,7 @@ public class ProductListRecylerViewAdapter extends RecyclerView.Adapter<ProductL
             } else {
                 rowEntryHeaderTextView.setText(Html.fromHtml(item.getName()));
             }
+            Picasso.get().load("https://images-na.ssl-images-amazon.com/images/I/71mVF%2B93MPL._SY606_.jpg").into(rowEntryThumbnailImageView);
 
             rowEntryPriceTextView.setText(item.getPrice().getFormattedValue());
             // TODO set data to view

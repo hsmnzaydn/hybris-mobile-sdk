@@ -47,7 +47,8 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         ((HybrisApp) getApplication()).getActivityComponent().injectMainActivity(this);
-
+        setSupportActionBar(toolbar);
+        setTitle("Giriş");
 
        /* dataManager.deleteEntryFromCart(userName, "00001001", 0, new ServiceCallback<Entry>() {
             @Override

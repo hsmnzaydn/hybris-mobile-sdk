@@ -3,6 +3,7 @@ import com.felece.hybris.UI.AddresActivity;
 import com.felece.hybris.UI.BasketActivity;
 import com.felece.hybris.UI.CreateNewAddress;
 import com.felece.hybris.UI.MainActivity;
+import com.felece.hybris.UI.ProductCommentsActivity;
 import com.felece.hybris.UI.ProductDetailActivity;
 import com.felece.hybris.UI.ProductListActivity;
 import com.felece.hybris.UI.ProfileActivity;
@@ -32,4 +33,6 @@ public interface ViewComponents {
     void injectAddressActivity(AddresActivity addresActivity);
 
     void injectCreateNewAddress(CreateNewAddress createNewAddress);
+
+    void injectProductCommentsActivity(ProductCommentsActivity productCommentsActivity);
 }

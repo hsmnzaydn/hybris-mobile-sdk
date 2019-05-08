@@ -1,6 +1,8 @@
 package com.felece.hybris.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -12,7 +14,6 @@ import androidx.recyclerview.widget.SnapHelper;
 
 import com.felece.hybris.HybrisApp;
 import com.felece.hybris.R;
-import com.felece.hybris.UI.Adapters.ProductCommectRecylerviewAdapter;
 import com.felece.hybris.UI.Adapters.ProductDetailRecylerviewAdapter;
 import com.felece.hybris.Utility.CommonUtils;
 import com.felece.hybris.Utility.Constant;
@@ -47,13 +48,18 @@ public class ProductDetailActivity extends BaseActivity {
     TextView activityProductDetailPriceTextView;
     @BindView(R.id.activity_product_detail_add_basket_button)
     MaterialButton activityProductDetailAddBasketButton;
+    @BindView(R.id.activity_product_detail_comment_button)
+    MaterialButton activityProductDetailCommentButton;
+
     private String productId;
-    ProductCommectRecylerviewAdapter adapter;
+
+
     @Inject
     DataManager dataManager;
 
     ProductDetailRecylerviewAdapter productDetailRecylerviewAdapter;
-    OrderEntry orderEntry=new OrderEntry();
+    OrderEntry orderEntry = new OrderEntry();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +75,15 @@ public class ProductDetailActivity extends BaseActivity {
         }
         setSupportActionBar(toolbar);
 
+        activityProductDetailCommentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductDetailActivity.this, ProductCommentsActivity.class);
+                intent.putExtra(Constant.BUNDLE_PRODUCT_ID, productId);
+                startActivity(intent);
+
+            }
+        });
 
     }
 
@@ -77,7 +92,7 @@ public class ProductDetailActivity extends BaseActivity {
         dataManager.getProductDetail(null, productId, FIELDS.FULL.getFieldType(), new ServiceCallback<ProductBase>() {
             @Override
             public void onSuccess(ProductBase response) {
-                Product product=new Product();
+                Product product = new Product();
                 product.setCode(response.getCode());
                 orderEntry.setProduct(product);
                 toolbar.setTitle(response.getName());
@@ -129,9 +144,9 @@ public class ProductDetailActivity extends BaseActivity {
         dataManager.getCarts(null, FIELDS.DEFAULT.getFieldType(), null, null, null, null, new ServiceCallback<CartList>() {
             @Override
             public void onSuccess(CartList response) {
-                if(response.getCarts().size() == 0){
+                if (response.getCarts().size() == 0) {
 
-                    Cart cart=new Cart();
+                    Cart cart = new Cart();
 
                     dataManager.createOrUpdateCart(null, null, cart, null, null, new ServiceCallback<Cart>() {
                         @Override
@@ -159,7 +174,7 @@ public class ProductDetailActivity extends BaseActivity {
                             showMessage(errorResponse);
                         }
                     });
-                }else {
+                } else {
                     dataManager.addEntryToCart(null, orderEntry, response.getCarts().get(0).getCode(), new ServiceCallback<CartModification>() {
                         @Override
                         public void onSuccess(CartModification response) {

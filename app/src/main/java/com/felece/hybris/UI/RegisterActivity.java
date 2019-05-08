@@ -38,9 +38,9 @@ public class RegisterActivity extends AppCompatActivity {
     MaterialButton activityRegisterRegisterButton;
 
     UserSignUp userSignUp;
-
     @Inject
     DataManager dataManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +49,8 @@ public class RegisterActivity extends AppCompatActivity {
         userSignUp=new UserSignUp();
         ((HybrisApp) getApplication()).getActivityComponent().injectRegisterActivity(this);
 
-
+        setSupportActionBar(toolbar);
+        setTitle("Kayıt Ol");
     }
 
     @OnClick(R.id.activity_register_register_button)
