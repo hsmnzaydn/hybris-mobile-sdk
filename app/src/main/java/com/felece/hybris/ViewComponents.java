@@ -2,6 +2,7 @@ package com.felece.hybris;
 import com.felece.hybris.UI.AddresActivity;
 import com.felece.hybris.UI.BasketActivity;
 import com.felece.hybris.UI.CreateNewAddress;
+import com.felece.hybris.UI.DeliveryAdressActivity;
 import com.felece.hybris.UI.MainActivity;
 import com.felece.hybris.UI.ProductCommentsActivity;
 import com.felece.hybris.UI.ProductDetailActivity;
@@ -35,4 +36,6 @@ public interface ViewComponents {
     void injectCreateNewAddress(CreateNewAddress createNewAddress);
 
     void injectProductCommentsActivity(ProductCommentsActivity productCommentsActivity);
+
+    void injectDeliveryAdressActivity(DeliveryAdressActivity deliveryAdressActivity);
 }
