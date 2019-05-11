@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UI.DeliveryAdressActivity"></activity>
+        <activity android:name=".UI.CatalogsActivity"></activity>
+        <activity android:name=".UI.DeliveryAdressActivity" />
         <activity android:name=".UI.ProductCommentsActivity" />
         <activity android:name=".UI.CreateNewAddress" />
         <activity android:name=".UI.AddresActivity" />

@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +21,7 @@ import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
 import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
 import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
+import com.felece.hybris_network_sdk.data.network.entities.voucher.Voucher;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -55,6 +55,7 @@ public class BasketActivity extends BaseActivity {
     Cart cart;
 
     BasketListRecylerViewAdapter basketListRecylerViewAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +70,7 @@ public class BasketActivity extends BaseActivity {
         getCarts();
     }
 
-    public void getCarts(){
+    public void getCarts() {
         showLoading();
 
         dataManager.getCarts(null, FIELDS.FULL.getFieldType(), false, null, null, null, new ServiceCallback<CartList>() {
@@ -78,14 +79,14 @@ public class BasketActivity extends BaseActivity {
                 if (response.getCarts().size() != 0) {
 
                     if (response.getCarts().get(0).getEntries().size() == 0) {
-                            activityBasketEmptyCardView.setVisibility(View.VISIBLE);
+                        activityBasketEmptyCardView.setVisibility(View.VISIBLE);
                         activityBasketFillCardView.setVisibility(View.GONE);
 
                     } else {
                         activityBasketEmptyCardView.setVisibility(View.GONE);
-                       cart=response.getCarts().get(0);
+                        cart = response.getCarts().get(0);
                         activityBasketTotalPriceTextView.setText(cart.getTotalPrice().getFormattedValue());
-                        basketListRecylerViewAdapter=new BasketListRecylerViewAdapter(cart.getEntries(), new BasketListRecylerViewAdapter.ItemListener() {
+                        basketListRecylerViewAdapter = new BasketListRecylerViewAdapter(cart.getEntries(), new BasketListRecylerViewAdapter.ItemListener() {
                             @Override
                             public void onItemClick(OrderEntry item) {
 
@@ -124,11 +125,36 @@ public class BasketActivity extends BaseActivity {
         });
     }
 
-    @OnClick(R.id.activity_basket_voucher_apply_button)
-    public void onViewClicked() {
 
-        Intent intent=new Intent(this,DeliveryAdressActivity.class);
-        intent.putExtra(Constant.BUNDLE_CART_ID,cart.getCode());
-        startActivity(intent);
+    @OnClick({R.id.activity_basket_voucher_apply_button, R.id.activity_basket_check_out_button})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.activity_basket_voucher_apply_button:
+
+                showLoading();
+                dataManager.addVoucherToCart(cart.getCode(), activityBasketVoucherEditText.getText().toString(), new ServiceCallback<Voucher>() {
+                    @Override
+                    public void onSuccess(Voucher response) {
+
+                        getCarts();
+                        hideLoading();
+                    }
+
+                    @Override
+                    public void onError(int code, String errorResponse) {
+
+                        hideLoading();
+                        showMessage(errorResponse);
+                    }
+                });
+
+
+                break;
+            case R.id.activity_basket_check_out_button:
+                Intent intent = new Intent(this, DeliveryAdressActivity.class);
+                intent.putExtra(Constant.BUNDLE_CART_ID, cart.getCode());
+                startActivity(intent);
+                break;
+        }
     }
 }

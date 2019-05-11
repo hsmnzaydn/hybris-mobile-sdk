@@ -13,6 +13,8 @@ import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
 import com.felece.hybris_network_sdk.data.network.entities.product.Product;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
+import com.felece.hybris_network_sdk.data.network.entities.voucher.Voucher;
+import com.felece.hybris_network_sdk.data.network.entities.voucher.VoucherList;
 import com.felece.hybris_network_sdk.data.network.services.BaseService;
 import com.google.gson.Gson;
 
@@ -304,6 +306,49 @@ public class CartServicesImp extends BaseService implements CartServices {
                     @Override
                     public void onError(Throwable e) {
                         getErrorCastObject(e, deliveryModeListServiceCallback);
+
+                    }
+
+                });
+    }
+
+    @Override
+    public void getVouchersOfCart(Class object, String field, String userId, String cartId, final ServiceCallback<VoucherList> voucherListServiceCallback) {
+        getApiInterface().getVouchersOfCart(userId,cartId,field).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        voucherListServiceCallback.onSuccess((VoucherList) getCastObject(o, VoucherList.class));
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e, voucherListServiceCallback);
+
+                    }
+
+                });
+    }
+
+    @Override
+    public void addVoucherToCart(String userId, String cartId, String voucherId, final ServiceCallback<Voucher> voucherServiceCallback) {
+        getApiInterface().addVoucherToCart(userId, cartId, voucherId).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        if (((Response) o).isSuccessful()) {
+                            voucherServiceCallback.onSuccess((Voucher) getCastObject(o, Voucher.class));
+                        } else {
+                            getErrorCastObject(((Response) o), voucherServiceCallback);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e, voucherServiceCallback);
 
                     }
 

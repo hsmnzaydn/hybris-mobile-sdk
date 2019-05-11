@@ -137,6 +137,12 @@ public interface ApiInterface {
     @DELETE("users/{userId}/carts/{cartId}/entries/{entryId}")
     Single<Response<Void>> deleteEntryFromCart(@Path("userId") String userId,@Path("cartId") String cartId,@Path("entryId") Integer entryId);
 
+    @GET("users/{userId}/carts/{cartId}/vouchers")
+    Single<Object> getVouchersOfCart(@Path("userId") String userId,@Path("cartId") String cartId,@Query("fields") String fields);
+
+    @POST("users/{userId}/carts/{cartId}/vouchers")
+    Single<Response<Void>> addVoucherToCart(@Path("userId") String userId,@Path("cartId") String cartId,@Query("voucherId") String voucherId);
+
 
     // Product Services
 

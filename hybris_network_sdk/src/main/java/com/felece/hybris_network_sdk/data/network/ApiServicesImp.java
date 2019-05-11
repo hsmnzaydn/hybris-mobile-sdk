@@ -21,6 +21,8 @@ import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
 import com.felece.hybris_network_sdk.data.network.entities.user.UserSignUp;
+import com.felece.hybris_network_sdk.data.network.entities.voucher.Voucher;
+import com.felece.hybris_network_sdk.data.network.entities.voucher.VoucherList;
 import com.felece.hybris_network_sdk.data.network.services.CartServices.CartServices;
 import com.felece.hybris_network_sdk.data.network.services.CatalogServices.CatalogServices;
 import com.felece.hybris_network_sdk.data.network.services.CountriesServices.CountriesServices;
@@ -194,6 +196,16 @@ public class ApiServicesImp implements ApiServices {
     @Override
     public void getDeliveryModesOfCart(Class object, String field, String userId, String cartId, ServiceCallback<DeliveryModeList> deliveryModeListServiceCallback) {
         cartServices.getDeliveryModesOfCart(object,field,userId,cartId,deliveryModeListServiceCallback);
+    }
+
+    @Override
+    public void getVouchersOfCart(Class object, String field, String userId, String cartId, ServiceCallback<VoucherList> voucherListServiceCallback) {
+        cartServices.getVouchersOfCart(object,field,userId,cartId,voucherListServiceCallback);
+    }
+
+    @Override
+    public void addVoucherToCart(String userId, String cartId, String voucherId, ServiceCallback<Voucher> voucherServiceCallback) {
+        cartServices.addVoucherToCart(userId,cartId,voucherId,voucherServiceCallback);
     }
 
     @Override

@@ -24,6 +24,8 @@ import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
 import com.felece.hybris_network_sdk.data.network.entities.user.UserSignUp;
+import com.felece.hybris_network_sdk.data.network.entities.voucher.Voucher;
+import com.felece.hybris_network_sdk.data.network.entities.voucher.VoucherList;
 
 public interface DataManager  {
     void getContries(String type, String fields,Class object, ServiceCallback<CountryList> serviceCallback);
@@ -61,7 +63,8 @@ public interface DataManager  {
     void getDeliveryModeOfCart(Class object,String field,String cartId,ServiceCallback<DeliveryMode> deliveryModeServiceCallback);
     void getDeliveryModesOfCart(Class object, String field, String cartId, ServiceCallback<DeliveryModeList> deliveryModeListServiceCallback);
     void deleteEntryFromCart( String cartId, int entryId, ServiceCallback<Entry> entryServiceCallback);
-
+    void getVouchersOfCart(Class object, String field, String cartId, ServiceCallback<VoucherList> voucherListServiceCallback);
+    void addVoucherToCart( String cartId, String voucherId, ServiceCallback<Voucher> voucherServiceCallback);
 
 
 

@@ -143,7 +143,7 @@ public class ProductListActivity extends BaseActivity {
         });
     }
 
-    @OnClick({R.id.activity_product_list_user_image_view, R.id.activitY_product_list_basket_image_view})
+    @OnClick({R.id.activity_product_list_user_image_view, R.id.activitY_product_list_basket_image_view,R.id.activity_product_list_hamburger_image_view})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.activity_product_list_user_image_view:
@@ -154,6 +154,9 @@ public class ProductListActivity extends BaseActivity {
                 Intent intent = new Intent(ProductListActivity.this, BasketActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.activity_product_list_hamburger_image_view:
+                Intent intent1=new Intent(ProductListActivity.this,CatalogsActivity.class);
+                startActivity(intent1);
         }
     }
 

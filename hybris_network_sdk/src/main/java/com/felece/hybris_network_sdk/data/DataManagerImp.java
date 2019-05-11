@@ -22,6 +22,8 @@ import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.CountryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
 import com.felece.hybris_network_sdk.data.network.entities.user.UserSignUp;
+import com.felece.hybris_network_sdk.data.network.entities.voucher.Voucher;
+import com.felece.hybris_network_sdk.data.network.entities.voucher.VoucherList;
 import com.felece.hybris_network_sdk.data.pref.PrefHelper;
 
 import javax.inject.Inject;
@@ -299,6 +301,21 @@ public class DataManagerImp implements DataManager {
     @Override
     public void deleteEntryFromCart( String cartId, int entryId, ServiceCallback<Entry> entryServiceCallback) {
         apiServices.deleteEntryFromCart(prefHelper.getUserId(),cartId,entryId,entryServiceCallback);
+    }
+
+    @Override
+    public void getVouchersOfCart(Class object, String field, String cartId, ServiceCallback<VoucherList> voucherListServiceCallback) {
+        if(object == null){
+            apiServices.getVouchersOfCart(VoucherList.class,field,prefHelper.getUserId(),cartId,voucherListServiceCallback);
+        }else {
+            apiServices.getVouchersOfCart(object,field,prefHelper.getUserId(),cartId,voucherListServiceCallback);
+
+        }
+    }
+
+    @Override
+    public void addVoucherToCart(String cartId, String voucherId, ServiceCallback<Voucher> voucherServiceCallback) {
+        apiServices.addVoucherToCart(prefHelper.getUserId(),cartId,voucherId,voucherServiceCallback);
     }
 
     @Override
