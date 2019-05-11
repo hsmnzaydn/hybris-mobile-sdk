@@ -1,4 +1,5 @@
 package com.felece.hybris;
+import com.felece.hybris.UI.AddPaymentDetail;
 import com.felece.hybris.UI.AddresActivity;
 import com.felece.hybris.UI.BasketActivity;
 import com.felece.hybris.UI.CatalogsActivity;
@@ -41,4 +42,6 @@ public interface ViewComponents {
     void injectDeliveryAdressActivity(DeliveryAdressActivity deliveryAdressActivity);
 
     void injectCatalogsActivity(CatalogsActivity catalogsActivity);
+
+    void injectAddPaymentDetail(AddPaymentDetail addPaymentDetail);
 }

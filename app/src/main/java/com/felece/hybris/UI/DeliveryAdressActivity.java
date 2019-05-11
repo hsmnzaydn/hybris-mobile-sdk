@@ -1,5 +1,6 @@
 package com.felece.hybris.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
@@ -67,7 +68,9 @@ public class DeliveryAdressActivity extends BaseActivity {
                         dataManager.createDeliveryAddresForCart(null, item, cartId, new ServiceCallback<Cart>() {
                             @Override
                             public void onSuccess(Cart response) {
-
+                                Intent intent=new Intent(DeliveryAdressActivity.this,AddPaymentDetail.class);
+                                intent.putExtra(Constant.BUNDLE_CART_ID,cartId);
+                                startActivity(intent);
                             }
 
                             @Override
