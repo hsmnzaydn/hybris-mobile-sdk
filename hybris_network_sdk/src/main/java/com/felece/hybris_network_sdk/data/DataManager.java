@@ -16,6 +16,7 @@ import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryMode;
 import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryModeList;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
+import com.felece.hybris_network_sdk.data.network.entities.order.PaymentDetails;
 import com.felece.hybris_network_sdk.data.network.entities.product.Product;
 import com.felece.hybris_network_sdk.data.network.entities.product.ProductBase;
 import com.felece.hybris_network_sdk.data.network.entities.search.facetdata.ProductSearchPage;
@@ -65,6 +66,8 @@ public interface DataManager  {
     void deleteEntryFromCart( String cartId, int entryId, ServiceCallback<Entry> entryServiceCallback);
     void getVouchersOfCart(Class object, String field, String cartId, ServiceCallback<VoucherList> voucherListServiceCallback);
     void addVoucherToCart( String cartId, String voucherId, ServiceCallback<Voucher> voucherServiceCallback);
+    void addPaymentDetailToCart(Class object, String field, String cartId, PaymentDetails paymentDetails, ServiceCallback<PaymentDetails> paymentDetailsServiceCallback);
+
 
 
 

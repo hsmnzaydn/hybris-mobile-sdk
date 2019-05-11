@@ -13,6 +13,7 @@ import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryMode;
 import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryModeList;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
+import com.felece.hybris_network_sdk.data.network.entities.order.PaymentDetails;
 import com.felece.hybris_network_sdk.data.network.entities.product.Product;
 import com.felece.hybris_network_sdk.data.network.entities.product.ProductBase;
 import com.felece.hybris_network_sdk.data.network.entities.search.facetdata.ProductSearchPage;
@@ -206,6 +207,11 @@ public class ApiServicesImp implements ApiServices {
     @Override
     public void addVoucherToCart(String userId, String cartId, String voucherId, ServiceCallback<Voucher> voucherServiceCallback) {
         cartServices.addVoucherToCart(userId,cartId,voucherId,voucherServiceCallback);
+    }
+
+    @Override
+    public void addPaymentDetailToCart(Class object, String field, String userId, String cartId, PaymentDetails paymentDetails, ServiceCallback<PaymentDetails> paymentDetailsServiceCallback) {
+        cartServices.addPaymentDetailToCart(object,field,userId,cartId,paymentDetails,paymentDetailsServiceCallback);
     }
 
     @Override

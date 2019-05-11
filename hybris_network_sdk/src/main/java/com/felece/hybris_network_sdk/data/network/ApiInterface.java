@@ -6,6 +6,7 @@ import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.order.Cart;
 import com.felece.hybris_network_sdk.data.network.entities.order.CartList;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
+import com.felece.hybris_network_sdk.data.network.entities.order.PaymentDetails;
 import com.felece.hybris_network_sdk.data.network.entities.product.Product;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
@@ -142,6 +143,9 @@ public interface ApiInterface {
 
     @POST("users/{userId}/carts/{cartId}/vouchers")
     Single<Response<Void>> addVoucherToCart(@Path("userId") String userId,@Path("cartId") String cartId,@Query("voucherId") String voucherId);
+
+    @POST("users/{userId}/carts/{cartId}/paymentdetaild")
+    Single<Response<Void>> addPaymentToCart(@Path("userId") String userId, @Path("cartId") String cartId, @Query("fields") String fields, @Body PaymentDetails paymentDetails);
 
 
     // Product Services

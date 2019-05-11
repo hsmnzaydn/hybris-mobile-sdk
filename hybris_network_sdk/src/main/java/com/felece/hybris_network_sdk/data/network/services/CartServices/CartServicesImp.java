@@ -11,6 +11,7 @@ import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryMode;
 import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryModeList;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
+import com.felece.hybris_network_sdk.data.network.entities.order.PaymentDetails;
 import com.felece.hybris_network_sdk.data.network.entities.product.Product;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.voucher.Voucher;
@@ -349,6 +350,29 @@ public class CartServicesImp extends BaseService implements CartServices {
                     @Override
                     public void onError(Throwable e) {
                         getErrorCastObject(e, voucherServiceCallback);
+
+                    }
+
+                });
+    }
+
+    @Override
+    public void addPaymentDetailToCart(Class object, String field, String userId, String cartId, PaymentDetails paymentDetails, final ServiceCallback<PaymentDetails> paymentDetailsServiceCallback) {
+        getApiInterface().addPaymentToCart(userId, cartId,field,paymentDetails).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        if (((Response) o).isSuccessful()) {
+                            paymentDetailsServiceCallback.onSuccess((PaymentDetails) getCastObject(o, PaymentDetails.class));
+                        } else {
+                            getErrorCastObject(((Response) o), paymentDetailsServiceCallback);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e, paymentDetailsServiceCallback);
 
                     }
 

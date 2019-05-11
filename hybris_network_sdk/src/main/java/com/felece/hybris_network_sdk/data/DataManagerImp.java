@@ -14,6 +14,7 @@ import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryMode;
 import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryModeList;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
+import com.felece.hybris_network_sdk.data.network.entities.order.PaymentDetails;
 import com.felece.hybris_network_sdk.data.network.entities.product.Product;
 import com.felece.hybris_network_sdk.data.network.entities.product.ProductBase;
 import com.felece.hybris_network_sdk.data.network.entities.search.facetdata.ProductSearchPage;
@@ -316,6 +317,15 @@ public class DataManagerImp implements DataManager {
     @Override
     public void addVoucherToCart(String cartId, String voucherId, ServiceCallback<Voucher> voucherServiceCallback) {
         apiServices.addVoucherToCart(prefHelper.getUserId(),cartId,voucherId,voucherServiceCallback);
+    }
+
+    @Override
+    public void addPaymentDetailToCart(Class object, String field, String cartId, PaymentDetails paymentDetails, ServiceCallback<PaymentDetails> paymentDetailsServiceCallback) {
+        if(object == null){
+            apiServices.addPaymentDetailToCart(PaymentDetails.class,field,prefHelper.getUserId(),cartId,paymentDetails,paymentDetailsServiceCallback);
+        }else {
+            apiServices.addPaymentDetailToCart(object,field,prefHelper.getUserId(),cartId,paymentDetails,paymentDetailsServiceCallback);
+        }
     }
 
     @Override
