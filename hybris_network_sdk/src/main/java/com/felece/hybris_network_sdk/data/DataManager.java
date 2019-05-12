@@ -16,6 +16,7 @@ import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryMode;
 import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryModeList;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
+import com.felece.hybris_network_sdk.data.network.entities.order.OrderHistoryList;
 import com.felece.hybris_network_sdk.data.network.entities.order.PaymentDetails;
 import com.felece.hybris_network_sdk.data.network.entities.product.Product;
 import com.felece.hybris_network_sdk.data.network.entities.product.ProductBase;
@@ -49,6 +50,7 @@ public interface DataManager  {
     void updateUserAddress(Class object,String addressId,Address address,ServiceCallback<Address> addressServiceCallback);
     void updateUserLoginId(String newUserId,  String password, ServiceCallback<UserInformation> userInformationServiceCallback);
     void updateUserPassword(String oldPassword,String newPassword,ServiceCallback<UserInformation> userInformationServiceCallback);
+    void getHistoryOrdersOfUser(Class object, ServiceCallback<OrderHistoryList> orderHistoryListServiceCallback);
 
 
     void getCarts(Class object, String field, Boolean savedCartsOnly, Integer currentPage, Integer pageSize, String sort,  ServiceCallback<CartList> cartListServiceCallback);

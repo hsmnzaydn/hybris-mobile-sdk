@@ -30,7 +30,8 @@ public class ProfileActivity extends BaseActivity {
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
         ((HybrisApp) getApplication()).getActivityComponent().injectProfileActivity(this);
-
+        setSupportActionBar(toolbar);
+        setTitle("Profilim");
 
     }
 
@@ -43,6 +44,10 @@ public class ProfileActivity extends BaseActivity {
                 break;
             case R.id.activity_profile_profile_linear_layout:
                 break;
+            case R.id.activity_profile_history_linear_layout:
+
+                break;
+
         }
     }
 }

@@ -3,6 +3,7 @@ package com.felece.hybris_network_sdk.data.network.services.UserServices;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.network.entities.CommonResponse;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
+import com.felece.hybris_network_sdk.data.network.entities.order.OrderHistoryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
@@ -22,4 +23,5 @@ public interface UserServices {
     void updateUserAddress(Class object,String userId,String addressId,Address address,ServiceCallback<Address> addressServiceCallback);
     void updateUserLoginName(String newUserId,String oldUserId,String password,ServiceCallback<UserInformation> userInformationServiceCallback);
     void updateUserPassword(String oldPassword,String newPassword,String userId,ServiceCallback<UserInformation> userInformationServiceCallback);
+    void getHistoryOrdersOfUser(Class object, String userId, ServiceCallback<OrderHistoryList> orderHistoryListServiceCallback);
 }

@@ -48,4 +48,24 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/black"/>
+
+    <LinearLayout
+        android:id="@+id/activity_profile_history_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        >
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Geçmiş Siparişlerim"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"/>
 </LinearLayout>

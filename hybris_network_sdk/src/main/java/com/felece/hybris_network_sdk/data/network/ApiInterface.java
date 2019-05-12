@@ -95,6 +95,9 @@ public interface ApiInterface {
     @PUT("users/{userId}/password")
     Single<Response<Void>> updateUserPassword(@Path("userId") String userId, @Query("old") String oldPassword, @Query("new") String newPassword);
 
+    @GET("users/{userId}/orders")
+    Single<Object> getHistoryOrderOfUser(@Path("userId") String userId);
+
     // Cart Services
     @GET("users/{userId}/carts")
     Single<CartList> getCartList(@Path("userId") String userId, @Query("fields") String fields,

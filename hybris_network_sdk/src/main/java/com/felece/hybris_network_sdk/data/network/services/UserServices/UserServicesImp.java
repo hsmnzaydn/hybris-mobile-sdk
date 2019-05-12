@@ -7,6 +7,7 @@ import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.network.ApiClient;
 import com.felece.hybris_network_sdk.data.network.entities.UserInformation;
 import com.felece.hybris_network_sdk.data.network.entities.error.Error;
+import com.felece.hybris_network_sdk.data.network.entities.order.OrderHistoryList;
 import com.felece.hybris_network_sdk.data.network.entities.user.Address;
 import com.felece.hybris_network_sdk.data.network.entities.user.AddressList;
 import com.felece.hybris_network_sdk.data.network.entities.user.User;
@@ -282,6 +283,24 @@ public class UserServicesImp extends BaseService implements UserServices {
                     @Override
                     public void onError(Throwable e) {
                         getErrorCastObject(e,userInformationServiceCallback);
+                    }
+
+                });
+    }
+
+    @Override
+    public void getHistoryOrdersOfUser(final Class object, String userId, final ServiceCallback<OrderHistoryList> orderHistoryListServiceCallback) {
+        getApiInterface().getHistoryOrderOfUser(userId).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        orderHistoryListServiceCallback.onSuccess((OrderHistoryList) getCastObject(o, object));
+
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        getErrorCastObject(e,orderHistoryListServiceCallback);
                     }
 
                 });

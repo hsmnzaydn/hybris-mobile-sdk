@@ -65,7 +65,7 @@ public class DeliveryAdressActivity extends BaseActivity {
                     @Override
                     public void onItemClick(Address item) {
 
-                        dataManager.createDeliveryAddresForCart(null, item, cartId, new ServiceCallback<Cart>() {
+                        dataManager.setDeliveryAddresToCart( cartId, item.getId(), new ServiceCallback<Cart>() {
                             @Override
                             public void onSuccess(Cart response) {
                                 Intent intent=new Intent(DeliveryAdressActivity.this,AddPaymentDetail.class);

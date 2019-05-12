@@ -13,6 +13,7 @@ import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryMode;
 import com.felece.hybris_network_sdk.data.network.entities.order.DeliveryModeList;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntry;
 import com.felece.hybris_network_sdk.data.network.entities.order.OrderEntryList;
+import com.felece.hybris_network_sdk.data.network.entities.order.OrderHistoryList;
 import com.felece.hybris_network_sdk.data.network.entities.order.PaymentDetails;
 import com.felece.hybris_network_sdk.data.network.entities.product.Product;
 import com.felece.hybris_network_sdk.data.network.entities.product.ProductBase;
@@ -132,6 +133,11 @@ public class ApiServicesImp implements ApiServices {
     @Override
     public void updateUserPassword(String oldPassword, String newPassword, String userId, ServiceCallback<UserInformation> userInformationServiceCallback) {
         userServices.updateUserPassword(oldPassword,newPassword,userId,userInformationServiceCallback);
+    }
+
+    @Override
+    public void getHistoryOrdersOfUser(Class object, String userId, ServiceCallback<OrderHistoryList> orderHistoryListServiceCallback) {
+        userServices.getHistoryOrdersOfUser(object,userId,orderHistoryListServiceCallback);
     }
 
     @Override
