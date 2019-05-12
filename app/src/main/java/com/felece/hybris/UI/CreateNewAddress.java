@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.felece.hybris.HybrisApp;
 import com.felece.hybris.R;
+import com.felece.hybris.Utility.Constant;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
 import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
@@ -44,6 +45,8 @@ public class CreateNewAddress extends BaseActivity {
     @BindView(R.id.activity_create_new_address_save_button)
     MaterialButton activityCreateNewAddressSaveButton;
     Address address;
+    String adressId;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,36 @@ public class CreateNewAddress extends BaseActivity {
 
         ((HybrisApp) getApplication()).getActivityComponent().injectCreateNewAddress(this);
         address = new Address();
+
+
+         bundle=getIntent().getExtras();
+
+        if(bundle != null){
+            adressId=bundle.getString(Constant.BUNDLE_ADDRESS_ID,"");
+            showLoading();
+            dataManager.getUserAdress(null, adressId, new ServiceCallback<Address>() {
+                @Override
+                public void onSuccess(Address response) {
+                    activityCreateNewAddressNameEditText.setText(response.getFirstName());
+                    activityCreateNewAddressCountryEditText.setText(response.getCountry().getName());
+                    activityCreateNewAddressOpenAddressEditText.setText(response.getLine1());
+                    activityCreateNewAddressSurnameEditText.setText(response.getLastName());
+
+                    address=response;
+
+                    hideLoading();
+                }
+
+                @Override
+                public void onError(int code, String errorResponse) {
+                    showMessage(errorResponse);
+                    hideLoading();
+                }
+            });
+
+
+
+        }
 
 
     }
@@ -100,18 +133,38 @@ public class CreateNewAddress extends BaseActivity {
                 country.setIsocode("TR");
                 address.setCountry(country);
                 showLoading();
-                dataManager.createNewUserAdress(null, address, new ServiceCallback<Address>() {
-                    @Override
-                    public void onSuccess(Address response) {
-                        hideLoading();
-                    }
 
-                    @Override
-                    public void onError(int code, String errorResponse) {
-                        hideLoading();
-                        showMessage(errorResponse);
-                    }
-                });
+                if (bundle != null){
+                    showLoading();
+                    dataManager.updateUserAddress(null, adressId, address, new ServiceCallback<Address>() {
+                        @Override
+                        public void onSuccess(Address response) {
+                            onBackPressed();
+                            hideLoading();
+                        }
+
+                        @Override
+                        public void onError(int code, String errorResponse) {
+                            showMessage(errorResponse);
+                            hideLoading();
+                        }
+                    });
+
+                }else {
+                    dataManager.createNewUserAdress(null, address, new ServiceCallback<Address>() {
+                        @Override
+                        public void onSuccess(Address response) {
+                            onBackPressed();
+                            hideLoading();
+                        }
+
+                        @Override
+                        public void onError(int code, String errorResponse) {
+                            hideLoading();
+                            showMessage(errorResponse);
+                        }
+                    });
+                }
 
                 break;
         }

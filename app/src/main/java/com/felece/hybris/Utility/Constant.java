@@ -5,4 +5,5 @@ public class Constant {
     // Bundles
     public static final String BUNDLE_PRODUCT_ID="productId";
     public static final String BUNDLE_CART_ID="cartId";
+    public static final String BUNDLE_ADDRESS_ID="adressId";
 }

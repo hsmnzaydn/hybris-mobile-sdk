@@ -229,7 +229,11 @@ public class UserServicesImp extends BaseService implements UserServices {
                 .subscribeWith(new DisposableSingleObserver() {
                     @Override
                     public void onSuccess(Object o) {
-                        addressServiceCallback.onSuccess((Address) getCastObject(o, object));
+                        if(((Response)o).isSuccessful()){
+                            addressServiceCallback.onSuccess((Address) getCastObject(o, Address.class));
+                        }else {
+                            getErrorCastObject(((Response) o),addressServiceCallback);
+                        }
 
                     }
                     @Override

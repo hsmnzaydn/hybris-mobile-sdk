@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.felece.hybris.HybrisApp;
 import com.felece.hybris.R;
 import com.felece.hybris.UI.Adapters.AddressListRecylerViewAdapter;
+import com.felece.hybris.Utility.Constant;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
 import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
@@ -73,6 +74,13 @@ public class AddresActivity extends BaseActivity {
                             }
                         });
                     }
+
+                    @Override
+                    public void onEditItemClick(Address item) {
+                        Intent intent=new Intent(AddresActivity.this,CreateNewAddress.class);
+                        intent.putExtra(Constant.BUNDLE_ADDRESS_ID,item.getId());
+                        startActivity(intent);
+                    }
                 });
 
                 LinearLayoutManager manager = new LinearLayoutManager(AddresActivity.this, LinearLayoutManager.VERTICAL, false);
@@ -87,6 +95,13 @@ public class AddresActivity extends BaseActivity {
                 hideLoading();
             }
         });
+    }
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        getAdress();
     }
 
     @OnClick(R.id.activity_addres_add_addres_button)

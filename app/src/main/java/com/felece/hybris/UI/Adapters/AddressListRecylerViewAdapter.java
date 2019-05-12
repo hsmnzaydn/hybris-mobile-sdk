@@ -49,6 +49,7 @@ public class AddressListRecylerViewAdapter extends RecyclerView.Adapter<AddressL
 
     public interface ItemListener {
         void onItemClick(Address item);
+        void onEditItemClick(Address item);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -61,7 +62,8 @@ public class AddressListRecylerViewAdapter extends RecyclerView.Adapter<AddressL
         TextView rowEntryDescriptionTextView;
         @BindView(R.id.row_address_delete_text_view)
         TextView rowDeleteTextView;
-
+        @BindView(R.id.row_address_edit_text_view)
+        TextView rowEditTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -75,10 +77,19 @@ public class AddressListRecylerViewAdapter extends RecyclerView.Adapter<AddressL
             rowEntryHeaderTextView.setText(item.getFirstName()+" "+item.getLastName());
             rowEntryDescriptionTextView.setText(item.getFormattedAddress()+"\n"+item.getTown()+"/"+item.getCountry().getName());
 
+
+
             rowDeleteTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     myListener.onItemClick(item);
+                }
+            });
+
+            rowEditTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myListener.onEditItemClick(item);
                 }
             });
             // TODO set data to view

@@ -87,7 +87,7 @@ public interface ApiInterface {
     Single<Object> getUserAdress(@Path("userId") String userId, @Path("addressId") String adressId);
 
     @PATCH("users/{userId}/addresses/{addressId}")
-    Single<Object> updateUserAdress(@Path("userId") String userId, @Path("addressId") String adressId, @Body Address address);
+    Single<Response<Void>> updateUserAdress(@Path("userId") String userId, @Path("addressId") String adressId, @Body Address address);
 
     @PUT("users/{userId}/login")
     Single<Response<Void>> updateUserId(@Path("userId") String userId, @Query(value = "newLogin", encoded = true) String newLoginId, @Query("password") String password);
