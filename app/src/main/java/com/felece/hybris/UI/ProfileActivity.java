@@ -43,6 +43,8 @@ public class ProfileActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.activity_profile_profile_linear_layout:
+                Intent intent1=new Intent(ProfileActivity.this,UserProfileActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.activity_profile_history_linear_layout:
 

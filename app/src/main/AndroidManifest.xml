@@ -12,7 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UI.AddPaymentDetail"></activity>
+        <activity android:name=".UI.SplashActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".UI.HistoryOrderActivity" />
+        <activity android:name=".UI.UserProfileActivity" />
+        <activity android:name=".UI.AddPaymentDetail" />
         <activity android:name=".UI.CatalogsActivity" />
         <activity android:name=".UI.DeliveryAdressActivity" />
         <activity android:name=".UI.ProductCommentsActivity" />
@@ -24,11 +34,7 @@
         <activity android:name=".UI.ProductListActivity" />
         <activity android:name=".UI.RegisterActivity" />
         <activity android:name=".UI.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
