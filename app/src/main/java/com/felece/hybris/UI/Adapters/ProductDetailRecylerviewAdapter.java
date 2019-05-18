@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.felece.hybris.R;
+import com.felece.hybris.Utility.CommonUtils;
 import com.felece.hybris_network_sdk.data.network.entities.product.Image;
 import com.felece.hybris_network_sdk.data.network.entities.product.Review;
 import com.squareup.picasso.Picasso;
@@ -67,8 +68,7 @@ public class ProductDetailRecylerviewAdapter extends RecyclerView.Adapter<Produc
 
         public void setData(Image item) {
             this.item = item;
-            Picasso.get().load("https://images-na.ssl-images-amazon.com/images/I/71mVF%2B93MPL._SY606_.jpg").into(cellProductSliderImageView);
-
+        //    CommonUtils.getImage(item.getUrl(),cellProductSliderImageView);
 
             // TODO set data to view
         }

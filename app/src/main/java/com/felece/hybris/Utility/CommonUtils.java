@@ -17,9 +17,11 @@ import android.os.Build;
 import android.provider.Settings;
 import android.text.Html;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -27,6 +29,9 @@ import androidx.fragment.app.Fragment;
 
 
 import com.felece.hybris.R;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
@@ -183,6 +188,25 @@ public class CommonUtils {
         String encImage = Base64.encodeToString(b, Base64.DEFAULT);
 
         return resizeBase64Image(encImage);
+    }
+
+    public static void getImage(String imageUrl, ImageView imageView){
+
+        Picasso.get().load("https://localhost:9002/backoffice"+imageUrl).into(imageView, new Callback() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Log.d("veri","veri");
+            }
+        });
+
+
+
+
     }
 
     public static String resizeBase64Image(String base64image) {

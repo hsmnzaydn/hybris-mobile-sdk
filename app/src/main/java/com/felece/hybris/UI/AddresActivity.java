@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.felece.hybris.DialogCallback;
 import com.felece.hybris.HybrisApp;
 import com.felece.hybris.R;
 import com.felece.hybris.UI.Adapters.AddressListRecylerViewAdapter;
@@ -58,21 +59,39 @@ public class AddresActivity extends BaseActivity {
                 addressListRecylerViewAdapter=new AddressListRecylerViewAdapter(response.getAddresses(), new AddressListRecylerViewAdapter.ItemListener() {
                     @Override
                     public void onItemClick(Address item) {
-                        showLoading();
-                        dataManager.deleteUserAdress(item.getId(), new ServiceCallback<Address>() {
-                            @Override
-                            public void onSuccess(Address response) {
-                                hideLoading();
-                                getAdress();
 
+                        showDialogWithChoose("Bilgi", "Adresi silmek istediğinize emin misiniz?", "Evet", "Hayır", new DialogCallback() {
+                            @Override
+                            public void pressedPossitiveButton() {
+                                showLoading();
+
+                                dataManager.deleteUserAdress(item.getId(), new ServiceCallback<Address>() {
+                                    @Override
+                                    public void onSuccess(Address response) {
+                                        hideLoading();
+                                        getAdress();
+
+                                    }
+
+                                    @Override
+                                    public void onError(int code, String errorResponse) {
+                                        showMessage(errorResponse);
+                                        hideLoading();
+                                    }
+                                });
                             }
 
                             @Override
-                            public void onError(int code, String errorResponse) {
-                                showMessage(errorResponse);
-                                hideLoading();
+                            public void pressedNegativeButton() {
+
                             }
                         });
+
+
+
+
+
+
                     }
 
                     @Override

@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.felece.hybris.DialogCallback;
 import com.felece.hybris.R;
 import com.felece.hybris.Utility.CommonUtils;
 
@@ -18,6 +20,8 @@ import java.util.List;
 public class BaseActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
+    private AlertDialog.Builder alertDialogBuilder;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
@@ -84,5 +88,37 @@ public class BaseActivity extends AppCompatActivity {
             dialog.show();
         }
 
+    }
+
+    public void showDialogWithChoose(String title, String description, String possitiveButtonText, String negativeButtonText, final DialogCallback dialogCallback) {
+        alertDialogBuilder = new AlertDialog.Builder(this);
+
+        alertDialogBuilder.setTitle(title).setMessage(description).setPositiveButton(possitiveButtonText, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialogCallback.pressedPossitiveButton();
+            }
+        }).setNegativeButton(negativeButtonText, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialogCallback.pressedNegativeButton();
+            }
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+            }
+        });
+        alertDialog.setOnShowListener( new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.black));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.black));
+
+            }
+        });
+
+        alertDialog.setCanceledOnTouchOutside(true);
+        alertDialog.show();
     }
 }

@@ -17,6 +17,7 @@ import com.felece.hybris.Utility.Constant;
 import com.felece.hybris.Utility.EndlessOnScrollListener;
 import com.felece.hybris_network_sdk.ServiceCallback;
 import com.felece.hybris_network_sdk.data.DataManager;
+import com.felece.hybris_network_sdk.data.network.entities.enums.FIELDS;
 import com.felece.hybris_network_sdk.data.network.entities.product.Product;
 import com.felece.hybris_network_sdk.data.network.entities.search.facetdata.ProductSearchPage;
 import com.felece.hybris_network_sdk.data.network.entities.search.pagedata.Sort;
@@ -67,7 +68,7 @@ public class ProductListActivity extends BaseActivity {
 
         ((HybrisApp) getApplication()).getActivityComponent().injectProductListActivity(this);
 
-        getSearchProduct(query, currentPage, pageSize, null, null, null,false);
+        getSearchProduct(query, currentPage, pageSize, null, FIELDS.FULL.getFieldType(), null,false);
         setSupportActionBar(toolbar);
         setTitle("Ürünler");
 

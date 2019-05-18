@@ -94,7 +94,7 @@ public class CreateNewAddress extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.activity_create_new_address_country_edit_text:
-              /*  dataManager.getContries(TYPE.BILLING.getType(), FIELDS.FULL.getFieldType(), null, new ServiceCallback<CountryList>() {
+               dataManager.getContries(TYPE.BILLING.getType(), FIELDS.FULL.getFieldType(), null, new ServiceCallback<CountryList>() {
                     @Override
                     public void onSuccess(CountryList response) {
                         List<String> stringList=new ArrayList<>();
@@ -107,6 +107,7 @@ public class CreateNewAddress extends BaseActivity {
                             @Override
                             public void selectedItem(Integer select) {
                                 address.setCountry(response.getCountries().get(select));
+                                activityCreateNewAddressCountryEditText.setText(response.getCountries().get(select).getName());
                             }
                         });
                     }
@@ -114,7 +115,7 @@ public class CreateNewAddress extends BaseActivity {
                     public void onError(int code, String errorResponse) {
 
                     }
-                });*/
+                });
 
 
                 break;
@@ -129,8 +130,8 @@ public class CreateNewAddress extends BaseActivity {
                 address.setPostalCode("34000");
                 address.setLine1(activityCreateNewAddressOpenAddressEditText.getText().toString());
                 Country country = new Country();
-                country.setName("turkey");
-                country.setIsocode("TR");
+                country.setName(address.getCountry().getName());
+                country.setIsocode(address.getCountry().getIsocode());
                 address.setCountry(country);
                 showLoading();
 

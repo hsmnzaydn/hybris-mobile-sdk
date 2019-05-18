@@ -81,8 +81,7 @@ public class ProductListRecylerViewAdapter extends RecyclerView.Adapter<ProductL
             } else {
                 rowEntryHeaderTextView.setText(Html.fromHtml(item.getName()));
             }
-            Picasso.get().load("https://images-na.ssl-images-amazon.com/images/I/71mVF%2B93MPL._SY606_.jpg").into(rowEntryThumbnailImageView);
-
+           // CommonUtils.getImage(item.getImages().get(0).getUrl(),rowEntryThumbnailImageView);
             rowEntryPriceTextView.setText(item.getPrice().getFormattedValue());
             // TODO set data to view
         }
